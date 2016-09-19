@@ -1,19 +1,19 @@
 {
-  "name": "mdt",
+  "name": "js-source-code-extractor",
   "version": "1.0.0",
-  "description": "JavaScript Source Code Extractor",
+  "description": "JavaScript Source Code Extractor - Extracts JavaScript source code used in a web app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acdcjunior/mdt.git"
+    "url": "git+https://github.com/acdcjunior/js-source-code-extractor.git"
   },
   "author": "acdcjunior@gmail.com",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/acdcjunior/mdt/issues"
+    "url": "https://github.com/acdcjunior/js-source-code-extractor/issues"
   },
-  "homepage": "https://github.com/acdcjunior/mdt#readme"
+  "homepage": "https://github.com/acdcjunior/js-source-code-extractor#readme"
 }
