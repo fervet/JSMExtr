@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/acdcjunior/js-source-code-extractor/issues"
   },
-  "homepage": "https://github.com/acdcjunior/js-source-code-extractor#readme"
+  "homepage": "https://github.com/acdcjunior/js-source-code-extractor#readme",
+  "dependencies": {
+    "gumbo-parser": "^0.2.2"
+  }
 }
