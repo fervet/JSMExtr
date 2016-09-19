@@ -1,0 +1,19 @@
+{
+  "name": "mdt",
+  "version": "1.0.0",
+  "description": "JavaScript Source Code Extractor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acdcjunior/mdt.git"
+  },
+  "author": "acdcjunior@gmail.com",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/acdcjunior/mdt/issues"
+  },
+  "homepage": "https://github.com/acdcjunior/mdt#readme"
+}
