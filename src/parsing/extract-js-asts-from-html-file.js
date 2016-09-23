@@ -1,5 +1,5 @@
-const extractScriptTagsFromHtmlFile = require("./extract-script-tags-from-html-file");
-const parseJavaScriptString = require("./parse-js-string-to-ast");
+const extractScriptTagsFromHtmlFile = require("./html/extract-script-tags-from-html-file");
+const parseJavaScriptString = require("./js/parse-js-string-to-ast");
 
 /**
  * Given an HTML file, returns one JS-AST for each script tag.
