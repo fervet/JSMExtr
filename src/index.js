@@ -1,13 +1,12 @@
-var fs = require('fs');
-var gumbo = require("gumbo-parser");
+const extractJavaScriptASTsFromHtmlFile = require("./parsing/extract-js-asts-from-html-file");
 
-var htmlFileContents = fs.readFileSync('demo.html', 'utf8');
-console.log(htmlFileContents);
+const jsASTs = extractJavaScriptASTsFromHtmlFile('../spec/demo/demo.html', 'utf8');
+console.log(JSON.stringify(jsASTs));
+console.log("####################");
 
-console.log("########################################");
-
-var tree = gumbo(htmlFileContents);
-console.log(JSON.stringify(tree));
+jsASTs.forEach(function (jsAST) {
+    console.log(JSON.stringify(jsAST, null, 4)+"\n\n");
+});
 
 // parse html file
 // extract script tags with positional information
