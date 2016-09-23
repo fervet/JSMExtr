@@ -9,8 +9,11 @@ module.exports = function (fileName, fileEncoding) {
 
     let javaScriptASTs = [];
     scriptTags.forEach(function (scriptTag) {
-        let textScript = scriptTag.childNodes[0].textContent;
-        javaScriptASTs.push(parseJavaScriptString(textScript));
+        // If len is zero, then it is a <script src="file"></script> tag
+        if (scriptTag.childNodes.length) {
+            let textScript = scriptTag.childNodes[0].textContent;
+            javaScriptASTs.push(parseJavaScriptString(textScript));
+        }
     });
     return javaScriptASTs;
 };
