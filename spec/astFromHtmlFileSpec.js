@@ -5,7 +5,7 @@ describe("Exemplo", function () {
     it("extractJavaScriptASTsFromHtmlFile demo-html", function () {
         const jsASTs = extractJavaScriptASTsFromHtmlFile('spec/demo/demo.html', 'utf8');
 
-        const expectedASTs = [
+        const expectedDemoASTs = [
             {
                 "type": "Program",
                 "body": [
@@ -45,10 +45,8 @@ describe("Exemplo", function () {
                 "sourceType": "script"
             }
         ];
-        // expect(jsASTs).toBe(expectedASTs);
-
-        const stringResult = JSON.stringify(jsASTs, null, 4);
-
-        expect(stringResult).toBe(JSON.stringify(expectedASTs, null, 4))
+        expect(jsASTs).toEqual(expectedDemoASTs);
+        JSON.stringify(jsASTs, null, 4); // to debug
     });
+
 });
