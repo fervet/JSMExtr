@@ -4,7 +4,7 @@
   "description": "JavaScript Source Code Extractor - Extracts JavaScript source code used in a web app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/jasmine-node spec"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/acdcjunior/js-source-code-extractor#readme",
   "dependencies": {
+    "esprima": "^3.0.0",
     "gumbo-parser": "^0.2.2"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
   }
 }
