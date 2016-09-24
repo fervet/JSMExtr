@@ -1,4 +1,4 @@
-const extractJavaScriptASTsFromJsFile = require("../src/parsing/extract-js-ast-from-js-file");
+const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
 
 describe("JS", function () {
 

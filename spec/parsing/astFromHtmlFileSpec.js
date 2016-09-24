@@ -1,4 +1,4 @@
-const extractJavaScriptASTsFromHtmlFile = require("../src/parsing/extract-js-asts-from-html-file");
+const extractJavaScriptASTsFromHtmlFile = require("../../src/parsing/extract-js-asts-from-html-file");
 
 describe("HTML", function () {
 
