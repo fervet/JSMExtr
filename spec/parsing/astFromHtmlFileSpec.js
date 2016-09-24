@@ -40,7 +40,8 @@ describe("HTML", function () {
                     }
                 ],
                 sourceType: 'script',
-                loc: {start: {line: 1, column: 0}, end: {line: 1, column: 19}}
+                loc: {start: {line: 1, column: 0}, end: {line: 1, column: 19}},
+                htmlLocation : 'spec/demo/demo.html?5:1-5:28'
             }, {
                 type: 'Program',
                 body: [
@@ -75,7 +76,8 @@ describe("HTML", function () {
                     }
                 ],
                 sourceType: 'script',
-                loc: {start: {line: 1, column: 0}, end: {line: 1, column: 19}}
+                loc: {start: {line: 1, column: 0}, end: {line: 1, column: 19}},
+                htmlLocation : 'spec/demo/demo.html?6:1-6:28'
             }
         ];
         expect(jsASTs).toEqual(expectedDemoASTs);

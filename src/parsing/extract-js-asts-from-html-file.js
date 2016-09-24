@@ -12,8 +12,14 @@ module.exports = function (fileName, fileEncoding) {
         // If len is zero, then it is a <script src="file"></script> tag
         if (scriptTag.childNodes.length) {
             let textScript = scriptTag.childNodes[0].textContent;
-            javaScriptASTs.push(parseJavaScriptString(textScript));
+            const jsAST = parseJavaScriptString(textScript);
+            jsAST.htmlLocation = generateHtmlLocation(fileName, scriptTag);
+            javaScriptASTs.push(jsAST);
         }
     });
     return javaScriptASTs;
 };
+
+function generateHtmlLocation(fileName, scriptTag) {
+    return `${fileName}?${scriptTag.startPos.line}:${scriptTag.startPos.column}-${scriptTag.endPos.line}:${scriptTag.endPos.column}`;
+}
