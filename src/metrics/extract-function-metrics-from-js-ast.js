@@ -3,10 +3,20 @@
  */
 module.exports = function (jsAST) {
     if (Array.isArray(jsAST)) {
-        return visitArrayOfNodes(jsAST);
+        return visitArrayOfPrograms(jsAST);
     }
-    return visit(jsAST);
+    return visitProgram(jsAST);
 };
+
+function visitArrayOfPrograms(arrayOfAstProgramNodes) {
+    let metrics = arrayOfAstProgramNodes.map(astProgramNode => visitProgram(astProgramNode));
+    return [].concat.apply([], metrics);
+}
+
+function visitProgram(programNode) {
+    let bodyNodes = programNode.body;
+    return bodyNodes.map(bodyNode => visit(bodyNode));
+}
 
 /*
  Number of declaration statements (Decl.)
@@ -18,44 +28,41 @@ module.exports = function (jsAST) {
  Number of parameters (Param.)
  Number of called functions (Call)
  */
-class FunctionMetrics {
+class Metrics {
     constructor(declarationStmtCount, executableStmtCount, conditionalStmtCount, loopingStmtCount,
                 maxNestingLevelOfControlConstructs, returnStmtCount, parametersCount, callExpressionCount)
     {
-        //noinspection JSUnusedGlobalSymbols
         this.declarationStmtCount = declarationStmtCount;
-        //noinspection JSUnusedGlobalSymbols
         this.executableStmtCount = executableStmtCount;
-        //noinspection JSUnusedGlobalSymbols
         this.conditionalStmtCount = conditionalStmtCount;
-        //noinspection JSUnusedGlobalSymbols
         this.loopingStmtCount = loopingStmtCount;
-        //noinspection JSUnusedGlobalSymbols
         this.maxNestingLevelOfControlConstructs = maxNestingLevelOfControlConstructs;
-        //noinspection JSUnusedGlobalSymbols
         this.returnStmtCount = returnStmtCount;
-        //noinspection JSUnusedGlobalSymbols
         this.parametersCount = parametersCount;
-        //noinspection JSUnusedGlobalSymbols
         this.callExpressionCount = callExpressionCount;
+    }
+
+    addMetrics(otherMetrics) {
+        this.declarationStmtCount += otherMetrics.declarationStmtCount;
+        this.executableStmtCount += otherMetrics.executableStmtCount;
+        this.conditionalStmtCount += otherMetrics.conditionalStmtCount;
+        this.loopingStmtCount += otherMetrics.loopingStmtCount;
+        this.maxNestingLevelOfControlConstructs += otherMetrics.maxNestingLevelOfControlConstructs;
+        this.returnStmtCount += otherMetrics.returnStmtCount;
+        this.parametersCount += otherMetrics.parametersCount;
+        this.callExpressionCount += otherMetrics.callExpressionCount;
     }
 }
 
-function visitArrayOfNodes(arrayOfAstNodes) {
-    let metrics = arrayOfAstNodes.map(astNode => visit(astNode));
-    return [].concat.apply([], metrics);
-}
-
-function visit(astNode) {
+function visit(astNode, optionalFunctionMetrics) {
     const visitorFunction = visitor[astNode.type];
     if (!visitorFunction) {
         throw new Error("Couldn't find visitor for type: "+astNode.type);//+"\n\nNode: "+JSON.stringify(astNode, null, 4));
     }
-    return visitorFunction(astNode);
+    return visitorFunction(astNode, optionalFunctionMetrics);
 }
 
 const visitor = {
-    Program: visitProgram,
     FunctionDeclaration: visitFunctionDeclaration,
     ExpressionStatement: visitExpressionStatement,
     VariableDeclaration: visitVariableDeclaration,
@@ -64,22 +71,25 @@ const visitor = {
     SwitchStatement: visitSwitchStatement
 };
 
-function visitProgram(programNode) {
-    let bodyNodes = programNode.body;
-    return bodyNodes.map(bodyNode => visit(bodyNode));
-}
-
 function visitFunctionDeclaration(functionDeclarationNode) {
+    const functionMetrics = new Metrics(1, 2, 3, 4, 5, 6, functionDeclarationNode.params.length, 8);
+    const blockDetail = visitBlockStatement(functionDeclarationNode.body);
+    functionMetrics.addMetrics(blockDetail.metrics);
     return {
         functionName: functionDeclarationNode.id.name,
-        functionMetrics: new FunctionMetrics(1,2,3,4,5,6, functionDeclarationNode.params.length,8),
-        metricsDetail: visitBlockStatement(functionDeclarationNode.body)
+        metrics: functionMetrics,
+        detail: blockDetail
     };
 }
 
 function visitBlockStatement(blockStatementNode) {
     let statements = blockStatementNode.body;
-    return statements.map(statement => visit(statement));
+    const statementsDetails = statements.map(statement => visit(statement));
+    const blockMetrics = new Metrics(0, 0, 0, 0, 0, 0, 0, 0);
+    return {
+        metrics: blockMetrics,
+        detail: statementsDetails
+    };
 }
 
 function visitExpressionStatement(expressionStatementNode) {
