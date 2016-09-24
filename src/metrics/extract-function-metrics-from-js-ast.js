@@ -8,6 +8,31 @@ module.exports = function (jsAST) {
     return visit(jsAST);
 };
 
+/*
+ Number of declaration statements (Decl.)
+ Number of executable statements (Stmt.)
+ Number of conditional statements (Cond.)
+ Number of looping statements (Loop)
+ Maximum nesting level of control constructs (Nest)
+ Number of return statements (Ret.)
+ Number of parameters (Param.)
+ Number of called functions (Call)
+ */
+class FunctionMetrics {
+    constructor(declarationStmtCount, executableStmtCount, conditionalStmtCount, loopingStmtCount,
+                maxNestingLevelOfControlConstructs, returnStmtCount, parametersCount, callExpressionCount)
+    {
+        this.declarationStmtCount = declarationStmtCount;
+        this.executableStmtCount = executableStmtCount;
+        this.conditionalStmtCount = conditionalStmtCount;
+        this.loopingStmtCount = loopingStmtCount;
+        this.maxNestingLevelOfControlConstructs = maxNestingLevelOfControlConstructs;
+        this.returnStmtCount = returnStmtCount;
+        this.parametersCount = parametersCount;
+        this.callExpressionCount = callExpressionCount;
+    }
+}
+
 function visitArrayOfNodes(arrayOfAstNodes) {
     let metrics = arrayOfAstNodes.map(astNode => visit(astNode));
     return [].concat.apply([], metrics);
@@ -39,7 +64,8 @@ function visitProgram(programNode) {
 function visitFunctionDeclaration(functionDeclarationNode) {
     return {
         functionName: functionDeclarationNode.id.name,
-        functionMetrics: visitBlockStatement(functionDeclarationNode.body)
+        functionMetrics: new FunctionMetrics(1,2,3,4,5,6,7,8),
+        metricsDetail: visitBlockStatement(functionDeclarationNode.body)
     };
 }
 

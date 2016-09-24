@@ -64,7 +64,17 @@ describe("JS", function () {
         expect(output).toEqual([
             {
                 functionName: 'one',
-                functionMetrics : [ { expressionType : 'CallExpression' } ]
+                functionMetrics: {
+                    declarationStmtCount: 1,
+                    executableStmtCount: 2,
+                    conditionalStmtCount: 3,
+                    loopingStmtCount: 4,
+                    maxNestingLevelOfControlConstructs: 5,
+                    returnStmtCount: 6,
+                    parametersCount: 7,
+                    callExpressionCount: 8
+                },
+                metricsDetail: [{expressionType: 'CallExpression'}]
             }
         ]);
     });
@@ -166,11 +176,33 @@ describe("JS", function () {
         expect(output).toEqual(
             [
                 {
-                    functionName: 'one', functionMetrics: [{expressionType: 'CallExpression'}]
+                    functionName: 'one',
+                    functionMetrics: {
+                        declarationStmtCount: 1,
+                        executableStmtCount: 2,
+                        conditionalStmtCount: 3,
+                        loopingStmtCount: 4,
+                        maxNestingLevelOfControlConstructs: 5,
+                        returnStmtCount: 6,
+                        parametersCount: 7,
+                        callExpressionCount: 8
+                    },
+                    metricsDetail: [{expressionType: 'CallExpression'}]
                 }
                 ,
                 {
-                    functionName: 'two', functionMetrics: [{expressionType: 'CallExpression'}]
+                    functionName: 'two',
+                    functionMetrics: {
+                        declarationStmtCount: 1,
+                        executableStmtCount: 2,
+                        conditionalStmtCount: 3,
+                        loopingStmtCount: 4,
+                        maxNestingLevelOfControlConstructs: 5,
+                        returnStmtCount: 6,
+                        parametersCount: 7,
+                        callExpressionCount: 8
+                    },
+                    metricsDetail: [{expressionType: 'CallExpression'}]
                 }
             ]
         );
