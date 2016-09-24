@@ -29,8 +29,8 @@ function visitProgram(programNode) {
  Number of called functions (Call)
  */
 class Metrics {
-    constructor(declarationStmtCount, executableStmtCount, conditionalStmtCount, loopingStmtCount,
-                maxNestingLevelOfControlConstructs, returnStmtCount, parametersCount, callExpressionCount)
+    constructor({declarationStmtCount=0, executableStmtCount=0, conditionalStmtCount=0, loopingStmtCount=0,
+       maxNestingLevelOfControlConstructs=0, returnStmtCount=0, parametersCount=0, callExpressionCount=0} = {})
     {
         this.declarationStmtCount = declarationStmtCount;
         this.executableStmtCount = executableStmtCount;
@@ -72,7 +72,7 @@ const visitor = {
 };
 
 function visitFunctionDeclaration(functionDeclarationNode) {
-    const functionMetrics = new Metrics(1, 2, 3, 4, 5, 6, functionDeclarationNode.params.length, 8);
+    const functionMetrics = new Metrics({parametersCount: functionDeclarationNode.params.length});
     const blockDetail = visitBlockStatement(functionDeclarationNode.body);
     functionMetrics.addMetrics(blockDetail.metrics);
     return {
@@ -83,9 +83,10 @@ function visitFunctionDeclaration(functionDeclarationNode) {
 }
 
 function visitBlockStatement(blockStatementNode) {
+    const blockMetrics = new Metrics();
     let statements = blockStatementNode.body;
     const statementsDetails = statements.map(statement => visit(statement));
-    const blockMetrics = new Metrics(0, 0, 0, 0, 0, 0, 0, 0);
+    statementsDetails.forEach(stmtDetail => blockMetrics.addMetrics(stmtDetail.metrics));
     return {
         metrics: blockMetrics,
         detail: statementsDetails
@@ -93,7 +94,14 @@ function visitBlockStatement(blockStatementNode) {
 }
 
 function visitExpressionStatement(expressionStatementNode) {
-    return { expressionType: expressionStatementNode.expression.type };
+    const expressionMetrics = new Metrics();
+    if (expressionStatementNode.expression.type === 'CallExpression') {
+        expressionMetrics.callExpressionCount++;
+    }
+    return {
+        metrics: expressionMetrics,
+        expressionType: expressionStatementNode.expression.type
+    };
 }
 
 function visitVariableDeclaration(variableDeclarationNode) {

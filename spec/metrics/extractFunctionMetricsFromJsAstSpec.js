@@ -65,14 +65,14 @@ describe("JS", function () {
             {
                 functionName: 'one',
                 metrics: {
-                    declarationStmtCount: 1,
-                    executableStmtCount: 2,
-                    conditionalStmtCount: 3,
-                    loopingStmtCount: 4,
-                    maxNestingLevelOfControlConstructs: 5,
-                    returnStmtCount: 6,
+                    declarationStmtCount: 0,
+                    executableStmtCount: 0,
+                    conditionalStmtCount: 0,
+                    loopingStmtCount: 0,
+                    maxNestingLevelOfControlConstructs: 0,
+                    returnStmtCount: 0,
                     parametersCount: 0,
-                    callExpressionCount: 8
+                    callExpressionCount: 1
                 },
                 detail: {
                     metrics: {
@@ -83,9 +83,21 @@ describe("JS", function () {
                         maxNestingLevelOfControlConstructs: 0,
                         returnStmtCount: 0,
                         parametersCount: 0,
-                        callExpressionCount: 0
+                        callExpressionCount: 1
                     },
-                    detail: [{expressionType: 'CallExpression'}]
+                    detail: [{
+                        metrics: {
+                            declarationStmtCount: 0,
+                            executableStmtCount: 0,
+                            conditionalStmtCount: 0,
+                            loopingStmtCount: 0,
+                            maxNestingLevelOfControlConstructs: 0,
+                            returnStmtCount: 0,
+                            parametersCount: 0,
+                            callExpressionCount: 1
+                        },
+                        expressionType: 'CallExpression'
+                    }]
                 }
             }
         ]);
@@ -193,14 +205,14 @@ describe("JS", function () {
                 {
                     functionName: 'one',
                     metrics: {
-                        declarationStmtCount: 1,
-                        executableStmtCount: 2,
-                        conditionalStmtCount: 3,
-                        loopingStmtCount: 4,
-                        maxNestingLevelOfControlConstructs: 5,
-                        returnStmtCount: 6,
+                        declarationStmtCount: 0,
+                        executableStmtCount: 0,
+                        conditionalStmtCount: 0,
+                        loopingStmtCount: 0,
+                        maxNestingLevelOfControlConstructs: 0,
+                        returnStmtCount: 0,
                         parametersCount: 0,
-                        callExpressionCount: 8
+                        callExpressionCount: 1
                     },
                     detail: {
                         metrics: {
@@ -211,23 +223,34 @@ describe("JS", function () {
                             maxNestingLevelOfControlConstructs: 0,
                             returnStmtCount: 0,
                             parametersCount: 0,
-                            callExpressionCount: 0
+                            callExpressionCount: 1
                         },
-                        detail: [{expressionType: 'CallExpression'}]
+                        detail: [{
+                            metrics: {
+                                declarationStmtCount: 0,
+                                executableStmtCount: 0,
+                                conditionalStmtCount: 0,
+                                loopingStmtCount: 0,
+                                maxNestingLevelOfControlConstructs: 0,
+                                returnStmtCount: 0,
+                                parametersCount: 0,
+                                callExpressionCount: 1
+                            }, expressionType: 'CallExpression'
+                        }]
                     }
                 }
                 ,
                 {
                     functionName: 'two',
                     metrics: {
-                        declarationStmtCount: 1,
-                        executableStmtCount: 2,
-                        conditionalStmtCount: 3,
-                        loopingStmtCount: 4,
-                        maxNestingLevelOfControlConstructs: 5,
-                        returnStmtCount: 6,
+                        declarationStmtCount: 0,
+                        executableStmtCount: 0,
+                        conditionalStmtCount: 0,
+                        loopingStmtCount: 0,
+                        maxNestingLevelOfControlConstructs: 0,
+                        returnStmtCount: 0,
                         parametersCount: 2,
-                        callExpressionCount: 8
+                        callExpressionCount: 1
                     },
                     detail: {
                         metrics: {
@@ -238,9 +261,21 @@ describe("JS", function () {
                             maxNestingLevelOfControlConstructs: 0,
                             returnStmtCount: 0,
                             parametersCount: 0,
-                            callExpressionCount: 0
+                            callExpressionCount: 1
                         },
-                        detail: [{expressionType: 'CallExpression'}]
+                        detail: [{
+                            metrics: {
+                                declarationStmtCount: 0,
+                                executableStmtCount: 0,
+                                conditionalStmtCount: 0,
+                                loopingStmtCount: 0,
+                                maxNestingLevelOfControlConstructs: 0,
+                                returnStmtCount: 0,
+                                parametersCount: 0,
+                                callExpressionCount: 1
+                            },
+                            expressionType: 'CallExpression'
+                        }]
                     }
                 }
             ]
