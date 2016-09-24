@@ -71,7 +71,7 @@ describe("JS", function () {
                     loopingStmtCount: 4,
                     maxNestingLevelOfControlConstructs: 5,
                     returnStmtCount: 6,
-                    parametersCount: 7,
+                    parametersCount: 0,
                     callExpressionCount: 8
                 },
                 metricsDetail: [{expressionType: 'CallExpression'}]
@@ -130,7 +130,10 @@ describe("JS", function () {
             body: [{
                 type: 'FunctionDeclaration',
                 id: {type: 'Identifier', name: 'two', loc: {start: {line: 2, column: 9}, end: {line: 2, column: 12}}},
-                params: [],
+                params: [
+                    {type: "Identifier", name: "a", loc: {start: {line: 1, column: 13}, end: {line: 1, column: 14}}},
+                    {type: "Identifier", name: "b", loc: {start: {line: 1, column: 16}, end: {line: 1, column: 17}}}
+                ],
                 body: {
                     type: 'BlockStatement',
                     body: [{
@@ -184,7 +187,7 @@ describe("JS", function () {
                         loopingStmtCount: 4,
                         maxNestingLevelOfControlConstructs: 5,
                         returnStmtCount: 6,
-                        parametersCount: 7,
+                        parametersCount: 0,
                         callExpressionCount: 8
                     },
                     metricsDetail: [{expressionType: 'CallExpression'}]
@@ -199,7 +202,7 @@ describe("JS", function () {
                         loopingStmtCount: 4,
                         maxNestingLevelOfControlConstructs: 5,
                         returnStmtCount: 6,
-                        parametersCount: 7,
+                        parametersCount: 2,
                         callExpressionCount: 8
                     },
                     metricsDetail: [{expressionType: 'CallExpression'}]

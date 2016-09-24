@@ -72,7 +72,7 @@ function visitProgram(programNode) {
 function visitFunctionDeclaration(functionDeclarationNode) {
     return {
         functionName: functionDeclarationNode.id.name,
-        functionMetrics: new FunctionMetrics(1,2,3,4,5,6,7,8),
+        functionMetrics: new FunctionMetrics(1,2,3,4,5,6, functionDeclarationNode.params.length,8),
         metricsDetail: visitBlockStatement(functionDeclarationNode.body)
     };
 }
