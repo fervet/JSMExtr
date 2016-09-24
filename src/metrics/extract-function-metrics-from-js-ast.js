@@ -22,13 +22,21 @@ class FunctionMetrics {
     constructor(declarationStmtCount, executableStmtCount, conditionalStmtCount, loopingStmtCount,
                 maxNestingLevelOfControlConstructs, returnStmtCount, parametersCount, callExpressionCount)
     {
+        //noinspection JSUnusedGlobalSymbols
         this.declarationStmtCount = declarationStmtCount;
+        //noinspection JSUnusedGlobalSymbols
         this.executableStmtCount = executableStmtCount;
+        //noinspection JSUnusedGlobalSymbols
         this.conditionalStmtCount = conditionalStmtCount;
+        //noinspection JSUnusedGlobalSymbols
         this.loopingStmtCount = loopingStmtCount;
+        //noinspection JSUnusedGlobalSymbols
         this.maxNestingLevelOfControlConstructs = maxNestingLevelOfControlConstructs;
+        //noinspection JSUnusedGlobalSymbols
         this.returnStmtCount = returnStmtCount;
+        //noinspection JSUnusedGlobalSymbols
         this.parametersCount = parametersCount;
+        //noinspection JSUnusedGlobalSymbols
         this.callExpressionCount = callExpressionCount;
     }
 }
