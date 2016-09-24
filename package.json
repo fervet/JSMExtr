@@ -4,7 +4,8 @@
   "description": "JavaScript Source Code Extractor - Extracts JavaScript source code used in a web app",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node spec"
+    "test": "./node_modules/.bin/jasmine-node spec",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",

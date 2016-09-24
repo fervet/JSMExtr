@@ -1,8 +1,9 @@
 const extractJavaScriptASTsFromHtmlFile = require("./parsing/extract-js-asts-from-html-file");
+const functionMetricsFromJsAST = require("./metrics/extract-function-metrics-from-js-ast");
 
-const jsASTs = extractJavaScriptASTsFromHtmlFile('../spec/demo/portal.html', 'utf8');
+const jsASTs = extractJavaScriptASTsFromHtmlFile('spec/demo/portal.html', 'utf8');
 // console.log(JSON.stringify(jsASTs));
-console.log(JSON.stringify(jsASTs, null, 4));
+console.log(JSON.stringify(functionMetricsFromJsAST(jsASTs), null, 4));
 console.log("####################");
 
 // jsASTs.forEach(function (jsAST) {
