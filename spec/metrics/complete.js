@@ -33,6 +33,11 @@ function f10_returnSimple() {
 function f11_returnCall() {
     return other();
 }
+function f12_declarationAndSumExpressionStatement() {
+    var x = 0, z;
+    z = x + y();
+    return z;
+}
 
 /*
 function all(first, second) {

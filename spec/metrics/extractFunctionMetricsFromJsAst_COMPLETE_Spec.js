@@ -15,7 +15,8 @@ const functionMetrics = {
     f8_callCallCallCallArgs: completeMetrics[7],
     f9_iife: completeMetrics[8],
     f10_returnSimple: completeMetrics[9],
-    f11_returnCall: completeMetrics[10]
+    f11_returnCall: completeMetrics[10],
+    f12_declarationAndSumExpressionStatement: completeMetrics[11]
 };
 
 function testMetrics(functionName, expected) {
@@ -373,6 +374,54 @@ describe("COMPLETE JS", function () {
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?33:0-35:1'
+        }
+    );
+
+    testMetrics(
+        'f12_declarationAndSumExpressionStatement',
+        {
+            _type: 'FunctionDeclaration',
+            functionName: 'f12_declarationAndSumExpressionStatement',
+            metrics: {declarationStmtCount: 2, executableStmtCount: 1, returnStmtCount: 1, callExpressionCount: 1},
+            detail: {
+                _type: 'BlockStatement',
+                metrics: {declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1, returnStmtCount: 1},
+                detail: [{
+                    _type: 'VariableDeclaration',
+                    metrics: {declarationStmtCount: 2},
+                    detail: {
+                        declarations: [{
+                            _type: 'VariableDeclarator',
+                            variableName: 'x',
+                            metrics: {declarationStmtCount: 1},
+                            detail: {init: {_type: 'Literal'}}
+                        }, {_type: 'VariableDeclarator', variableName: 'z', metrics: {declarationStmtCount: 1}}]
+                    }
+                }, {
+                    _type: 'ExpressionStatement',
+                    metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                    detail: {
+                        _type: 'AssignmentExpression',
+                        metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                        detail: {
+                            left: {_type: 'Identifier'},
+                            right: {
+                                _type: 'BinaryExpression',
+                                metrics: {callExpressionCount: 1},
+                                detail: {
+                                    left: {_type: 'Identifier'},
+                                    right: {
+                                        _type: 'CallExpression',
+                                        metrics: {callExpressionCount: 1},
+                                        detail: {callee: {_type: 'Identifier'}}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }, {_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Identifier'}}}]
+            },
+            fileLocation: 'spec/metrics/complete.js?36:0-40:1'
         }
     );
 

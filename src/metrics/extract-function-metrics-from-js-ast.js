@@ -105,6 +105,9 @@ class Program {
         if (!statements) {
             return undefined;
         }
+        if (!Array.isArray(statements)) {
+            throw new Error("Argument must be an array!");
+        }
         return this.extractDetailsAndAddMetrics(statements, metrics);
     }
 
@@ -169,9 +172,15 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitAssignmentExpression() {
+    static visitAssignmentExpression(assignmentExpressionNode) {
+        const assignmentExpressionMetrics = new Metrics({executableStmtCount: 1});
         return {
             _type: 'AssignmentExpression',
+            metrics: assignmentExpressionMetrics,
+            detail: {
+                left: Program.extractDetailsAndAddMetricsForSingle(assignmentExpressionNode.left, assignmentExpressionMetrics),
+                right: Program.extractDetailsAndAddMetricsForSingle(assignmentExpressionNode.right, assignmentExpressionMetrics)
+            }
         };
     }
 
@@ -301,9 +310,15 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitBinaryExpression() {
+    static visitBinaryExpression(binaryExpressionNode) {
+        const binaryExpressionMetrics = new Metrics();
         return {
-            _type: 'BinaryExpression'
+            _type: 'BinaryExpression',
+            metrics: binaryExpressionMetrics,
+            detail: {
+                left: Program.extractDetailsAndAddMetricsForSingle(binaryExpressionNode.left, binaryExpressionMetrics),
+                right: Program.extractDetailsAndAddMetricsForSingle(binaryExpressionNode.right, binaryExpressionMetrics)
+            }
         };
     }
 
