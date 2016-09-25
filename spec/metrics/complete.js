@@ -22,6 +22,11 @@ function f7_callCallArgs() {
 function f8_callCallCallCallArgs() {
     aaa()[bbb()](ccc(), ddd(1, eee(1).fff()));
 }
+function f9_iife() {
+    (function () {
+        var i = 1;
+    })();
+}
 
 /*
 function all(first, second) {

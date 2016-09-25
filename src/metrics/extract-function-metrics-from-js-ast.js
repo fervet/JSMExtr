@@ -43,7 +43,7 @@ function visitProgram(programNode) {
  Maximum nesting level of control constructs (Nest) -------------- TODO
  Number of return statements (Ret.) ------------------------------ TODO
  Number of parameters (Param.) ----------------------------------- DONE
- Number of called functions (Call) ------------------------------- TODO
+ Number of called functions (Call) ------------------------------- DONE
  */
 class Metrics {
     constructor({
@@ -94,7 +94,11 @@ class Program {
     }
 
     static extractDetailsAndAddMetricsForSingle(stmt, metrics) {
-        return this.extractDetailsAndAddMetrics([stmt], metrics);
+        const metricsForSingle = this.extractDetailsAndAddMetrics([stmt], metrics);
+        if (metricsForSingle.length !== 1) {
+            throw new Error("Single should always return 1! This is unexpected!");
+        }
+        return metricsForSingle[0];
     }
 
     static extractDetailsAndAddMetricsForOptional(statements, metrics) {
@@ -117,13 +121,11 @@ class Visitors {
     //noinspection JSUnusedGlobalSymbols
     static visitFunctionDeclaration(functionDeclarationNode) {
         const functionMetrics = new Metrics({parametersCount: functionDeclarationNode.params.length});
-        const blockDetail = Visitors.visitBlockStatement(functionDeclarationNode.body);
-        functionMetrics.addMetrics(blockDetail.metrics);
         return {
             _type: 'FunctionDeclaration',
             functionName: functionDeclarationNode.id.name,
             metrics: functionMetrics,
-            detail: blockDetail,
+            detail: Program.extractDetailsAndAddMetricsForSingle(functionDeclarationNode.body, functionMetrics),
             loc: `${functionDeclarationNode.loc.start.line}:${functionDeclarationNode.loc.start.column}-${functionDeclarationNode.loc.end.line}:${functionDeclarationNode.loc.end.column}`
         };
     }

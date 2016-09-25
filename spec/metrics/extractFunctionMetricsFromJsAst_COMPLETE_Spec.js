@@ -12,7 +12,8 @@ const functionMetrics = {
     f5_callNoArgs: completeMetrics[4],
     f6_callLiteralArgs: completeMetrics[5],
     f7_callCallArgs: completeMetrics[6],
-    f8_callCallCallCallArgs: completeMetrics[7]
+    f8_callCallCallCallArgs: completeMetrics[7],
+    f9_iife: completeMetrics[8]
 };
 
 function testMetrics(functionName, expected) {
@@ -47,7 +48,7 @@ describe("COMPLETE JS", function () {
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?1:0-3:1'
+            fileLocation: 'spec/metrics/complete.js?1:0-3:1'
         }
     );
 
@@ -74,7 +75,7 @@ describe("COMPLETE JS", function () {
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?4:0-6:1'
+            fileLocation: 'spec/metrics/complete.js?4:0-6:1'
         }
     );
 
@@ -94,11 +95,11 @@ describe("COMPLETE JS", function () {
                         _type: 'VariableDeclarator',
                         variableName: 'c',
                         metrics: {declarationStmtCount: 1},
-                        detail: {init: [{_type: 'Literal'}]}
+                        detail: {init: {_type: 'Literal'}}
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?7:0-9:1'
+            fileLocation: 'spec/metrics/complete.js?7:0-9:1'
         }
     );
 
@@ -119,16 +120,16 @@ describe("COMPLETE JS", function () {
                         variableName: 'd',
                         metrics: {declarationStmtCount: 1, callExpressionCount: 1},
                         detail: {
-                            init: [{
+                            init: {
                                 _type: 'CallExpression',
                                 metrics: {callExpressionCount: 1},
-                                detail: {callee: [{_type: 'Identifier'}], arguments: [{_type: 'Literal'}]}
-                            }]
+                                detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
+                            }
                         }
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?10:0-12:1'
+            fileLocation: 'spec/metrics/complete.js?10:0-12:1'
         });
 
     testMetrics(
@@ -146,11 +147,11 @@ describe("COMPLETE JS", function () {
                     detail: [{
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1},
-                        detail: {callee: [{_type: 'Identifier'}]}
+                        detail: {callee: {_type: 'Identifier'}}
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?13:0-15:1'
+            fileLocation: 'spec/metrics/complete.js?13:0-15:1'
         });
 
     testMetrics(
@@ -168,11 +169,11 @@ describe("COMPLETE JS", function () {
                     detail: [{
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1},
-                        detail: {callee: [{_type: 'Identifier'}], arguments: [{_type: 'Literal'}]}
+                        detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?16:0-18:1'
+            fileLocation: 'spec/metrics/complete.js?16:0-18:1'
         }
     );
 
@@ -192,17 +193,17 @@ describe("COMPLETE JS", function () {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 2},
                         detail: {
-                            callee: [{_type: 'Identifier'}],
+                            callee: {_type: 'Identifier'},
                             arguments: [{
                                 _type: 'CallExpression',
                                 metrics: {callExpressionCount: 1},
-                                detail: {callee: [{_type: 'Identifier'}]}
+                                detail: {callee: {_type: 'Identifier'}}
                             }]
                         }
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?19:0-21:1'
+            fileLocation: 'spec/metrics/complete.js?19:0-21:1'
         }
     );
 
@@ -222,49 +223,49 @@ describe("COMPLETE JS", function () {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 7},
                         detail: {
-                            callee: [{
+                            callee: {
                                 _type: 'MemberExpression',
                                 metrics: {callExpressionCount: 2},
                                 detail: {
-                                    object: [{
+                                    object: {
                                         _type: 'CallExpression',
                                         metrics: {callExpressionCount: 1},
-                                        detail: {callee: [{_type: 'Identifier'}]}
-                                    }],
-                                    property: [{
+                                        detail: {callee: {_type: 'Identifier'}}
+                                    },
+                                    property: {
                                         _type: 'CallExpression',
                                         metrics: {callExpressionCount: 1},
-                                        detail: {callee: [{_type: 'Identifier'}]}
-                                    }]
+                                        detail: {callee: {_type: 'Identifier'}}
+                                    }
                                 }
-                            }],
+                            },
                             arguments: [{
                                 _type: 'CallExpression',
                                 metrics: {callExpressionCount: 1},
-                                detail: {callee: [{_type: 'Identifier'}]}
+                                detail: {callee: {_type: 'Identifier'}}
                             }, {
                                 _type: 'CallExpression',
                                 metrics: {callExpressionCount: 3},
                                 detail: {
-                                    callee: [{_type: 'Identifier'}],
+                                    callee: {_type: 'Identifier'},
                                     arguments: [{_type: 'Literal'}, {
                                         _type: 'CallExpression',
                                         metrics: {callExpressionCount: 2},
                                         detail: {
-                                            callee: [{
+                                            callee: {
                                                 _type: 'MemberExpression',
                                                 metrics: {callExpressionCount: 1},
                                                 detail: {
-                                                    object: [{
+                                                    object: {
                                                         _type: 'CallExpression',
                                                         metrics: {callExpressionCount: 1},
                                                         detail: {
-                                                            callee: [{_type: 'Identifier'}],
+                                                            callee: {_type: 'Identifier'},
                                                             arguments: [{_type: 'Literal'}]
                                                         }
-                                                    }], property: [{_type: 'Identifier'}]
+                                                    }, property: {_type: 'Identifier'}
                                                 }
-                                            }]
+                                            }
                                         }
                                     }]
                                 }
@@ -273,7 +274,31 @@ describe("COMPLETE JS", function () {
                     }]
                 }]
             },
-            fileLocation : 'spec/metrics/complete.js?22:0-24:1'
+            fileLocation: 'spec/metrics/complete.js?22:0-24:1'
+        }
+    );
+
+
+    testMetrics(
+        'f9_iife',
+        {
+            _type: 'FunctionDeclaration',
+            functionName: 'f9_iife',
+            metrics: {callExpressionCount: 1},
+            detail: {
+                _type: 'BlockStatement',
+                metrics: {callExpressionCount: 1},
+                detail: [{
+                    _type: 'ExpressionStatement',
+                    metrics: {callExpressionCount: 1},
+                    detail: [{
+                        _type: 'CallExpression',
+                        metrics: {callExpressionCount: 1},
+                        detail: {callee: {_type: 'FunctionExpression'}}
+                    }]
+                }]
+            },
+            fileLocation: 'spec/metrics/complete.js?25:0-29:1'
         }
     );
 
