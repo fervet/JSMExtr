@@ -266,9 +266,9 @@ class Visitors {
             _type: 'ForStatement',
             metrics: forMetrics,
             detail: {
-                init: Program.extractDetailsAndAddMetrics([forStatementNode.init], forMetrics),
-                test: Program.extractDetailsAndAddMetrics([forStatementNode.test], forMetrics),
-                update: Program.extractDetailsAndAddMetrics([forStatementNode.update], forMetrics),
+                init: Program.extractDetailsAndAddMetricsForSingle(forStatementNode.init, forMetrics),
+                test: Program.extractDetailsAndAddMetricsForSingle(forStatementNode.test, forMetrics),
+                update: Program.extractDetailsAndAddMetricsForSingle(forStatementNode.update, forMetrics),
                 body: Program.extractDetailsAndAddMetrics(forStatementNode.body.body, forMetrics),
             }
         };
