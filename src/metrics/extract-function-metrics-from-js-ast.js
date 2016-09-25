@@ -1,7 +1,6 @@
 const clearEmptyProperties = require("../utils/clearEmptyProperties");
 const Metrics = require("./Metrics");
 
-//noinspection JSUnresolvedVariable
 /**
  * Given a JavaScript AST, returns its metrics.
  */
