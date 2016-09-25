@@ -13,7 +13,7 @@ module.exports = function (fileName, fileEncoding) {
         if (scriptTag.childNodes.length) {
             let textScript = scriptTag.childNodes[0].textContent;
             const jsAST = parseJavaScriptString(textScript);
-            jsAST.htmlLocation = generateHtmlLocation(fileName, scriptTag);
+            jsAST.fileLocation = generateHtmlLocation(fileName, scriptTag);
             javaScriptASTs.push(jsAST);
         }
     });

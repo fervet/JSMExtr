@@ -6,5 +6,7 @@ const parseJavaScriptString = require("./js/parse-js-string-to-ast");
  */
 module.exports = function (fileName, fileEncoding) {
     let jsFileContents = fs.readFileSync(fileName, fileEncoding);
-    return parseJavaScriptString(jsFileContents);
+    const jsAST = parseJavaScriptString(jsFileContents);
+    jsAST.fileLocation = fileName;
+    return jsAST;
 };

@@ -406,7 +406,8 @@ describe("JS", function () {
                 }
             ],
             sourceType: 'script',
-            loc: {start: {line: 1, column: 0}, end: {line: 26, column: 1}}
+            loc: {start: {line: 1, column: 0}, end: {line: 26, column: 1}},
+            fileLocation: 'spec/demo/demo.js'
         };
         expect(jsAST).toEqual(expectedDemoAST);
         JSON.stringify(jsAST, null, 4); // to debug
