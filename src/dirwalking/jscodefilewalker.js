@@ -19,13 +19,15 @@ function fileHasExtensionThatMayContainJavaScriptCode(filePath) {
     return fileHasExtension(filePath, ["js", "html", "htm", "xhtml", "xhtm", "vm", "jsp"])
 }
 function fileHasExtension(filePath, fileExtensions) {
+    return fileExtensions.indexOf(fileExtension(filePath)) !== -1;
+}
+function fileExtension(filePath) {
     const pathParts = filePath.split(".");
     if (pathParts.length === 1) {
         // file has no extension
-        return false;
+        return undefined;
     }
-    const fileExtension = pathParts[pathParts.length - 1];
-    return fileExtensions.indexOf(fileExtension) !== -1;
+    return pathParts[pathParts.length - 1];
 }
 
 function jsCodeFilesWalker(baseDir) {
@@ -33,7 +35,7 @@ function jsCodeFilesWalker(baseDir) {
 
     fileWalker(baseDir, function (filePath, isDir) {
         if (!isDir && fileHasExtensionThatMayContainJavaScriptCode(filePath)) {
-            filesToProcess.push(filePath);
+            filesToProcess.push({fullPath: filePath, extension: fileExtension(filePath)});
         }
     });
 
