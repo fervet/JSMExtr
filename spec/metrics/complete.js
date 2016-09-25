@@ -1,6 +1,31 @@
+function f1_singleEmptyDeclaration() {
+    var x;
+}
+function f2_multipleEmptyDeclarations() {
+    var a, b;
+}
+function f3_singleInitLiteralDeclaration() {
+    var c = 1;
+}
+function f4_singleInitCallDeclaration() {
+    var d = other(1);
+}
+function f5_callNoArgs() {
+    other();
+}
+function f6_callLiteralArgs() {
+    other(123);
+}
+function f7_callCallArgs() {
+    other(stuff());
+}
+
+/*
 function all(first, second) {
     var sum = initialize(first, second);
     var other = 111, yetAnother = 222;
+    var obj = callOther(second, other);
+    obj.memberCall(other, sum, first);
     for (var i = 0; i < myArray.length; i++) {
         sum = sum + myArray[i];
         yetAnother *= first;
@@ -20,4 +45,4 @@ function all(first, second) {
             return -1;
     }
     return sum;
-}
+}*/

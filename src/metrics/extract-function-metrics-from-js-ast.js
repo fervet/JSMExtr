@@ -18,15 +18,27 @@ function visitProgram(programNode) {
     return bodyNodes.map(bodyNode => Visitors.visitStatement(bodyNode));
 }
 
+class Utils {
+
+    static clearEmptyProperties(obj) {
+        Object.keys(obj).forEach(key => {
+            if (!obj[key]) {
+                delete obj[key];
+            }
+        });
+        return obj;
+    }
+}
+
 /*
- Number of declaration statements (Decl.)
- Number of executable statements (Stmt.)
- Number of conditional statements (Cond.)
- Number of looping statements (Loop)
- Maximum nesting level of control constructs (Nest)
- Number of return statements (Ret.)
- Number of parameters (Param.)
- Number of called functions (Call)
+ Number of declaration statements (Decl.) ------------------------ DONE
+ Number of executable statements (Stmt.) ------------------------- TODO
+ Number of conditional statements (Cond.) ------------------------ TODO
+ Number of looping statements (Loop) ----------------------------- TODO
+ Maximum nesting level of control constructs (Nest) -------------- TODO
+ Number of return statements (Ret.) ------------------------------ TODO
+ Number of parameters (Param.) ----------------------------------- DONE
+ Number of called functions (Call) ------------------------------- TODO
  */
 class Metrics {
     constructor({
@@ -79,17 +91,38 @@ class Visitors {
         statementsDetails.forEach(stmtDetail => metrics.addMetrics(stmtDetail.metrics));
         return statementsDetails;
     }
+
+    static extractDetailsAndAddMetricsForOptional(statements, metrics) {
+        if (!statements) {
+            return false;
+        }
+        return this.extractDetailsAndAddMetricsFromStatement(statements, metrics);
+    }
+
+    static extractDetailsAndAddMetricsForOptionalSingle(stmt, metrics) {
+        if (!stmt) {
+            return false;
+        }
+        return this.extractDetailsAndAddMetricsFromStatement([stmt], metrics);
+    }
 }
 Visitors.statementVisitors = {
     FunctionDeclaration: visitFunctionDeclaration,
-    ExpressionStatement: visitExpressionStatement,
-    VariableDeclaration: visitVariableDeclaration,
     ForStatement: visitForStatement,
     IfStatement: visitIfStatement,
     SwitchStatement: visitSwitchStatement,
     ReturnStatement: visitReturnStatement,
+
+    // expressions:
     BinaryExpression: visitBinaryExpression,
-    UpdateExpression: visitUpdateExpression
+    UpdateExpression: visitUpdateExpression,
+
+    ExpressionStatement: visitExpressionStatement,
+    VariableDeclaration: visitVariableDeclaration,
+    VariableDeclarator: visitVariableDeclarator,
+
+    CallExpression: visitCallExpression,
+    Literal: visitLiteral
 };
 
 function visitFunctionDeclaration(functionDeclarationNode) {
@@ -115,31 +148,56 @@ function visitBlockStatement(blockStatementNode) {
 
 function visitExpressionStatement(expressionStatementNode) {
     const expressionMetrics = new Metrics();
-    if (expressionStatementNode.expression.type === 'CallExpression') {
-        expressionMetrics.addMetrics({callExpressionCount: 1})
-    }
-    if (expressionStatementNode.expression.type === 'AssignmentExpression') {
-    }
     return {
         _type: 'ExpressionStatement',
         metrics: expressionMetrics,
-        expressionType: expressionStatementNode.expression.type
+        detail: Visitors.extractDetailsAndAddMetricsFromStatement([expressionStatementNode.expression], expressionMetrics)
+    };
+}
+
+function visitCallExpression(callExpressionNode) {
+    console.log("###########################################");
+    console.log("###########################################");
+    console.log("###########################################");
+    console.log(JSON.stringify(callExpressionNode, null, 4));
+    const callExpressionMetrics = new Metrics({callExpressionCount: 1});
+    return {
+        _type: 'CallExpression',
+        metrics: callExpressionMetrics,
+        detail: Visitors.extractDetailsAndAddMetricsForOptional(callExpressionNode.arguments, callExpressionMetrics)
+    };
+}
+
+function visitAssignmentExpression(assignmentExpressionNode) {
+    return {
+        _type: 'AssignmentExpression',
+    };
+}
+
+function visitLiteral(literalNode) {
+    return {
+        _type: 'Literal'
     };
 }
 
 function visitVariableDeclaration(variableDeclarationNode) {
-    const declarationMetrics = new Metrics({declarationStmtCount: variableDeclarationNode.declarations.length});
+    const variableDeclarationMetrics = new Metrics();
     return {
         _type: 'VariableDeclaration',
-        metrics: declarationMetrics,
-        declarations: variableDeclarationNode.declarations.map(visitVariableDeclarator)
+        metrics: variableDeclarationMetrics,
+        declarations: Visitors.extractDetailsAndAddMetricsFromStatement(variableDeclarationNode.declarations, variableDeclarationMetrics)
     };
 }
 
 function visitVariableDeclarator(variableDeclaratorNode) {
+    const variableDeclaratorMetrics = new Metrics({declarationStmtCount: 1});
     return {
         _type: 'VariableDeclarator',
-        variableName: variableDeclaratorNode.id.name
+        variableName: variableDeclaratorNode.id.name,
+        metrics: variableDeclaratorMetrics,
+        detail: Utils.clearEmptyProperties(
+            {init: Visitors.extractDetailsAndAddMetricsForOptionalSingle(variableDeclaratorNode.init, variableDeclaratorMetrics)}
+        )
     };
 }
 
