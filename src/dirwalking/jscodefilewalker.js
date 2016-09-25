@@ -7,10 +7,9 @@ function fileWalker(currentDirPath, callback) {
         const filePath = path.join(currentDirPath, name);
         const stat = fs.statSync(filePath);
         if (stat.isFile()) {
-            callback(filePath, false);
+            callback(filePath);
         } else if (stat.isDirectory()) {
-            callback(filePath, true);
-            jsCodeFilesWalker(filePath);
+            fileWalker(filePath, callback);
         }
     });
 }
@@ -32,9 +31,9 @@ function fileExtension(filePath) {
 
 function jsCodeFilesWalker(baseDir) {
     const filesToProcess = [];
-
-    fileWalker(baseDir, function (filePath, isDir) {
-        if (!isDir && fileHasExtensionThatMayContainJavaScriptCode(filePath)) {
+    console.log("GONNA: "+baseDir);
+    fileWalker(baseDir, function (filePath) {
+        if (fileHasExtensionThatMayContainJavaScriptCode(filePath)) {
             filesToProcess.push({fullPath: filePath, extension: fileExtension(filePath)});
         }
     });
