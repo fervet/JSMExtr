@@ -148,35 +148,32 @@ describe("COMPLETE JS", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f5_callNoArgs',
-            metrics: {callExpressionCount: 1},
+            metrics: {executableStmtCount: 1, callExpressionCount: 1},
             detail: {
                 _type: 'BlockStatement',
-                metrics: {callExpressionCount: 1},
+                metrics: {executableStmtCount: 1, callExpressionCount: 1},
                 detail: [{
                     _type: 'ExpressionStatement',
-                    metrics: {callExpressionCount: 1},
-                    detail: {
-                        _type: 'CallExpression',
-                        metrics: {callExpressionCount: 1},
-                        detail: {callee: {_type: 'Identifier'}}
-                    }
+                    metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                    detail: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?13:0-15:1'
-        });
+        }
+    );
 
     testMetrics(
         'f6_callLiteralArgs',
         {
             _type: 'FunctionDeclaration',
             functionName: 'f6_callLiteralArgs',
-            metrics: {callExpressionCount: 1},
+            metrics: {executableStmtCount: 1, callExpressionCount: 1},
             detail: {
                 _type: 'BlockStatement',
-                metrics: {callExpressionCount: 1},
+                metrics: {executableStmtCount: 1, callExpressionCount: 1},
                 detail: [{
                     _type: 'ExpressionStatement',
-                    metrics: {callExpressionCount: 1},
+                    metrics: {executableStmtCount: 1, callExpressionCount: 1},
                     detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1},
@@ -193,23 +190,19 @@ describe("COMPLETE JS", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f7_callCallArgs',
-            metrics: {callExpressionCount: 2},
+            metrics: {executableStmtCount: 1, callExpressionCount: 2},
             detail: {
                 _type: 'BlockStatement',
-                metrics: {callExpressionCount: 2},
+                metrics: {executableStmtCount: 1, callExpressionCount: 2},
                 detail: [{
                     _type: 'ExpressionStatement',
-                    metrics: {callExpressionCount: 2},
+                    metrics: {executableStmtCount: 1, callExpressionCount: 2},
                     detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 2},
                         detail: {
                             callee: {_type: 'Identifier'},
-                            arguments: [{
-                                _type: 'CallExpression',
-                                metrics: {callExpressionCount: 1},
-                                detail: {callee: {_type: 'Identifier'}}
-                            }]
+                            arguments: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}]
                         }
                     }
                 }]
@@ -223,13 +216,13 @@ describe("COMPLETE JS", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f8_callCallCallCallArgs',
-            metrics: {callExpressionCount: 7},
+            metrics: {executableStmtCount: 1, callExpressionCount: 7},
             detail: {
                 _type: 'BlockStatement',
-                metrics: {callExpressionCount: 7},
+                metrics: {executableStmtCount: 1, callExpressionCount: 7},
                 detail: [{
                     _type: 'ExpressionStatement',
-                    metrics: {callExpressionCount: 7},
+                    metrics: {executableStmtCount: 1, callExpressionCount: 7},
                     detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 7},
@@ -238,16 +231,8 @@ describe("COMPLETE JS", function () {
                                 _type: 'MemberExpression',
                                 metrics: {callExpressionCount: 2},
                                 detail: {
-                                    object: {
-                                        _type: 'CallExpression',
-                                        metrics: {callExpressionCount: 1},
-                                        detail: {callee: {_type: 'Identifier'}}
-                                    },
-                                    property: {
-                                        _type: 'CallExpression',
-                                        metrics: {callExpressionCount: 1},
-                                        detail: {callee: {_type: 'Identifier'}}
-                                    }
+                                    object: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}},
+                                    property: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
                                 }
                             },
                             arguments: [{
@@ -270,10 +255,7 @@ describe("COMPLETE JS", function () {
                                                     object: {
                                                         _type: 'CallExpression',
                                                         metrics: {callExpressionCount: 1},
-                                                        detail: {
-                                                            callee: {_type: 'Identifier'},
-                                                            arguments: [{_type: 'Literal'}]
-                                                        }
+                                                        detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
                                                     }, property: {_type: 'Identifier'}
                                                 }
                                             }
@@ -294,13 +276,13 @@ describe("COMPLETE JS", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f9_iife',
-            metrics: {declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+            metrics: {declarationStmtCount: 1, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
             detail: {
                 _type: 'BlockStatement',
-                metrics: {declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                metrics: {declarationStmtCount: 1, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
                 detail: [{
                     _type: 'ExpressionStatement',
-                    metrics: {declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                    metrics: {executableStmtCount: 1, declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
                     detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1, declarationStmtCount: 1, parametersCount: 1},
@@ -402,7 +384,7 @@ describe("COMPLETE JS", function () {
                     metrics: {executableStmtCount: 1, callExpressionCount: 1},
                     detail: {
                         _type: 'AssignmentExpression',
-                        metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                        metrics: {callExpressionCount: 1},
                         detail: {
                             left: {_type: 'Identifier'},
                             right: {

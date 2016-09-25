@@ -1,5 +1,6 @@
 const clearEmptyProperties = require("../utils/clearEmptyProperties");
 
+//noinspection JSUnresolvedVariable
 /**
  * Given a JavaScript AST, returns its metrics.
  */
@@ -37,7 +38,7 @@ function visitProgram(programNode) {
 
 /*
  Number of declaration statements (Decl.) ------------------------ DONE
- Number of executable statements (Stmt.) ------------------------- TODO
+ Number of executable statements (Stmt.) ------------------------- DONE
  Number of conditional statements (Cond.) ------------------------ TODO
  Number of looping statements (Loop) ----------------------------- TODO
  Maximum nesting level of control constructs (Nest) -------------- TODO
@@ -149,7 +150,7 @@ class Visitors {
 
     //noinspection JSUnusedGlobalSymbols
     static visitExpressionStatement(expressionStatementNode) {
-        const expressionMetrics = new Metrics();
+        const expressionMetrics = new Metrics({executableStmtCount: 1});
         return {
             _type: 'ExpressionStatement',
             metrics: expressionMetrics,
@@ -173,7 +174,7 @@ class Visitors {
 
     //noinspection JSUnusedGlobalSymbols
     static visitAssignmentExpression(assignmentExpressionNode) {
-        const assignmentExpressionMetrics = new Metrics({executableStmtCount: 1});
+        const assignmentExpressionMetrics = new Metrics();
         return {
             _type: 'AssignmentExpression',
             metrics: assignmentExpressionMetrics,
