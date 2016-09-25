@@ -1,12 +1,19 @@
+const clearEmptyProperties = require("../utils/clearEmptyProperties");
+
 /**
  * Given a JavaScript AST, returns its metrics.
  */
 module.exports = function (jsAST) {
+    const metrics = extractMetrics(jsAST);
+    return clearEmptyProperties(metrics);
+};
+
+function extractMetrics(jsAST) {
     if (Array.isArray(jsAST)) {
         return visitArrayOfPrograms(jsAST);
     }
     return visitProgram(jsAST);
-};
+}
 
 function visitArrayOfPrograms(arrayOfAstProgramNodes) {
     let metrics = arrayOfAstProgramNodes.map(astProgramNode => visitProgram(astProgramNode));
@@ -18,17 +25,6 @@ function visitProgram(programNode) {
     return bodyNodes.map(bodyNode => Visitors.visitStatement(bodyNode));
 }
 
-class Utils {
-
-    static clearEmptyProperties(obj) {
-        Object.keys(obj).forEach(key => {
-            if (!obj[key]) {
-                delete obj[key];
-            }
-        });
-        return obj;
-    }
-}
 
 /*
  Number of declaration statements (Decl.) ------------------------ DONE
@@ -92,18 +88,22 @@ class Visitors {
         return statementsDetails;
     }
 
+    static extractDetailsAndAddMetricsForSingle(stmt, metrics) {
+        return this.extractDetailsAndAddMetricsFromStatement([stmt], metrics);
+    }
+
     static extractDetailsAndAddMetricsForOptional(statements, metrics) {
         if (!statements) {
-            return false;
+            return undefined;
         }
         return this.extractDetailsAndAddMetricsFromStatement(statements, metrics);
     }
 
     static extractDetailsAndAddMetricsForOptionalSingle(stmt, metrics) {
         if (!stmt) {
-            return false;
+            return undefined;
         }
-        return this.extractDetailsAndAddMetricsFromStatement([stmt], metrics);
+        return this.extractDetailsAndAddMetricsForSingle(stmt, metrics);
     }
 }
 Visitors.statementVisitors = {
@@ -122,7 +122,10 @@ Visitors.statementVisitors = {
     VariableDeclarator: visitVariableDeclarator,
 
     CallExpression: visitCallExpression,
-    Literal: visitLiteral
+    MemberExpression: visitMemberExpression,
+    Literal: visitLiteral,
+    Identifier: visitIdentifier,
+    AssignmentExpression: visitAssignmentExpression
 };
 
 function visitFunctionDeclaration(functionDeclarationNode) {
@@ -156,27 +159,45 @@ function visitExpressionStatement(expressionStatementNode) {
 }
 
 function visitCallExpression(callExpressionNode) {
-    console.log("###########################################");
-    console.log("###########################################");
-    console.log("###########################################");
-    console.log(JSON.stringify(callExpressionNode, null, 4));
     const callExpressionMetrics = new Metrics({callExpressionCount: 1});
     return {
         _type: 'CallExpression',
+        name: callExpressionNode.callee.name,
         metrics: callExpressionMetrics,
-        detail: Visitors.extractDetailsAndAddMetricsForOptional(callExpressionNode.arguments, callExpressionMetrics)
+        detail: {
+            callee: Visitors.extractDetailsAndAddMetricsForSingle(callExpressionNode.callee, callExpressionMetrics),
+            arguments: Visitors.extractDetailsAndAddMetricsForOptional(callExpressionNode.arguments, callExpressionMetrics)
+        }
     };
 }
 
-function visitAssignmentExpression(assignmentExpressionNode) {
+function visitAssignmentExpression() {
     return {
         _type: 'AssignmentExpression',
     };
 }
 
-function visitLiteral(literalNode) {
+function visitMemberExpression(memberExpressionNode) {
+    const memberExpressionMetrics = new Metrics({callExpressionCount: 1});
+    return {
+        _type: 'MemberExpression',
+        metrics: memberExpressionMetrics,
+        detail: {
+            object: Visitors.extractDetailsAndAddMetricsForSingle(memberExpressionNode.object, memberExpressionMetrics),
+            property: Visitors.extractDetailsAndAddMetricsForSingle(memberExpressionNode.property, memberExpressionMetrics)
+        }
+    };
+}
+
+function visitLiteral() {
     return {
         _type: 'Literal'
+    };
+}
+
+function visitIdentifier() {
+    return {
+        _type: 'Identifier'
     };
 }
 
@@ -195,9 +216,9 @@ function visitVariableDeclarator(variableDeclaratorNode) {
         _type: 'VariableDeclarator',
         variableName: variableDeclaratorNode.id.name,
         metrics: variableDeclaratorMetrics,
-        detail: Utils.clearEmptyProperties(
-            {init: Visitors.extractDetailsAndAddMetricsForOptionalSingle(variableDeclaratorNode.init, variableDeclaratorMetrics)}
-        )
+        detail: {
+            init: Visitors.extractDetailsAndAddMetricsForOptionalSingle(variableDeclaratorNode.init, variableDeclaratorMetrics)
+        }
     };
 }
 

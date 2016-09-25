@@ -19,6 +19,9 @@ function f6_callLiteralArgs() {
 function f7_callCallArgs() {
     other(stuff());
 }
+function f8_callCallCallCallArgs() {
+    a[b](c, x6);
+}
 
 /*
 function all(first, second) {

@@ -11,7 +11,8 @@ const functionMetrics = {
     f4_singleInitCallDeclaration: completeMetrics[3],
     f5_callNoArgs: completeMetrics[4],
     f6_callLiteralArgs: completeMetrics[5],
-    f7_callCallArgs: completeMetrics[6]
+    f7_callCallArgs: completeMetrics[6],
+    f8_callCallCallCallArgs: completeMetrics[7]
 };
 
 function testMetrics(functionName, expected) {
@@ -42,8 +43,7 @@ describe("COMPLETE JS", function () {
                     declarations: [{
                         _type: 'VariableDeclarator',
                         variableName: 'x',
-                        metrics: {declarationStmtCount: 1},
-                        detail: {}
+                        metrics: {declarationStmtCount: 1}
                     }]
                 }]
             }
@@ -66,12 +66,10 @@ describe("COMPLETE JS", function () {
                         _type: 'VariableDeclarator',
                         variableName: 'a',
                         metrics: {declarationStmtCount: 1},
-                        detail: {}
                     }, {
                         _type: 'VariableDeclarator',
                         variableName: 'b',
                         metrics: {declarationStmtCount: 1},
-                        detail: {}
                     }]
                 }]
             }
@@ -117,7 +115,13 @@ describe("COMPLETE JS", function () {
                         _type: 'VariableDeclarator',
                         variableName: 'd',
                         metrics: {declarationStmtCount: 1, callExpressionCount: 1},
-                        detail: {init: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}}]}
+                        detail: {
+                            init: [{
+                                _type: 'CallExpression',
+                                metrics: {callExpressionCount: 1},
+                                detail: {arguments: [{_type: 'Literal'}]}
+                            }]
+                        }
                     }]
                 }]
             }
@@ -154,7 +158,11 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'ExpressionStatement',
                     metrics: {callExpressionCount: 1},
-                    detail: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}}]
+                    detail: [{
+                        _type: 'CallExpression',
+                        metrics: {callExpressionCount: 1},
+                        detail: {arguments: [{_type: 'Literal'}]}
+                    }]
                 }]
             }
         }
@@ -165,17 +173,144 @@ describe("COMPLETE JS", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f7_callCallArgs',
-            metrics: {callExpressionCount: 1},
+            metrics: {callExpressionCount: 2},
             detail: {
                 _type: 'BlockStatement',
-                metrics: {callExpressionCount: 1},
+                metrics: {callExpressionCount: 2},
                 detail: [{
                     _type: 'ExpressionStatement',
-                    metrics: {callExpressionCount: 1},
-                    detail: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}}]
+                    metrics: {callExpressionCount: 2},
+                    detail: [{
+                        _type: 'CallExpression',
+                        metrics: {callExpressionCount: 2},
+                        detail: {arguments: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}}]}
+                    }]
+                }]
+            }
+        }
+    );
+
+    xtestMetrics(
+        'f8_callCallCallCallArgs',
+        {
+            _type: 'FunctionDeclaration',
+            functionName: 'f8_callCallCallCallArgs',
+            metrics: {callExpressionCount: 9},
+            detail: {
+                _type: 'BlockStatement',
+                metrics: {callExpressionCount: 9},
+                detail: [{
+                    _type: 'ExpressionStatement',
+                    metrics: {callExpressionCount: 9},
+                    detail: [{
+                        _type: 'CallExpression',
+                        metrics: {callExpressionCount: 9},
+                        detail: {
+                            callee: [{
+                                _type: 'MemberExpression',
+                                metrics: {callExpressionCount: 3},
+                                detail: {
+                                    object: [{
+                                        _type: 'CallExpression',
+                                        name: 'aaa',
+                                        metrics: {callExpressionCount: 1},
+                                        detail: {callee: [{_type: 'Identifier'}]}
+                                    }],
+                                    property: [{
+                                        _type: 'CallExpression',
+                                        name: 'bbb',
+                                        metrics: {callExpressionCount: 1},
+                                        detail: {callee: [{_type: 'Identifier'}]}
+                                    }]
+                                }
+                            }],
+                            arguments: [{
+                                _type: 'CallExpression',
+                                name: 'ccc',
+                                metrics: {callExpressionCount: 1},
+                                detail: {callee: [{_type: 'Identifier'}]}
+                            }, {
+                                _type: 'CallExpression',
+                                name: 'ddd',
+                                metrics: {callExpressionCount: 4},
+                                detail: {
+                                    callee: [{_type: 'Identifier'}],
+                                    arguments: [{_type: 'Literal'}, {
+                                        _type: 'CallExpression',
+                                        metrics: {callExpressionCount: 3},
+                                        detail: {
+                                            callee: [{
+                                                _type: 'MemberExpression',
+                                                metrics: {callExpressionCount: 2},
+                                                detail: {
+                                                    object: [{
+                                                        _type: 'CallExpression',
+                                                        name: 'eee',
+                                                        metrics: {callExpressionCount: 1},
+                                                        detail: {
+                                                            callee: [{_type: 'Identifier'}],
+                                                            arguments: [{_type: 'Literal'}]
+                                                        }
+                                                    }], property: [{_type: 'Identifier'}]
+                                                }
+                                            }]
+                                        }
+                                    }]
+                                }
+                            }]
+                        }
+                    }]
                 }]
             }
         }
     );
 
 });
+
+x = {
+    "type": "Program",
+    "body": [{
+        "type": "FunctionDeclaration",
+        "id": {"type": "Identifier", "name": "f8_callCallCallCallArgs"},
+        "params": [],
+        "body": {
+            "type": "BlockStatement",
+            "body": [{
+                "type": "ExpressionStatement",
+                "expression": {
+                    "type": "CallExpression",
+                    "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                            "type": "CallExpression",
+                            "callee": {"type": "Identifier", "name": "aaa"},
+                            "arguments": []
+                        },
+                        "property": {"type": "Identifier", "name": "bbb"}
+                    },
+                    "arguments": [{
+                        "type": "CallExpression",
+                        "callee": {"type": "Identifier", "name": "ccc"},
+                        "arguments": []
+                    }, {
+                        "type": "CallExpression",
+                        "callee": {"type": "Identifier", "name": "ddd"},
+                        "arguments": [
+                            {"type": "Literal", "value": 1, "raw": "1"},
+                            {
+                                "type": "CallExpression",
+                                "callee": {"type": "Identifier", "name": "eee"},
+                                "arguments": [{"type": "Literal", "value": 1, "raw": "1"}
+                                ]
+                            }
+                        ]
+                    }]
+                }
+            }]
+        },
+        "generator": false,
+        "expression": false
+    }],
+    "sourceType": "script"
+};
