@@ -29,9 +29,10 @@ function visitProgram(programNode) {
  Number of called functions (Call)
  */
 class Metrics {
-    constructor({declarationStmtCount=0, executableStmtCount=0, conditionalStmtCount=0, loopingStmtCount=0,
-       maxNestingLevelOfControlConstructs=0, returnStmtCount=0, parametersCount=0, callExpressionCount=0} = {})
-    {
+    constructor({
+        declarationStmtCount = 0, executableStmtCount = 0, conditionalStmtCount = 0, loopingStmtCount = 0,
+        maxNestingLevelOfControlConstructs = 0, returnStmtCount = 0, parametersCount = 0, callExpressionCount = 0
+    } = {}) {
         if (declarationStmtCount) this.declarationStmtCount = declarationStmtCount;
         if (executableStmtCount) this.executableStmtCount = executableStmtCount;
         if (conditionalStmtCount) this.conditionalStmtCount = conditionalStmtCount;
@@ -54,7 +55,7 @@ class Metrics {
     }
 
     add(propName, otherMetrics) {
-        if (otherMetrics[propName]) {
+        if (otherMetrics && otherMetrics[propName]) {
             this[propName] = (this[propName] || 0) + otherMetrics[propName];
         }
     }
@@ -63,7 +64,7 @@ class Metrics {
 function visit(astNode, optionalFunctionMetrics) {
     const visitorFunction = visitor[astNode.type];
     if (!visitorFunction) {
-        throw new Error("Couldn't find visitor for type: "+astNode.type);//+"\n\nNode: "+JSON.stringify(astNode, null, 4));
+        throw new Error("Couldn't find visitor for type: " + astNode.type);//+"\n\nNode: "+JSON.stringify(astNode, null, 4));
     }
     return visitorFunction(astNode, optionalFunctionMetrics);
 }
@@ -74,7 +75,8 @@ const visitor = {
     VariableDeclaration: visitVariableDeclaration,
     ForStatement: visitForStatement,
     IfStatement: visitIfStatement,
-    SwitchStatement: visitSwitchStatement
+    SwitchStatement: visitSwitchStatement,
+    ReturnStatement: visitReturnStatement
 };
 
 function visitFunctionDeclaration(functionDeclarationNode) {
@@ -82,6 +84,7 @@ function visitFunctionDeclaration(functionDeclarationNode) {
     const blockDetail = visitBlockStatement(functionDeclarationNode.body);
     functionMetrics.addMetrics(blockDetail.metrics);
     return {
+        _type: 'FunctionDeclaration',
         functionName: functionDeclarationNode.id.name,
         metrics: functionMetrics,
         detail: blockDetail
@@ -94,6 +97,7 @@ function visitBlockStatement(blockStatementNode) {
     const statementsDetails = statements.map(statement => visit(statement));
     statementsDetails.forEach(stmtDetail => blockMetrics.addMetrics(stmtDetail.metrics));
     return {
+        _type: 'BlockStatement',
         metrics: blockMetrics,
         detail: statementsDetails
     };
@@ -105,6 +109,7 @@ function visitExpressionStatement(expressionStatementNode) {
         expressionMetrics.addMetrics({callExpressionCount: 1})
     }
     return {
+        _type: 'ExpressionStatement',
         metrics: expressionMetrics,
         expressionType: expressionStatementNode.expression.type
     };
@@ -112,25 +117,40 @@ function visitExpressionStatement(expressionStatementNode) {
 
 function visitVariableDeclaration(variableDeclarationNode) {
     return {
-        statementType: 'VariableDeclaration',
+        _type: 'VariableDeclaration',
         declarations: variableDeclarationNode.declarations.map(visitVariableDeclarator)
     };
 }
 
 function visitVariableDeclarator(variableDeclaratorNode) {
-    return variableDeclaratorNode.id.name;
+    return {
+        _type: 'VariableDeclarator',
+        variableName: variableDeclaratorNode.id.name
+    };
 }
 
 function visitForStatement() {
-    return { statementType: 'ForStatement' };
+    return {
+        _type: 'ForStatement'
+    };
 }
 
 function visitIfStatement() {
-    return { statementType: 'IfStatement' };
+    return {
+        _type: 'IfStatement'
+    };
 }
 
 function visitSwitchStatement() {
-    return { statementType: 'SwitchStatement' };
+    return {
+        _type: 'SwitchStatement'
+    };
+}
+
+function visitReturnStatement() {
+    return {
+        _type: 'ReturnStatement'
+    };
 }
 
 

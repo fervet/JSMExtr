@@ -63,15 +63,18 @@ describe("JS", function () {
         let output = functionMetricsFromJsAST(jsAstFromJsFile);
         expect(output).toEqual([
             {
+                _type : 'FunctionDeclaration',
                 functionName: 'one',
                 metrics: {
                     callExpressionCount: 1
                 },
                 detail: {
+                    _type : 'BlockStatement',
                     metrics: {
                         callExpressionCount: 1
                     },
                     detail: [{
+                        _type : 'ExpressionStatement',
                         metrics: {
                             callExpressionCount: 1
                         },
@@ -182,15 +185,18 @@ describe("JS", function () {
         expect(output).toEqual(
             [
                 {
+                    _type : 'FunctionDeclaration',
                     functionName: 'one',
                     metrics: {
                         callExpressionCount: 1
                     },
                     detail: {
+                        _type : 'BlockStatement',
                         metrics: {
                             callExpressionCount: 1
                         },
                         detail: [{
+                            _type : 'ExpressionStatement',
                             metrics: {
                                 callExpressionCount: 1
                             }, expressionType: 'CallExpression'
@@ -199,16 +205,19 @@ describe("JS", function () {
                 }
                 ,
                 {
+                    _type : 'FunctionDeclaration',
                     functionName: 'two',
                     metrics: {
                         parametersCount: 2,
                         callExpressionCount: 1
                     },
                     detail: {
+                        _type : 'BlockStatement',
                         metrics: {
                             callExpressionCount: 1
                         },
                         detail: [{
+                            _type : 'ExpressionStatement',
                             metrics: {
                                 callExpressionCount: 1
                             },
