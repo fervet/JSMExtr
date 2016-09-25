@@ -43,11 +43,13 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'VariableDeclaration',
                     metrics: {declarationStmtCount: 1},
-                    declarations: [{
-                        _type: 'VariableDeclarator',
-                        variableName: 'x',
-                        metrics: {declarationStmtCount: 1}
-                    }]
+                    detail: {
+                        declarations: [{
+                            _type: 'VariableDeclarator',
+                            variableName: 'x',
+                            metrics: {declarationStmtCount: 1}
+                        }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?1:0-3:1'
@@ -66,15 +68,17 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'VariableDeclaration',
                     metrics: {declarationStmtCount: 2},
-                    declarations: [{
-                        _type: 'VariableDeclarator',
-                        variableName: 'a',
-                        metrics: {declarationStmtCount: 1},
-                    }, {
-                        _type: 'VariableDeclarator',
-                        variableName: 'b',
-                        metrics: {declarationStmtCount: 1},
-                    }]
+                    detail: {
+                        declarations: [{
+                            _type: 'VariableDeclarator',
+                            variableName: 'a',
+                            metrics: {declarationStmtCount: 1},
+                        }, {
+                            _type: 'VariableDeclarator',
+                            variableName: 'b',
+                            metrics: {declarationStmtCount: 1},
+                        }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?4:0-6:1'
@@ -93,12 +97,14 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'VariableDeclaration',
                     metrics: {declarationStmtCount: 1},
-                    declarations: [{
-                        _type: 'VariableDeclarator',
-                        variableName: 'c',
-                        metrics: {declarationStmtCount: 1},
-                        detail: {init: {_type: 'Literal'}}
-                    }]
+                    detail: {
+                        declarations: [{
+                            _type: 'VariableDeclarator',
+                            variableName: 'c',
+                            metrics: {declarationStmtCount: 1},
+                            detail: {init: {_type: 'Literal'}}
+                        }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?7:0-9:1'
@@ -117,18 +123,20 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'VariableDeclaration',
                     metrics: {declarationStmtCount: 1, callExpressionCount: 1},
-                    declarations: [{
-                        _type: 'VariableDeclarator',
-                        variableName: 'd',
-                        metrics: {declarationStmtCount: 1, callExpressionCount: 1},
-                        detail: {
-                            init: {
-                                _type: 'CallExpression',
-                                metrics: {callExpressionCount: 1},
-                                detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
+                    detail: {
+                        declarations: [{
+                            _type: 'VariableDeclarator',
+                            variableName: 'd',
+                            metrics: {declarationStmtCount: 1, callExpressionCount: 1},
+                            detail: {
+                                init: {
+                                    _type: 'CallExpression',
+                                    metrics: {callExpressionCount: 1},
+                                    detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
+                                }
                             }
-                        }
-                    }]
+                        }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?10:0-12:1'
@@ -305,12 +313,14 @@ describe("COMPLETE JS", function () {
                                     detail: [{
                                         _type: 'VariableDeclaration',
                                         metrics: {declarationStmtCount: 1},
-                                        declarations: [{
-                                            _type: 'VariableDeclarator',
-                                            variableName: 'i',
-                                            metrics: {declarationStmtCount: 1},
-                                            detail: {init: {_type: 'Literal'}}
-                                        }]
+                                        detail: {
+                                            declarations: [{
+                                                _type: 'VariableDeclarator',
+                                                variableName: 'i',
+                                                metrics: {declarationStmtCount: 1},
+                                                detail: {init: {_type: 'Literal'}}
+                                            }]
+                                        }
                                     }]
                                 }
                             }, arguments: [{_type: 'Literal'}]

@@ -240,7 +240,9 @@ class Visitors {
         return {
             _type: 'VariableDeclaration',
             metrics: variableDeclarationMetrics,
-            declarations: Program.extractDetailsAndAddMetrics(variableDeclarationNode.declarations, variableDeclarationMetrics)
+            detail: {
+                declarations: Program.extractDetailsAndAddMetrics(variableDeclarationNode.declarations, variableDeclarationMetrics)
+            }
         };
     }
 
