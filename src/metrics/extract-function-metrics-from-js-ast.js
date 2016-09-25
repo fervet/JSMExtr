@@ -116,6 +116,10 @@ class Program {
     }
 }
 
+function loc(locableNode) {
+    return `${locableNode.loc.start.line}:${locableNode.loc.start.column}-${locableNode.loc.end.line}:${locableNode.loc.end.column}`
+}
+
 class Visitors {
 
     //noinspection JSUnusedGlobalSymbols
@@ -126,7 +130,7 @@ class Visitors {
             functionName: functionDeclarationNode.id.name,
             metrics: functionMetrics,
             detail: Program.extractDetailsAndAddMetricsForSingle(functionDeclarationNode.body, functionMetrics),
-            loc: `${functionDeclarationNode.loc.start.line}:${functionDeclarationNode.loc.start.column}-${functionDeclarationNode.loc.end.line}:${functionDeclarationNode.loc.end.column}`
+            loc: loc(functionDeclarationNode)
         };
     }
 
