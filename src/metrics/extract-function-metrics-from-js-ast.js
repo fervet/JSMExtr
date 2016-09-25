@@ -74,10 +74,6 @@ class Visitors {
         return Visitors.visit(astNode, this.statementVisitors);
     }
 
-    static visitExpression(astNode) {
-        return Visitors.visit(astNode, this.expressionVisitors);
-    }
-
     static extractDetailsAndAddMetricsFromStatement(statements, metrics) {
         const statementsDetails = statements.map(statement => Visitors.visitStatement(statement));
         statementsDetails.forEach(stmtDetail => metrics.addMetrics(stmtDetail.metrics));
@@ -94,9 +90,6 @@ Visitors.statementVisitors = {
     ReturnStatement: visitReturnStatement,
     BinaryExpression: visitBinaryExpression,
     UpdateExpression: visitUpdateExpression
-};
-Visitors.expressionVisitors = {
-    AssignmentExpression: visitAssignmentExpression
 };
 
 function visitFunctionDeclaration(functionDeclarationNode) {
@@ -125,19 +118,14 @@ function visitExpressionStatement(expressionStatementNode) {
     if (expressionStatementNode.expression.type === 'CallExpression') {
         expressionMetrics.addMetrics({callExpressionCount: 1})
     }
+    if (expressionStatementNode.expression.type === 'AssignmentExpression') {
+    }
     return {
         _type: 'ExpressionStatement',
         metrics: expressionMetrics,
         expressionType: expressionStatementNode.expression.type
     };
 }
-
-
-
-function visitAssignmentExpression() {
-
-}
-
 
 function visitVariableDeclaration(variableDeclarationNode) {
     const declarationMetrics = new Metrics({declarationStmtCount: variableDeclarationNode.declarations.length});

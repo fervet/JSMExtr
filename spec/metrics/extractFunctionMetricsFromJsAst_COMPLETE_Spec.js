@@ -46,7 +46,7 @@ describe("COMPLETE JS", function () {
                 }
             }]
         );
-        x =
+        const ignore =
             [{
                 _type: 'FunctionDeclaration',
                 functionName: 'all',
