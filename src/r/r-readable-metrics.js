@@ -7,7 +7,8 @@ function rReadableMetrics(functionsMetrics) {
         if (fMetrics._type === 'FunctionDeclaration') {
             functionMetricsSummary.push({
                 _type: fMetrics._type,
-                functionName: `${fMetrics.fileLocation} ~ ${fMetrics.functionName}`,
+                functionName: fMetrics.functionName,
+                fileLocation: fMetrics.fileLocation,
                 metrics: fMetrics.metrics
             });
         }
@@ -15,6 +16,7 @@ function rReadableMetrics(functionsMetrics) {
 
     let toPrint = {
         functionName: [],
+        fileLocation: [],
         declarationStmtCount: [],
         executableStmtCount: [],
         conditionalStmtCount: [],
@@ -27,6 +29,7 @@ function rReadableMetrics(functionsMetrics) {
     functionsMetrics.forEach(f => {
         if (f._type === 'FunctionDeclaration') {
             toPrint.functionName.push(f.functionName);
+            toPrint.fileLocation.push(f.fileLocation);
             toPrint.declarationStmtCount.push(f.metrics.declarationStmtCount || 0);
             toPrint.executableStmtCount.push(f.metrics.executableStmtCount || 0);
             toPrint.conditionalStmtCount.push(f.metrics.conditionalStmtCount || 0);
@@ -41,6 +44,7 @@ function rReadableMetrics(functionsMetrics) {
 structure(
 	list(
 		functionName = c("${toPrint.functionName.join('", "')}"),
+		fileLocation = c("${toPrint.fileLocation.join('", "')}"),
 		declarationStmtCount = c(${toPrint.declarationStmtCount.join(", ")}),
 		executableStmtCount = c(${toPrint.executableStmtCount.join(", ")}),
 		conditionalStmtCount = c(${toPrint.conditionalStmtCount.join(", ")}),
@@ -49,7 +53,9 @@ structure(
 		parametersCount = c(${toPrint.parametersCount.join(", ")}),
 		callExpressionCount = c(${toPrint.callExpressionCount.join(", ")})
 	),
-	.Names = c("functionName", "declarationStmtCount", "executableStmtCount", "returnStmtCount", "parametersCount", "callExpressionCount"),
+	.Names = c("functionName", "fileLocation",
+	           "declarationStmtCount", "executableStmtCount", "conditionalStmtCount", "loopingStmtCount",
+	           "returnStmtCount", "parametersCount", "callExpressionCount"),
 	class = "data.frame",
 	row.names = c(NA, ${toPrint.functionName.length}L)
 )`;
