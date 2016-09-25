@@ -150,7 +150,7 @@ class Visitors {
         return {
             _type: 'ExpressionStatement',
             metrics: expressionMetrics,
-            detail: Program.extractDetailsAndAddMetrics([expressionStatementNode.expression], expressionMetrics)
+            detail: Program.extractDetailsAndAddMetricsForSingle(expressionStatementNode.expression, expressionMetrics)
         };
     }
 

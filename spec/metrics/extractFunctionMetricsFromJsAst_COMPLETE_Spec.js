@@ -146,11 +146,11 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'ExpressionStatement',
                     metrics: {callExpressionCount: 1},
-                    detail: [{
+                    detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1},
                         detail: {callee: {_type: 'Identifier'}}
-                    }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?13:0-15:1'
@@ -168,11 +168,11 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'ExpressionStatement',
                     metrics: {callExpressionCount: 1},
-                    detail: [{
+                    detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1},
                         detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
-                    }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?16:0-18:1'
@@ -191,7 +191,7 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'ExpressionStatement',
                     metrics: {callExpressionCount: 2},
-                    detail: [{
+                    detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 2},
                         detail: {
@@ -202,7 +202,7 @@ describe("COMPLETE JS", function () {
                                 detail: {callee: {_type: 'Identifier'}}
                             }]
                         }
-                    }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?19:0-21:1'
@@ -221,7 +221,7 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'ExpressionStatement',
                     metrics: {callExpressionCount: 7},
-                    detail: [{
+                    detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 7},
                         detail: {
@@ -273,7 +273,7 @@ describe("COMPLETE JS", function () {
                                 }
                             }]
                         }
-                    }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?22:0-24:1'
@@ -292,7 +292,7 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'ExpressionStatement',
                     metrics: {declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
-                    detail: [{
+                    detail: {
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1, declarationStmtCount: 1, parametersCount: 1},
                         detail: {
@@ -315,7 +315,7 @@ describe("COMPLETE JS", function () {
                                 }
                             }, arguments: [{_type: 'Literal'}]
                         }
-                    }]
+                    }
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?25:0-29:1'
