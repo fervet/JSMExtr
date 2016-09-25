@@ -41,7 +41,7 @@ function visitProgram(programNode) {
  Number of conditional statements (Cond.) ------------------------ TODO
  Number of looping statements (Loop) ----------------------------- TODO
  Maximum nesting level of control constructs (Nest) -------------- TODO
- Number of return statements (Ret.) ------------------------------ TODO
+ Number of return statements (Ret.) ------------------------------ DONE
  Number of parameters (Param.) ----------------------------------- DONE
  Number of called functions (Call) ------------------------------- DONE
  */
@@ -287,9 +287,14 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitReturnStatement() {
+    static visitReturnStatement(returnStatementNode) {
+        const returnMetrics = new Metrics({returnStmtCount: 1});
         return {
-            _type: 'ReturnStatement'
+            _type: 'ReturnStatement',
+            metrics: returnMetrics,
+            detail: {
+                argument: Program.extractDetailsAndAddMetricsForSingle(returnStatementNode.argument, returnMetrics),
+            }
         };
     }
 

@@ -13,7 +13,9 @@ const functionMetrics = {
     f6_callLiteralArgs: completeMetrics[5],
     f7_callCallArgs: completeMetrics[6],
     f8_callCallCallCallArgs: completeMetrics[7],
-    f9_iife: completeMetrics[8]
+    f9_iife: completeMetrics[8],
+    f10_returnSimple: completeMetrics[9],
+    f11_returnCall: completeMetrics[10]
 };
 
 function testMetrics(functionName, expected) {
@@ -278,7 +280,6 @@ describe("COMPLETE JS", function () {
         }
     );
 
-
     testMetrics(
         'f9_iife',
         {
@@ -318,6 +319,50 @@ describe("COMPLETE JS", function () {
                 }]
             },
             fileLocation: 'spec/metrics/complete.js?25:0-29:1'
+        }
+    );
+
+    testMetrics(
+        'f10_returnSimple',
+        {
+            _type: 'FunctionDeclaration',
+            functionName: 'f10_returnSimple',
+            metrics: {returnStmtCount: 1},
+            detail: {
+                _type: 'BlockStatement',
+                metrics: {returnStmtCount: 1},
+                detail: [{
+                    _type: 'ReturnStatement',
+                    metrics: {returnStmtCount: 1},
+                    detail: {argument: {_type: 'Literal'}}
+                }]
+            },
+            fileLocation: 'spec/metrics/complete.js?30:0-32:1'
+        }
+    );
+
+    testMetrics(
+        'f11_returnCall',
+        {
+            _type: 'FunctionDeclaration',
+            functionName: 'f11_returnCall',
+            metrics: {returnStmtCount: 1, callExpressionCount: 1},
+            detail: {
+                _type: 'BlockStatement',
+                metrics: {returnStmtCount: 1, callExpressionCount: 1},
+                detail: [{
+                    _type: 'ReturnStatement',
+                    metrics: {returnStmtCount: 1, callExpressionCount: 1},
+                    detail: {
+                        argument: {
+                            _type: 'CallExpression',
+                            metrics: {callExpressionCount: 1},
+                            detail: {callee: {_type: 'Identifier'}}
+                        }
+                    }
+                }]
+            },
+            fileLocation: 'spec/metrics/complete.js?33:0-35:1'
         }
     );
 

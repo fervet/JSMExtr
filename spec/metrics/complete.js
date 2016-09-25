@@ -27,6 +27,12 @@ function f9_iife() {
         var i = 1;
     })(2);
 }
+function f10_returnSimple() {
+    return 10;
+}
+function f11_returnCall() {
+    return other();
+}
 
 /*
 function all(first, second) {
