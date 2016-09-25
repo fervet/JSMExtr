@@ -10,14 +10,18 @@
  */
 class Metrics {
     constructor({
-        declarationStmtCount = 0, executableStmtCount = 0, conditionalStmtCount = 0, loopingStmtCount = 0,
-        maxNestingLevelOfControlConstructs = 0, returnStmtCount = 0, parametersCount = 0, callExpressionCount = 0
+        declarationStmtCount = 0,
+        executableStmtCount = 0,
+        conditionalStmtCount = 0,
+        loopingStmtCount = 0,
+        returnStmtCount = 0,
+        parametersCount = 0,
+        callExpressionCount = 0
     } = {}) {
         if (declarationStmtCount) this.declarationStmtCount = declarationStmtCount;
         if (executableStmtCount) this.executableStmtCount = executableStmtCount;
         if (conditionalStmtCount) this.conditionalStmtCount = conditionalStmtCount;
         if (loopingStmtCount) this.loopingStmtCount = loopingStmtCount;
-        if (maxNestingLevelOfControlConstructs) this.maxNestingLevelOfControlConstructs = maxNestingLevelOfControlConstructs;
         if (returnStmtCount) this.returnStmtCount = returnStmtCount;
         if (parametersCount) this.parametersCount = parametersCount;
         if (callExpressionCount) this.callExpressionCount = callExpressionCount;
