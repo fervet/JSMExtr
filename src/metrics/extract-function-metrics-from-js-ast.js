@@ -162,7 +162,7 @@ function visitCallExpression(callExpressionNode) {
     const callExpressionMetrics = new Metrics({callExpressionCount: 1});
     return {
         _type: 'CallExpression',
-        name: callExpressionNode.callee.name,
+        // name: callExpressionNode.callee.name,
         metrics: callExpressionMetrics,
         detail: {
             callee: Visitors.extractDetailsAndAddMetricsForSingle(callExpressionNode.callee, callExpressionMetrics),

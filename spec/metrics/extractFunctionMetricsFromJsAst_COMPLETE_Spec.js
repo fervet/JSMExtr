@@ -119,14 +119,13 @@ describe("COMPLETE JS", function () {
                             init: [{
                                 _type: 'CallExpression',
                                 metrics: {callExpressionCount: 1},
-                                detail: {arguments: [{_type: 'Literal'}]}
+                                detail: {callee: [{_type: 'Identifier'}], arguments: [{_type: 'Literal'}]}
                             }]
                         }
                     }]
                 }]
             }
-        }
-    );
+        });
 
     testMetrics(
         'f5_callNoArgs',
@@ -140,11 +139,14 @@ describe("COMPLETE JS", function () {
                 detail: [{
                     _type: 'ExpressionStatement',
                     metrics: {callExpressionCount: 1},
-                    detail: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}}]
+                    detail: [{
+                        _type: 'CallExpression',
+                        metrics: {callExpressionCount: 1},
+                        detail: {callee: [{_type: 'Identifier'}]}
+                    }]
                 }]
             }
-        }
-    );
+        });
 
     testMetrics(
         'f6_callLiteralArgs',
@@ -161,7 +163,7 @@ describe("COMPLETE JS", function () {
                     detail: [{
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 1},
-                        detail: {arguments: [{_type: 'Literal'}]}
+                        detail: {callee: [{_type: 'Identifier'}], arguments: [{_type: 'Literal'}]}
                     }]
                 }]
             }
@@ -183,7 +185,14 @@ describe("COMPLETE JS", function () {
                     detail: [{
                         _type: 'CallExpression',
                         metrics: {callExpressionCount: 2},
-                        detail: {arguments: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}}]}
+                        detail: {
+                            callee: [{_type: 'Identifier'}],
+                            arguments: [{
+                                _type: 'CallExpression',
+                                metrics: {callExpressionCount: 1},
+                                detail: {callee: [{_type: 'Identifier'}]}
+                            }]
+                        }
                     }]
                 }]
             }
