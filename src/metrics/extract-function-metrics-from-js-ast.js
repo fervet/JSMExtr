@@ -32,25 +32,31 @@ class Metrics {
     constructor({declarationStmtCount=0, executableStmtCount=0, conditionalStmtCount=0, loopingStmtCount=0,
        maxNestingLevelOfControlConstructs=0, returnStmtCount=0, parametersCount=0, callExpressionCount=0} = {})
     {
-        this.declarationStmtCount = declarationStmtCount;
-        this.executableStmtCount = executableStmtCount;
-        this.conditionalStmtCount = conditionalStmtCount;
-        this.loopingStmtCount = loopingStmtCount;
-        this.maxNestingLevelOfControlConstructs = maxNestingLevelOfControlConstructs;
-        this.returnStmtCount = returnStmtCount;
-        this.parametersCount = parametersCount;
-        this.callExpressionCount = callExpressionCount;
+        if (declarationStmtCount) this.declarationStmtCount = declarationStmtCount;
+        if (executableStmtCount) this.executableStmtCount = executableStmtCount;
+        if (conditionalStmtCount) this.conditionalStmtCount = conditionalStmtCount;
+        if (loopingStmtCount) this.loopingStmtCount = loopingStmtCount;
+        if (maxNestingLevelOfControlConstructs) this.maxNestingLevelOfControlConstructs = maxNestingLevelOfControlConstructs;
+        if (returnStmtCount) this.returnStmtCount = returnStmtCount;
+        if (parametersCount) this.parametersCount = parametersCount;
+        if (callExpressionCount) this.callExpressionCount = callExpressionCount;
     }
 
     addMetrics(otherMetrics) {
-        this.declarationStmtCount += otherMetrics.declarationStmtCount;
-        this.executableStmtCount += otherMetrics.executableStmtCount;
-        this.conditionalStmtCount += otherMetrics.conditionalStmtCount;
-        this.loopingStmtCount += otherMetrics.loopingStmtCount;
-        this.maxNestingLevelOfControlConstructs += otherMetrics.maxNestingLevelOfControlConstructs;
-        this.returnStmtCount += otherMetrics.returnStmtCount;
-        this.parametersCount += otherMetrics.parametersCount;
-        this.callExpressionCount += otherMetrics.callExpressionCount;
+        this.add('declarationStmtCount', otherMetrics);
+        this.add('executableStmtCount', otherMetrics);
+        this.add('conditionalStmtCount', otherMetrics);
+        this.add('loopingStmtCount', otherMetrics);
+        this.add('maxNestingLevelOfControlConstructs', otherMetrics);
+        this.add('returnStmtCount', otherMetrics);
+        this.add('parametersCount', otherMetrics);
+        this.add('callExpressionCount', otherMetrics);
+    }
+
+    add(propName, otherMetrics) {
+        if (otherMetrics[propName]) {
+            this[propName] = (this[propName] || 0) + otherMetrics[propName];
+        }
     }
 }
 
@@ -96,7 +102,7 @@ function visitBlockStatement(blockStatementNode) {
 function visitExpressionStatement(expressionStatementNode) {
     const expressionMetrics = new Metrics();
     if (expressionStatementNode.expression.type === 'CallExpression') {
-        expressionMetrics.callExpressionCount++;
+        expressionMetrics.addMetrics({callExpressionCount: 1})
     }
     return {
         metrics: expressionMetrics,

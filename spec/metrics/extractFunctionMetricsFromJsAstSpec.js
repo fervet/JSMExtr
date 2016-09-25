@@ -65,35 +65,14 @@ describe("JS", function () {
             {
                 functionName: 'one',
                 metrics: {
-                    declarationStmtCount: 0,
-                    executableStmtCount: 0,
-                    conditionalStmtCount: 0,
-                    loopingStmtCount: 0,
-                    maxNestingLevelOfControlConstructs: 0,
-                    returnStmtCount: 0,
-                    parametersCount: 0,
                     callExpressionCount: 1
                 },
                 detail: {
                     metrics: {
-                        declarationStmtCount: 0,
-                        executableStmtCount: 0,
-                        conditionalStmtCount: 0,
-                        loopingStmtCount: 0,
-                        maxNestingLevelOfControlConstructs: 0,
-                        returnStmtCount: 0,
-                        parametersCount: 0,
                         callExpressionCount: 1
                     },
                     detail: [{
                         metrics: {
-                            declarationStmtCount: 0,
-                            executableStmtCount: 0,
-                            conditionalStmtCount: 0,
-                            loopingStmtCount: 0,
-                            maxNestingLevelOfControlConstructs: 0,
-                            returnStmtCount: 0,
-                            parametersCount: 0,
                             callExpressionCount: 1
                         },
                         expressionType: 'CallExpression'
@@ -205,35 +184,14 @@ describe("JS", function () {
                 {
                     functionName: 'one',
                     metrics: {
-                        declarationStmtCount: 0,
-                        executableStmtCount: 0,
-                        conditionalStmtCount: 0,
-                        loopingStmtCount: 0,
-                        maxNestingLevelOfControlConstructs: 0,
-                        returnStmtCount: 0,
-                        parametersCount: 0,
                         callExpressionCount: 1
                     },
                     detail: {
                         metrics: {
-                            declarationStmtCount: 0,
-                            executableStmtCount: 0,
-                            conditionalStmtCount: 0,
-                            loopingStmtCount: 0,
-                            maxNestingLevelOfControlConstructs: 0,
-                            returnStmtCount: 0,
-                            parametersCount: 0,
                             callExpressionCount: 1
                         },
                         detail: [{
                             metrics: {
-                                declarationStmtCount: 0,
-                                executableStmtCount: 0,
-                                conditionalStmtCount: 0,
-                                loopingStmtCount: 0,
-                                maxNestingLevelOfControlConstructs: 0,
-                                returnStmtCount: 0,
-                                parametersCount: 0,
                                 callExpressionCount: 1
                             }, expressionType: 'CallExpression'
                         }]
@@ -243,35 +201,15 @@ describe("JS", function () {
                 {
                     functionName: 'two',
                     metrics: {
-                        declarationStmtCount: 0,
-                        executableStmtCount: 0,
-                        conditionalStmtCount: 0,
-                        loopingStmtCount: 0,
-                        maxNestingLevelOfControlConstructs: 0,
-                        returnStmtCount: 0,
                         parametersCount: 2,
                         callExpressionCount: 1
                     },
                     detail: {
                         metrics: {
-                            declarationStmtCount: 0,
-                            executableStmtCount: 0,
-                            conditionalStmtCount: 0,
-                            loopingStmtCount: 0,
-                            maxNestingLevelOfControlConstructs: 0,
-                            returnStmtCount: 0,
-                            parametersCount: 0,
                             callExpressionCount: 1
                         },
                         detail: [{
                             metrics: {
-                                declarationStmtCount: 0,
-                                executableStmtCount: 0,
-                                conditionalStmtCount: 0,
-                                loopingStmtCount: 0,
-                                maxNestingLevelOfControlConstructs: 0,
-                                returnStmtCount: 0,
-                                parametersCount: 0,
                                 callExpressionCount: 1
                             },
                             expressionType: 'CallExpression'
