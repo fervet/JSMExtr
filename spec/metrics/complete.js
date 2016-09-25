@@ -1,11 +1,12 @@
 function all(first, second) {
     var sum = initialize(first, second);
-    var other = 111;
+    var other = 111, yetAnother = 222;
     for (var i = 0; i < myArray.length; i++) {
         sum = sum + myArray[i];
+        yetAnother *= first;
     }
     if (sum > 10) {
-        other = other + 123;
+        other = yetAnother + 123;
         sum = doStuff(other);
     }
     switch (sum) {

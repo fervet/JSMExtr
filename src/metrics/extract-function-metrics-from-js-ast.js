@@ -15,7 +15,7 @@ function visitArrayOfPrograms(arrayOfAstProgramNodes) {
 
 function visitProgram(programNode) {
     let bodyNodes = programNode.body;
-    return bodyNodes.map(bodyNode => visit(bodyNode));
+    return bodyNodes.map(bodyNode => Visitors.visitStatement(bodyNode));
 }
 
 /*
@@ -61,22 +61,42 @@ class Metrics {
     }
 }
 
-function visit(astNode, optionalFunctionMetrics) {
-    const visitorFunction = visitor[astNode.type];
-    if (!visitorFunction) {
-        throw new Error("Couldn't find visitor for type: " + astNode.type);//+"\n\nNode: "+JSON.stringify(astNode, null, 4));
+class Visitors {
+    static visit(astNode, visitors) {
+        const visitorFunction = visitors[astNode.type];
+        if (!visitorFunction) {
+            throw new Error("Couldn't find visitor for type: " + astNode.type);//+"\n\nNode: "+JSON.stringify(astNode, null, 4));
+        }
+        return visitorFunction(astNode);
     }
-    return visitorFunction(astNode, optionalFunctionMetrics);
-}
 
-const visitor = {
+    static visitStatement(astNode) {
+        return Visitors.visit(astNode, this.statementVisitors);
+    }
+
+    static visitExpression(astNode) {
+        return Visitors.visit(astNode, this.expressionVisitors);
+    }
+
+    static extractDetailsAndAddMetricsFromStatement(statements, metrics) {
+        const statementsDetails = statements.map(statement => Visitors.visitStatement(statement));
+        statementsDetails.forEach(stmtDetail => metrics.addMetrics(stmtDetail.metrics));
+        return statementsDetails;
+    }
+}
+Visitors.statementVisitors = {
     FunctionDeclaration: visitFunctionDeclaration,
     ExpressionStatement: visitExpressionStatement,
     VariableDeclaration: visitVariableDeclaration,
     ForStatement: visitForStatement,
     IfStatement: visitIfStatement,
     SwitchStatement: visitSwitchStatement,
-    ReturnStatement: visitReturnStatement
+    ReturnStatement: visitReturnStatement,
+    BinaryExpression: visitBinaryExpression,
+    UpdateExpression: visitUpdateExpression
+};
+Visitors.expressionVisitors = {
+    AssignmentExpression: visitAssignmentExpression
 };
 
 function visitFunctionDeclaration(functionDeclarationNode) {
@@ -93,13 +113,10 @@ function visitFunctionDeclaration(functionDeclarationNode) {
 
 function visitBlockStatement(blockStatementNode) {
     const blockMetrics = new Metrics();
-    let statements = blockStatementNode.body;
-    const statementsDetails = statements.map(statement => visit(statement));
-    statementsDetails.forEach(stmtDetail => blockMetrics.addMetrics(stmtDetail.metrics));
     return {
         _type: 'BlockStatement',
         metrics: blockMetrics,
-        detail: statementsDetails
+        detail: Visitors.extractDetailsAndAddMetricsFromStatement(blockStatementNode.body, blockMetrics)
     };
 }
 
@@ -115,9 +132,18 @@ function visitExpressionStatement(expressionStatementNode) {
     };
 }
 
+
+
+function visitAssignmentExpression() {
+
+}
+
+
 function visitVariableDeclaration(variableDeclarationNode) {
+    const declarationMetrics = new Metrics({declarationStmtCount: variableDeclarationNode.declarations.length});
     return {
         _type: 'VariableDeclaration',
+        metrics: declarationMetrics,
         declarations: variableDeclarationNode.declarations.map(visitVariableDeclarator)
     };
 }
@@ -129,9 +155,17 @@ function visitVariableDeclarator(variableDeclaratorNode) {
     };
 }
 
-function visitForStatement() {
+function visitForStatement(forStatementNode) {
+    const forMetrics = new Metrics();
     return {
-        _type: 'ForStatement'
+        _type: 'ForStatement',
+        metrics: forMetrics,
+        detail: {
+            init: Visitors.extractDetailsAndAddMetricsFromStatement([forStatementNode.init], forMetrics),
+            test: Visitors.extractDetailsAndAddMetricsFromStatement([forStatementNode.test], forMetrics),
+            update: Visitors.extractDetailsAndAddMetricsFromStatement([forStatementNode.update], forMetrics),
+            body: Visitors.extractDetailsAndAddMetricsFromStatement(forStatementNode.body.body, forMetrics),
+        }
     };
 }
 
@@ -153,4 +187,15 @@ function visitReturnStatement() {
     };
 }
 
+function visitBinaryExpression() {
+    return {
+        _type: 'BinaryExpression'
+    };
+}
+
+function visitUpdateExpression() {
+    return {
+        _type: 'UpdateExpression'
+    };
+}
 
