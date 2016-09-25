@@ -22,7 +22,7 @@ function visitArrayOfPrograms(arrayOfAstProgramNodes) {
 
 function visitProgram(programNode) {
     let bodyNodes = programNode.body;
-    return bodyNodes.map(bodyNode => Visitors.visitStatement(bodyNode));
+    return bodyNodes.map(bodyNode => Program.visit(bodyNode));
 }
 
 
@@ -69,34 +69,30 @@ class Metrics {
     }
 }
 
-class Visitors {
-    static visit(astNode, visitors) {
-        const visitorFunction = visitors[astNode.type];
+class Program {
+    static visit(astNode) {
+        const visitorFunction = Visitors['visit'+astNode.type];
         if (!visitorFunction) {
             throw new Error("Couldn't find visitor for type: " + astNode.type);//+"\n\nNode: "+JSON.stringify(astNode, null, 4));
         }
         return visitorFunction(astNode);
     }
 
-    static visitStatement(astNode) {
-        return Visitors.visit(astNode, this.statementVisitors);
-    }
-
-    static extractDetailsAndAddMetricsFromStatement(statements, metrics) {
-        const statementsDetails = statements.map(statement => Visitors.visitStatement(statement));
+    static extractDetailsAndAddMetrics(statements, metrics) {
+        const statementsDetails = statements.map(statement => Program.visit(statement));
         statementsDetails.forEach(stmtDetail => metrics.addMetrics(stmtDetail.metrics));
         return statementsDetails;
     }
 
     static extractDetailsAndAddMetricsForSingle(stmt, metrics) {
-        return this.extractDetailsAndAddMetricsFromStatement([stmt], metrics);
+        return this.extractDetailsAndAddMetrics([stmt], metrics);
     }
 
     static extractDetailsAndAddMetricsForOptional(statements, metrics) {
         if (!statements) {
             return undefined;
         }
-        return this.extractDetailsAndAddMetricsFromStatement(statements, metrics);
+        return this.extractDetailsAndAddMetrics(statements, metrics);
     }
 
     static extractDetailsAndAddMetricsForOptionalSingle(stmt, metrics) {
@@ -106,163 +102,175 @@ class Visitors {
         return this.extractDetailsAndAddMetricsForSingle(stmt, metrics);
     }
 }
-Visitors.statementVisitors = {
-    FunctionDeclaration: visitFunctionDeclaration,
-    ForStatement: visitForStatement,
-    IfStatement: visitIfStatement,
-    SwitchStatement: visitSwitchStatement,
-    ReturnStatement: visitReturnStatement,
 
-    // expressions:
-    BinaryExpression: visitBinaryExpression,
-    UpdateExpression: visitUpdateExpression,
+class Visitors {
 
-    ExpressionStatement: visitExpressionStatement,
-    VariableDeclaration: visitVariableDeclaration,
-    VariableDeclarator: visitVariableDeclarator,
+    //noinspection JSUnusedGlobalSymbols
+    static visitFunctionDeclaration(functionDeclarationNode) {
+        const functionMetrics = new Metrics({parametersCount: functionDeclarationNode.params.length});
+        const blockDetail = Visitors.visitBlockStatement(functionDeclarationNode.body);
+        functionMetrics.addMetrics(blockDetail.metrics);
+        return {
+            _type: 'FunctionDeclaration',
+            functionName: functionDeclarationNode.id.name,
+            metrics: functionMetrics,
+            detail: blockDetail
+        };
+    }
 
-    CallExpression: visitCallExpression,
-    MemberExpression: visitMemberExpression,
-    Literal: visitLiteral,
-    Identifier: visitIdentifier,
-    AssignmentExpression: visitAssignmentExpression
-};
+    //noinspection JSUnusedGlobalSymbols
+    static visitBlockStatement(blockStatementNode) {
+        const blockMetrics = new Metrics();
+        return {
+            _type: 'BlockStatement',
+            metrics: blockMetrics,
+            detail: Program.extractDetailsAndAddMetrics(blockStatementNode.body, blockMetrics)
+        };
+    }
 
-function visitFunctionDeclaration(functionDeclarationNode) {
-    const functionMetrics = new Metrics({parametersCount: functionDeclarationNode.params.length});
-    const blockDetail = visitBlockStatement(functionDeclarationNode.body);
-    functionMetrics.addMetrics(blockDetail.metrics);
-    return {
-        _type: 'FunctionDeclaration',
-        functionName: functionDeclarationNode.id.name,
-        metrics: functionMetrics,
-        detail: blockDetail
-    };
+    //noinspection JSUnusedGlobalSymbols
+    static visitExpressionStatement(expressionStatementNode) {
+        const expressionMetrics = new Metrics();
+        return {
+            _type: 'ExpressionStatement',
+            metrics: expressionMetrics,
+            detail: Program.extractDetailsAndAddMetrics([expressionStatementNode.expression], expressionMetrics)
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitCallExpression(callExpressionNode) {
+        const callExpressionMetrics = new Metrics({callExpressionCount: 1});
+        return {
+            _type: 'CallExpression',
+            // name: callExpressionNode.callee.name,
+            metrics: callExpressionMetrics,
+            detail: {
+                callee: Program.extractDetailsAndAddMetricsForSingle(callExpressionNode.callee, callExpressionMetrics),
+                arguments: Program.extractDetailsAndAddMetricsForOptional(callExpressionNode.arguments, callExpressionMetrics)
+            }
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitAssignmentExpression() {
+        return {
+            _type: 'AssignmentExpression',
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitFunctionExpression() {
+        return {
+            _type: 'FunctionExpression',
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitNewExpression() {
+        return {
+            _type: 'NewExpression',
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitMemberExpression(memberExpressionNode) {
+        const memberExpressionMetrics = new Metrics();
+        return {
+            _type: 'MemberExpression',
+            metrics: memberExpressionMetrics,
+            detail: {
+                object: Program.extractDetailsAndAddMetricsForSingle(memberExpressionNode.object, memberExpressionMetrics),
+                property: Program.extractDetailsAndAddMetricsForSingle(memberExpressionNode.property, memberExpressionMetrics)
+            }
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitLiteral() {
+        return {
+            _type: 'Literal'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitIdentifier() {
+        return {
+            _type: 'Identifier'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitVariableDeclaration(variableDeclarationNode) {
+        const variableDeclarationMetrics = new Metrics();
+        return {
+            _type: 'VariableDeclaration',
+            metrics: variableDeclarationMetrics,
+            declarations: Program.extractDetailsAndAddMetrics(variableDeclarationNode.declarations, variableDeclarationMetrics)
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitVariableDeclarator(variableDeclaratorNode) {
+        const variableDeclaratorMetrics = new Metrics({declarationStmtCount: 1});
+        return {
+            _type: 'VariableDeclarator',
+            variableName: variableDeclaratorNode.id.name,
+            metrics: variableDeclaratorMetrics,
+            detail: {
+                init: Program.extractDetailsAndAddMetricsForOptionalSingle(variableDeclaratorNode.init, variableDeclaratorMetrics)
+            }
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitForStatement(forStatementNode) {
+        const forMetrics = new Metrics();
+        return {
+            _type: 'ForStatement',
+            metrics: forMetrics,
+            detail: {
+                init: Program.extractDetailsAndAddMetrics([forStatementNode.init], forMetrics),
+                test: Program.extractDetailsAndAddMetrics([forStatementNode.test], forMetrics),
+                update: Program.extractDetailsAndAddMetrics([forStatementNode.update], forMetrics),
+                body: Program.extractDetailsAndAddMetrics(forStatementNode.body.body, forMetrics),
+            }
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitIfStatement() {
+        return {
+            _type: 'IfStatement'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitSwitchStatement() {
+        return {
+            _type: 'SwitchStatement'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitReturnStatement() {
+        return {
+            _type: 'ReturnStatement'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitBinaryExpression() {
+        return {
+            _type: 'BinaryExpression'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitUpdateExpression() {
+        return {
+            _type: 'UpdateExpression'
+        };
+    }
+
 }
-
-function visitBlockStatement(blockStatementNode) {
-    const blockMetrics = new Metrics();
-    return {
-        _type: 'BlockStatement',
-        metrics: blockMetrics,
-        detail: Visitors.extractDetailsAndAddMetricsFromStatement(blockStatementNode.body, blockMetrics)
-    };
-}
-
-function visitExpressionStatement(expressionStatementNode) {
-    const expressionMetrics = new Metrics();
-    return {
-        _type: 'ExpressionStatement',
-        metrics: expressionMetrics,
-        detail: Visitors.extractDetailsAndAddMetricsFromStatement([expressionStatementNode.expression], expressionMetrics)
-    };
-}
-
-function visitCallExpression(callExpressionNode) {
-    const callExpressionMetrics = new Metrics({callExpressionCount: 1});
-    return {
-        _type: 'CallExpression',
-        // name: callExpressionNode.callee.name,
-        metrics: callExpressionMetrics,
-        detail: {
-            callee: Visitors.extractDetailsAndAddMetricsForSingle(callExpressionNode.callee, callExpressionMetrics),
-            arguments: Visitors.extractDetailsAndAddMetricsForOptional(callExpressionNode.arguments, callExpressionMetrics)
-        }
-    };
-}
-
-function visitAssignmentExpression() {
-    return {
-        _type: 'AssignmentExpression',
-    };
-}
-
-function visitMemberExpression(memberExpressionNode) {
-    const memberExpressionMetrics = new Metrics();
-    return {
-        _type: 'MemberExpression',
-        metrics: memberExpressionMetrics,
-        detail: {
-            object: Visitors.extractDetailsAndAddMetricsForSingle(memberExpressionNode.object, memberExpressionMetrics),
-            property: Visitors.extractDetailsAndAddMetricsForSingle(memberExpressionNode.property, memberExpressionMetrics)
-        }
-    };
-}
-
-function visitLiteral() {
-    return {
-        _type: 'Literal'
-    };
-}
-
-function visitIdentifier() {
-    return {
-        _type: 'Identifier'
-    };
-}
-
-function visitVariableDeclaration(variableDeclarationNode) {
-    const variableDeclarationMetrics = new Metrics();
-    return {
-        _type: 'VariableDeclaration',
-        metrics: variableDeclarationMetrics,
-        declarations: Visitors.extractDetailsAndAddMetricsFromStatement(variableDeclarationNode.declarations, variableDeclarationMetrics)
-    };
-}
-
-function visitVariableDeclarator(variableDeclaratorNode) {
-    const variableDeclaratorMetrics = new Metrics({declarationStmtCount: 1});
-    return {
-        _type: 'VariableDeclarator',
-        variableName: variableDeclaratorNode.id.name,
-        metrics: variableDeclaratorMetrics,
-        detail: {
-            init: Visitors.extractDetailsAndAddMetricsForOptionalSingle(variableDeclaratorNode.init, variableDeclaratorMetrics)
-        }
-    };
-}
-
-function visitForStatement(forStatementNode) {
-    const forMetrics = new Metrics();
-    return {
-        _type: 'ForStatement',
-        metrics: forMetrics,
-        detail: {
-            init: Visitors.extractDetailsAndAddMetricsFromStatement([forStatementNode.init], forMetrics),
-            test: Visitors.extractDetailsAndAddMetricsFromStatement([forStatementNode.test], forMetrics),
-            update: Visitors.extractDetailsAndAddMetricsFromStatement([forStatementNode.update], forMetrics),
-            body: Visitors.extractDetailsAndAddMetricsFromStatement(forStatementNode.body.body, forMetrics),
-        }
-    };
-}
-
-function visitIfStatement() {
-    return {
-        _type: 'IfStatement'
-    };
-}
-
-function visitSwitchStatement() {
-    return {
-        _type: 'SwitchStatement'
-    };
-}
-
-function visitReturnStatement() {
-    return {
-        _type: 'ReturnStatement'
-    };
-}
-
-function visitBinaryExpression() {
-    return {
-        _type: 'BinaryExpression'
-    };
-}
-
-function visitUpdateExpression() {
-    return {
-        _type: 'UpdateExpression'
-    };
-}
-
