@@ -284,17 +284,36 @@ describe("COMPLETE JS", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f9_iife',
-            metrics: {callExpressionCount: 1},
+            metrics: {declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
             detail: {
                 _type: 'BlockStatement',
-                metrics: {callExpressionCount: 1},
+                metrics: {declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
                 detail: [{
                     _type: 'ExpressionStatement',
-                    metrics: {callExpressionCount: 1},
+                    metrics: {declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
                     detail: [{
                         _type: 'CallExpression',
-                        metrics: {callExpressionCount: 1},
-                        detail: {callee: {_type: 'FunctionExpression'}}
+                        metrics: {callExpressionCount: 1, declarationStmtCount: 1, parametersCount: 1},
+                        detail: {
+                            callee: {
+                                _type: 'FunctionExpression',
+                                metrics: {parametersCount: 1, declarationStmtCount: 1},
+                                detail: {
+                                    _type: 'BlockStatement',
+                                    metrics: {declarationStmtCount: 1},
+                                    detail: [{
+                                        _type: 'VariableDeclaration',
+                                        metrics: {declarationStmtCount: 1},
+                                        declarations: [{
+                                            _type: 'VariableDeclarator',
+                                            variableName: 'i',
+                                            metrics: {declarationStmtCount: 1},
+                                            detail: {init: {_type: 'Literal'}}
+                                        }]
+                                    }]
+                                }
+                            }, arguments: [{_type: 'Literal'}]
+                        }
                     }]
                 }]
             },

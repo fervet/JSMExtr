@@ -124,12 +124,12 @@ class Visitors {
 
     //noinspection JSUnusedGlobalSymbols
     static visitFunctionDeclaration(functionDeclarationNode) {
-        const functionMetrics = new Metrics({parametersCount: functionDeclarationNode.params.length});
+        const functionDeclarationMetrics = new Metrics({parametersCount: functionDeclarationNode.params.length});
         return {
             _type: 'FunctionDeclaration',
             functionName: functionDeclarationNode.id.name,
-            metrics: functionMetrics,
-            detail: Program.extractDetailsAndAddMetricsForSingle(functionDeclarationNode.body, functionMetrics),
+            metrics: functionDeclarationMetrics,
+            detail: Program.extractDetailsAndAddMetricsForSingle(functionDeclarationNode.body, functionDeclarationMetrics),
             loc: loc(functionDeclarationNode)
         };
     }
@@ -176,9 +176,13 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitFunctionExpression() {
+    static visitFunctionExpression(functionExpressionNode) {
+        const functionExpressionMetrics = new Metrics({parametersCount: functionExpressionNode.params.length});
         return {
             _type: 'FunctionExpression',
+            functionName: (functionExpressionNode.id ? functionExpressionNode.id.name : undefined),
+            metrics: functionExpressionMetrics,
+            detail: Program.extractDetailsAndAddMetricsForSingle(functionExpressionNode.body, functionExpressionMetrics),
         };
     }
 
@@ -186,6 +190,20 @@ class Visitors {
     static visitNewExpression() {
         return {
             _type: 'NewExpression',
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitObjectExpression() {
+        return {
+            _type: 'ObjectExpression',
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitArrayExpression() {
+        return {
+            _type: 'ArrayExpression',
         };
     }
 

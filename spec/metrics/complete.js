@@ -23,9 +23,9 @@ function f8_callCallCallCallArgs() {
     aaa()[bbb()](ccc(), ddd(1, eee(1).fff()));
 }
 function f9_iife() {
-    (function () {
+    (function (x) {
         var i = 1;
-    })();
+    })(2);
 }
 
 /*
