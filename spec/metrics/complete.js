@@ -20,7 +20,7 @@ function f7_callCallArgs() {
     other(stuff());
 }
 function f8_callCallCallCallArgs() {
-    a[b](c, x6);
+    aaa()[bbb()](ccc(), ddd(1, eee(1).fff()));
 }
 
 /*

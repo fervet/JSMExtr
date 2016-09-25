@@ -178,7 +178,7 @@ function visitAssignmentExpression() {
 }
 
 function visitMemberExpression(memberExpressionNode) {
-    const memberExpressionMetrics = new Metrics({callExpressionCount: 1});
+    const memberExpressionMetrics = new Metrics();
     return {
         _type: 'MemberExpression',
         metrics: memberExpressionMetrics,
