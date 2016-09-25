@@ -8,7 +8,17 @@ const functionMetrics = functionMetricsFromJsAST(jsASTs);
 console.log("##########################################################");
 console.log("##########################################################");
 console.log("##########################################################");
-console.log(JSON.stringify(functionMetrics, (k, v) => {if (k === 'detail') return undefined; return v; }, 4));
+
+functionMetrics.forEach(metrics => {
+    delete metrics.detail;
+    if (metrics._type === 'FunctionDeclaration') {
+        metrics.function = `${metrics.fileLocation} ~ ${metrics.functionName}`;
+        delete metrics.fileLocation;
+        delete metrics.functionName;
+    }
+});
+
+console.log(JSON.stringify(functionMetrics, null, 4));
 
 // jsASTs.forEach(function (jsAST) {
 //     console.log(JSON.stringify(jsAST, null, 4)+"\n\n");
