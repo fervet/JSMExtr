@@ -241,9 +241,23 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
+    static visitForInStatement() {
+        return {
+            _type: 'ForInStatement'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
     static visitIfStatement() {
         return {
             _type: 'IfStatement'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitWhileStatement() {
+        return {
+            _type: 'WhileStatement'
         };
     }
 
@@ -280,9 +294,51 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
+    static visitUnaryExpression() {
+        return {
+            _type: 'UnaryExpression'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitConditionalExpression() {
+        return {
+            _type: 'ConditionalExpression'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitLogicalExpression() {
+        return {
+            _type: 'LogicalExpression'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
     static visitUpdateExpression() {
         return {
             _type: 'UpdateExpression'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitThisExpression() {
+        return {
+            _type: 'ThisExpression'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitTryStatement() {
+        return {
+            _type: 'TryStatement'
+        };
+    }
+
+    //noinspection JSUnusedGlobalSymbols
+    static visitEmptyStatement() {
+        return {
+            _type: 'EmptyStatement'
         };
     }
 
