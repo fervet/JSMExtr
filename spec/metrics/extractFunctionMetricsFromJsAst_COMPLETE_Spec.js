@@ -1,5 +1,5 @@
 const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
-const functionMetricsFromJsAST = require("../../src/metrics/extract-function-metrics-from-js-ast");
+const functionMetricsFromJsAST = require("../../src/metrics/extract-metrics-from-js-ast");
 
 const completeFileJsAST = extractJavaScriptASTsFromJsFile('spec/metrics/complete.js', 'utf8');
 const completeMetrics = functionMetricsFromJsAST(completeFileJsAST);
