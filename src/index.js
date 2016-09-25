@@ -18,7 +18,7 @@ functionMetrics.forEach(metrics => {
 });
 
 let toPrint = {
-    nomeFuncao: [],
+    functionName: [],
     declarationStmtCount: [],
     executableStmtCount: [],
     returnStmtCount: [],
@@ -27,7 +27,7 @@ let toPrint = {
 };
 functionMetrics.forEach(f => {
     if (f._type === 'FunctionDeclaration') {
-        toPrint.nomeFuncao.push(f.functionName);
+        toPrint.functionName.push(f.functionName);
         toPrint.declarationStmtCount.push(f.metrics.declarationStmtCount || 0);
         toPrint.executableStmtCount.push(f.metrics.executableStmtCount || 0);
         toPrint.returnStmtCount.push(f.metrics.returnStmtCount || 0);
@@ -40,16 +40,16 @@ let out = `
 js <-
 structure(
 	list(
-		nomeFuncao = c("${toPrint.nomeFuncao.join('", "')}"),
+		functionName = c("${toPrint.functionName.join('", "')}"),
 		declarationStmtCount = c(${toPrint.declarationStmtCount.join(", ")}),
 		executableStmtCount = c(${toPrint.executableStmtCount.join(", ")}),
 		returnStmtCount = c(${toPrint.returnStmtCount.join(", ")}),
 		parametersCount = c(${toPrint.parametersCount.join(", ")}),
 		callExpressionCount = c(${toPrint.callExpressionCount.join(", ")})
 	),
-	.Names = c("nomeFuncao", "declarationStmtCount", "executableStmtCount", "returnStmtCount", "parametersCount", "callExpressionCount"),
+	.Names = c("functionName", "declarationStmtCount", "executableStmtCount", "returnStmtCount", "parametersCount", "callExpressionCount"),
 	class = "data.frame",
-	row.names = c(NA, ${toPrint.nomeFuncao.length}L)
+	row.names = c(NA, ${toPrint.functionName.length}L)
 )`;
 
 console.log(JSON.stringify(functionMetrics, null, 4));
