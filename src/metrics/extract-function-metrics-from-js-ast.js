@@ -22,7 +22,16 @@ function visitArrayOfPrograms(arrayOfAstProgramNodes) {
 
 function visitProgram(programNode) {
     let bodyNodes = programNode.body;
-    return bodyNodes.map(bodyNode => Program.visit(bodyNode));
+    const metrics = bodyNodes.map(bodyNode => Program.visit(bodyNode));
+    metrics.forEach(metric => {
+        if (metric.loc) {
+            metric.fileLocation = `${programNode.fileLocation}?${metric.loc}`;
+            metric.loc = undefined;
+        } else {
+            metric.fileLocation = programNode.fileLocation  ;
+        }
+    });
+    return metrics;
 }
 
 
@@ -114,7 +123,8 @@ class Visitors {
             _type: 'FunctionDeclaration',
             functionName: functionDeclarationNode.id.name,
             metrics: functionMetrics,
-            detail: blockDetail
+            detail: blockDetail,
+            loc: `${functionDeclarationNode.loc.start.line}:${functionDeclarationNode.loc.start.column}-${functionDeclarationNode.loc.end.line}:${functionDeclarationNode.loc.end.column}`
         };
     }
 

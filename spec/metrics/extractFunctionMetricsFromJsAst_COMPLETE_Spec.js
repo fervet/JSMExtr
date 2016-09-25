@@ -46,7 +46,8 @@ describe("COMPLETE JS", function () {
                         metrics: {declarationStmtCount: 1}
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?1:0-3:1'
         }
     );
 
@@ -72,7 +73,8 @@ describe("COMPLETE JS", function () {
                         metrics: {declarationStmtCount: 1},
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?4:0-6:1'
         }
     );
 
@@ -95,7 +97,8 @@ describe("COMPLETE JS", function () {
                         detail: {init: [{_type: 'Literal'}]}
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?7:0-9:1'
         }
     );
 
@@ -124,7 +127,8 @@ describe("COMPLETE JS", function () {
                         }
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?10:0-12:1'
         });
 
     testMetrics(
@@ -145,7 +149,8 @@ describe("COMPLETE JS", function () {
                         detail: {callee: [{_type: 'Identifier'}]}
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?13:0-15:1'
         });
 
     testMetrics(
@@ -166,7 +171,8 @@ describe("COMPLETE JS", function () {
                         detail: {callee: [{_type: 'Identifier'}], arguments: [{_type: 'Literal'}]}
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?16:0-18:1'
         }
     );
 
@@ -195,7 +201,8 @@ describe("COMPLETE JS", function () {
                         }
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?19:0-21:1'
         }
     );
 
@@ -265,56 +272,9 @@ describe("COMPLETE JS", function () {
                         }
                     }]
                 }]
-            }
+            },
+            fileLocation : 'spec/metrics/complete.js?22:0-24:1'
         }
     );
 
 });
-
-x = {
-    "type": "Program",
-    "body": [{
-        "type": "FunctionDeclaration",
-        "id": {"type": "Identifier", "name": "f8_callCallCallCallArgs"},
-        "params": [],
-        "body": {
-            "type": "BlockStatement",
-            "body": [{
-                "type": "ExpressionStatement",
-                "expression": {
-                    "type": "CallExpression",
-                    "callee": {
-                        "type": "MemberExpression",
-                        "computed": false,
-                        "object": {
-                            "type": "CallExpression",
-                            "callee": {"type": "Identifier", "name": "aaa"},
-                            "arguments": []
-                        },
-                        "property": {"type": "Identifier", "name": "bbb"}
-                    },
-                    "arguments": [{
-                        "type": "CallExpression",
-                        "callee": {"type": "Identifier", "name": "ccc"},
-                        "arguments": []
-                    }, {
-                        "type": "CallExpression",
-                        "callee": {"type": "Identifier", "name": "ddd"},
-                        "arguments": [
-                            {"type": "Literal", "value": 1, "raw": "1"},
-                            {
-                                "type": "CallExpression",
-                                "callee": {"type": "Identifier", "name": "eee"},
-                                "arguments": [{"type": "Literal", "value": 1, "raw": "1"}
-                                ]
-                            }
-                        ]
-                    }]
-                }
-            }]
-        },
-        "generator": false,
-        "expression": false
-    }],
-    "sourceType": "script"
-};
