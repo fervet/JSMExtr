@@ -1,4 +1,4 @@
-module.exports = clearEmptyProperties;
+const isObject = require("./isObject");
 
 function toS(obj) {
     return JSON.stringify(obj, (key, value) => {if (value === undefined) return 'undef'; else return value; })
@@ -63,6 +63,4 @@ function isEmptyValue(value) {
         (Array.isArray(value) && value.length === 0); // === [];
 }
 
-function isObject(v) {
-    return v !== null && typeof v === 'object';
-}
+module.exports = clearEmptyProperties;
