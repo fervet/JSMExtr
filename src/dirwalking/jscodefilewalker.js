@@ -31,7 +31,7 @@ function fileExtension(filePath) {
 
 function jsCodeFilesWalker(baseDir) {
     const filesToProcess = [];
-    console.log("GONNA: "+baseDir);
+
     fileWalker(baseDir, function (filePath) {
         if (fileHasExtensionThatMayContainJavaScriptCode(filePath)) {
             filesToProcess.push({fullPath: filePath, extension: fileExtension(filePath)});
