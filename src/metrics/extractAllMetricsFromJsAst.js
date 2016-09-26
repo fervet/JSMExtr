@@ -156,7 +156,8 @@ class Visitors {
             metrics: functionExpressionMetrics,
             detail: {
                 body: Program.extractDetailsAndAddMetricsForSingle(functionExpressionNode.body, functionExpressionMetrics)
-            }
+            },
+            loc: loc(functionExpressionNode)
         };
     }
 

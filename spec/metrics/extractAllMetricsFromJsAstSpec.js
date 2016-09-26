@@ -345,7 +345,8 @@ describe("extractAllMetricsFromJsAst", function () {
                                                         }]
                                                     }
                                                 }
-                                            }
+                                            },
+                                            loc: '26:5-28:5'
                                         }, arguments: [{_type: 'Literal'}]
                                     }
                                 }

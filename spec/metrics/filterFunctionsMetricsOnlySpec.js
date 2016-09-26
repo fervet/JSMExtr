@@ -99,7 +99,8 @@ describe("filterFunctionsMetrics", function () {
                                                                                     }]
                                                                                 }
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        loc: '5:5-9:5'
                                                                     }, arguments: [{_type: 'Literal'}]
                                                                 }
                                                             }
@@ -107,7 +108,8 @@ describe("filterFunctionsMetrics", function () {
                                                     }]
                                                 }
                                             }
-                                        }
+                                        },
+                                        loc: '1:9-10:1'
                                     }, arguments: [{_type: 'Literal'}]
                                 }
                             }
@@ -126,11 +128,13 @@ describe("filterFunctionsMetrics", function () {
             [
                 {
                     _type: 'FunctionExpression',
-                    metrics: {parametersCount: 2, declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1}
+                    metrics: {parametersCount: 2, declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1},
+                    loc: '1:9-10:1'
                 },
                 {
                     _type: 'FunctionExpression',
-                    metrics: {parametersCount: 1, declarationStmtCount: 1}
+                    metrics: {parametersCount: 1, declarationStmtCount: 1},
+                    loc: '5:5-9:5'
                 },
                 {
                     _type: 'FunctionDeclaration',
@@ -141,7 +145,8 @@ describe("filterFunctionsMetrics", function () {
                 {
                     _type: 'FunctionDeclaration',
                     functionName: 'aaa',
-                    metrics: {declarationStmtCount: 1}, loc: '2:4-4:5'
+                    metrics: {declarationStmtCount: 1},
+                    loc: '2:4-4:5'
                 }
             ]
         );
