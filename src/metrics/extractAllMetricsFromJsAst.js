@@ -211,19 +211,6 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitVariableDeclarator(variableDeclaratorNode) {
-        const variableDeclaratorMetrics = new Metrics({declarationStmtCount: 1});
-        return {
-            _type: 'VariableDeclarator',
-            variableName: variableDeclaratorNode.id.name,
-            metrics: variableDeclaratorMetrics,
-            detail: {
-                init: Program.extractDetailsAndAddMetricsGeneral(variableDeclaratorNode.init, variableDeclaratorMetrics)
-            }
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
     static visitForInStatement() {
         return {
             _type: 'ForInStatement'
@@ -310,3 +297,4 @@ Visitors.visitMemberExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitForStatement = Visitors.visitorWithoutMetrics;
 Visitors.visitCallExpression = Visitors.visitorWithMetrics({callExpressionCount: 1});
 Visitors.visitReturnStatement = Visitors.visitorWithMetrics({returnStmtCount: 1});
+Visitors.visitVariableDeclarator = Visitors.visitorWithMetrics({declarationStmtCount: 1});

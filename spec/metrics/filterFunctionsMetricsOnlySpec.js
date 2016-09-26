@@ -15,9 +15,9 @@ describe("filterFunctionsMetrics", function () {
                 detail: {
                     declarations: [{
                         _type: 'VariableDeclarator',
-                        variableName: 'q',
                         metrics: {declarationStmtCount: 3, executableStmtCount: 1, parametersCount: 2, callExpressionCount: 2},
                         detail: {
+                            id: {_type: 'Identifier'},
                             init: {
                                 _type: 'CallExpression',
                                 metrics: {callExpressionCount: 2, declarationStmtCount: 2, executableStmtCount: 1, parametersCount: 2},
@@ -45,9 +45,8 @@ describe("filterFunctionsMetrics", function () {
                                                                         detail: {
                                                                             declarations: [{
                                                                                 _type: 'VariableDeclarator',
-                                                                                variableName: 'a1',
                                                                                 metrics: {declarationStmtCount: 1},
-                                                                                detail: {init: {_type: 'Literal'}}
+                                                                                detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                                                             }]
                                                                         }
                                                                     }]
@@ -87,9 +86,11 @@ describe("filterFunctionsMetrics", function () {
                                                                                                         detail: {
                                                                                                             declarations: [{
                                                                                                                 _type: 'VariableDeclarator',
-                                                                                                                variableName: 'b1',
                                                                                                                 metrics: {declarationStmtCount: 1},
-                                                                                                                detail: {init: {_type: 'Literal'}}
+                                                                                                                detail: {
+                                                                                                                    id: {_type: 'Identifier'},
+                                                                                                                    init: {_type: 'Literal'}
+                                                                                                                }
                                                                                                             }]
                                                                                                         }
                                                                                                     }]

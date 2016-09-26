@@ -21,15 +21,14 @@ const functionMetrics = {
 };
 
 function testMetrics(functionName, expected) {
-    it(`"metrics from ${functionName}`, () => {
+    it(`all metrics from ${functionName}`, () => {
         expect(expected.functionName).toEqual(functionName);
         expect(functionMetrics[functionName]).toEqual(expected);
     });
 }
 
 //noinspection JSUnusedLocalSymbols
-function xtestMetrics() {
-}
+function xtestMetrics() {}
 
 describe("extractAllMetricsFromJsAst", function () {
 
@@ -47,7 +46,7 @@ describe("extractAllMetricsFromJsAst", function () {
                         body: [{
                             _type: 'VariableDeclaration',
                             metrics: {declarationStmtCount: 1},
-                            detail: {declarations: [{_type: 'VariableDeclarator', variableName: 'x', metrics: {declarationStmtCount: 1}}]}
+                            detail: {declarations: [{_type: 'VariableDeclarator', metrics: {declarationStmtCount: 1}, detail: {id: {_type: 'Identifier'}}}]}
                         }]
                     }
                 }
@@ -73,9 +72,9 @@ describe("extractAllMetricsFromJsAst", function () {
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    variableName: 'a',
-                                    metrics: {declarationStmtCount: 1}
-                                }, {_type: 'VariableDeclarator', variableName: 'b', metrics: {declarationStmtCount: 1}}]
+                                    metrics: {declarationStmtCount: 1},
+                                    detail: {id: {_type: 'Identifier'}}
+                                }, {_type: 'VariableDeclarator', metrics: {declarationStmtCount: 1}, detail: {id: {_type: 'Identifier'}}}]
                             }
                         }]
                     }
@@ -102,9 +101,8 @@ describe("extractAllMetricsFromJsAst", function () {
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    variableName: 'c',
                                     metrics: {declarationStmtCount: 1},
-                                    detail: {init: {_type: 'Literal'}}
+                                    detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                 }]
                             }
                         }]
@@ -132,9 +130,9 @@ describe("extractAllMetricsFromJsAst", function () {
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    variableName: 'd',
                                     metrics: {declarationStmtCount: 1, callExpressionCount: 1},
                                     detail: {
+                                        id: {_type: 'Identifier'},
                                         init: {
                                             _type: 'CallExpression',
                                             metrics: {callExpressionCount: 1},
@@ -338,9 +336,8 @@ describe("extractAllMetricsFromJsAst", function () {
                                                             detail: {
                                                                 declarations: [{
                                                                     _type: 'VariableDeclarator',
-                                                                    variableName: 'i',
                                                                     metrics: {declarationStmtCount: 1},
-                                                                    detail: {init: {_type: 'Literal'}}
+                                                                    detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                                                 }]
                                                             }
                                                         }]
@@ -417,10 +414,9 @@ describe("extractAllMetricsFromJsAst", function () {
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    variableName: 'x',
                                     metrics: {declarationStmtCount: 1},
-                                    detail: {init: {_type: 'Literal'}}
-                                }, {_type: 'VariableDeclarator', variableName: 'z', metrics: {declarationStmtCount: 1}}]
+                                    detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
+                                }, {_type: 'VariableDeclarator', metrics: {declarationStmtCount: 1}, detail: {id: {_type: 'Identifier'}}}]
                             }
                         }, {
                             _type: 'ExpressionStatement',
@@ -471,14 +467,12 @@ describe("extractAllMetricsFromJsAst", function () {
                                     detail: {
                                         declarations: [{
                                             _type: 'VariableDeclarator',
-                                            variableName: 'sum',
                                             metrics: {declarationStmtCount: 1},
-                                            detail: {init: {_type: 'Literal'}}
+                                            detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                         }, {
                                             _type: 'VariableDeclarator',
-                                            variableName: 'i',
                                             metrics: {declarationStmtCount: 1},
-                                            detail: {init: {_type: 'Literal'}}
+                                            detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                         }]
                                     }
                                 },
