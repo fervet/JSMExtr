@@ -1,3 +1,4 @@
+const isObject = require("../utils/isObject");
 const clearEmptyProperties = require("../utils/clearEmptyProperties");
 const Metrics = require("./Metrics");
 
@@ -94,6 +95,20 @@ class Program {
         }
         return this.extractDetailsAndAddMetricsForSingle(stmt, metrics);
     }
+
+    static extractDetailsAndAddMetricsGeneral(node, metrics) {
+        if (node === null || node === undefined) {
+            return undefined;
+        }
+        if (Array.isArray(node)) {
+            return this.extractDetailsAndAddMetrics(node, metrics);
+        }
+        if (!isObject(node)) {
+            // a token like operator:"=" or name:"stuff"
+            return undefined;
+        }
+        return this.extractDetailsAndAddMetricsForSingle(node, metrics);
+    }
 }
 
 function loc(locableNode) {
@@ -110,60 +125,39 @@ class Visitors {
             functionName: functionDeclarationNode.id.name,
             metrics: functionDeclarationMetrics,
             detail: {
-                body: Program.extractDetailsAndAddMetricsForSingle(functionDeclarationNode.body, functionDeclarationMetrics)
+                body: Program.extractDetailsAndAddMetricsGeneral(functionDeclarationNode.body, functionDeclarationMetrics)
             },
             loc: loc(functionDeclarationNode)
         };
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitBlockStatement(blockStatementNode) {
-        const blockMetrics = new Metrics();
-        return {
-            _type: 'BlockStatement',
-            metrics: blockMetrics,
-            detail: {
-                body: Program.extractDetailsAndAddMetrics(blockStatementNode.body, blockMetrics)
-            }
+    static visitExpressionStatement(expressionStatementNode) {
+        const expressionMetrics = new Metrics({executableStmtCount: 1});
+        return Visitors.visitGeneralNode(expressionStatementNode, expressionMetrics);
+    }
+
+    static visitGeneralNode(node, metrics) {
+        const result = {
+            _type: node.type,
+            metrics: metrics,
+            detail: {}
         };
+        Object.keys(node).filter(key => key !== 'type' && key !== 'loc').forEach(key => {
+            result.detail[key] = Program.extractDetailsAndAddMetricsGeneral(node[key], metrics);
+        });
+        return result;
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitExpressionStatement(expressionStatementNode) {
-        const expressionMetrics = new Metrics({executableStmtCount: 1});
-        return {
-            _type: 'ExpressionStatement',
-            metrics: expressionMetrics,
-            detail: {
-                expression: Program.extractDetailsAndAddMetricsForSingle(expressionStatementNode.expression, expressionMetrics)
-            }
-        };
+    static visitorWithoutMetrics(node) {
+        return Visitors.visitGeneralNode(node, new Metrics());
     }
 
     //noinspection JSUnusedGlobalSymbols
     static visitCallExpression(callExpressionNode) {
         const callExpressionMetrics = new Metrics({callExpressionCount: 1});
-        return {
-            _type: 'CallExpression',
-            metrics: callExpressionMetrics,
-            detail: {
-                callee: Program.extractDetailsAndAddMetricsForSingle(callExpressionNode.callee, callExpressionMetrics),
-                arguments: Program.extractDetailsAndAddMetrics(callExpressionNode.arguments, callExpressionMetrics)
-            }
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitAssignmentExpression(assignmentExpressionNode) {
-        const assignmentExpressionMetrics = new Metrics();
-        return {
-            _type: 'AssignmentExpression',
-            metrics: assignmentExpressionMetrics,
-            detail: {
-                left: Program.extractDetailsAndAddMetricsForSingle(assignmentExpressionNode.left, assignmentExpressionMetrics),
-                right: Program.extractDetailsAndAddMetricsForSingle(assignmentExpressionNode.right, assignmentExpressionMetrics)
-            }
-        };
+        return Visitors.visitGeneralNode(callExpressionNode, callExpressionMetrics);
     }
 
     //noinspection JSUnusedGlobalSymbols
@@ -174,7 +168,7 @@ class Visitors {
             functionName: (functionExpressionNode.id ? functionExpressionNode.id.name : undefined),
             metrics: functionExpressionMetrics,
             detail: {
-                body: Program.extractDetailsAndAddMetricsForSingle(functionExpressionNode.body, functionExpressionMetrics)
+                body: Program.extractDetailsAndAddMetricsGeneral(functionExpressionNode.body, functionExpressionMetrics)
             },
             loc: loc(functionExpressionNode)
         };
@@ -202,19 +196,6 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitMemberExpression(memberExpressionNode) {
-        const memberExpressionMetrics = new Metrics();
-        return {
-            _type: 'MemberExpression',
-            metrics: memberExpressionMetrics,
-            detail: {
-                object: Program.extractDetailsAndAddMetricsForSingle(memberExpressionNode.object, memberExpressionMetrics),
-                property: Program.extractDetailsAndAddMetricsForSingle(memberExpressionNode.property, memberExpressionMetrics)
-            }
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
     static visitLiteral() {
         return {
             _type: 'Literal'
@@ -229,18 +210,6 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitVariableDeclaration(variableDeclarationNode) {
-        const variableDeclarationMetrics = new Metrics();
-        return {
-            _type: 'VariableDeclaration',
-            metrics: variableDeclarationMetrics,
-            detail: {
-                declarations: Program.extractDetailsAndAddMetrics(variableDeclarationNode.declarations, variableDeclarationMetrics)
-            }
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
     static visitVariableDeclarator(variableDeclaratorNode) {
         const variableDeclaratorMetrics = new Metrics({declarationStmtCount: 1});
         return {
@@ -248,7 +217,7 @@ class Visitors {
             variableName: variableDeclaratorNode.id.name,
             metrics: variableDeclaratorMetrics,
             detail: {
-                init: Program.extractDetailsAndAddMetricsForOptionalSingle(variableDeclaratorNode.init, variableDeclaratorMetrics)
+                init: Program.extractDetailsAndAddMetricsGeneral(variableDeclaratorNode.init, variableDeclaratorMetrics)
             }
         };
     }
@@ -260,10 +229,10 @@ class Visitors {
             _type: 'ForStatement',
             metrics: forMetrics,
             detail: {
-                init: Program.extractDetailsAndAddMetricsForSingle(forStatementNode.init, forMetrics),
-                test: Program.extractDetailsAndAddMetricsForSingle(forStatementNode.test, forMetrics),
-                update: Program.extractDetailsAndAddMetricsForSingle(forStatementNode.update, forMetrics),
-                body: Program.extractDetailsAndAddMetrics(forStatementNode.body.body, forMetrics),
+                init: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.init, forMetrics),
+                test: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.test, forMetrics),
+                update: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.update, forMetrics),
+                body: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.body.body, forMetrics),
             }
         };
     }
@@ -303,20 +272,7 @@ class Visitors {
             _type: 'ReturnStatement',
             metrics: returnMetrics,
             detail: {
-                argument: Program.extractDetailsAndAddMetricsForSingle(returnStatementNode.argument, returnMetrics),
-            }
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitBinaryExpression(binaryExpressionNode) {
-        const binaryExpressionMetrics = new Metrics();
-        return {
-            _type: 'BinaryExpression',
-            metrics: binaryExpressionMetrics,
-            detail: {
-                left: Program.extractDetailsAndAddMetricsForSingle(binaryExpressionNode.left, binaryExpressionMetrics),
-                right: Program.extractDetailsAndAddMetricsForSingle(binaryExpressionNode.right, binaryExpressionMetrics)
+                argument: Program.extractDetailsAndAddMetricsGeneral(returnStatementNode.argument, returnMetrics),
             }
         };
     }
@@ -371,3 +327,10 @@ class Visitors {
     }
 
 }
+
+Visitors.visitBlockStatement = Visitors.visitorWithoutMetrics;
+Visitors.visitAssignmentExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitBinaryExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitVariableDeclaration = Visitors.visitorWithoutMetrics;
+Visitors.visitMemberExpression = Visitors.visitorWithoutMetrics;
+
