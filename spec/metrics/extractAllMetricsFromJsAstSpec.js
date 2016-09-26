@@ -28,7 +28,8 @@ function testMetrics(functionName, expected) {
 }
 
 //noinspection JSUnusedLocalSymbols
-function xtestMetrics() {}
+function xtestMetrics() {
+}
 
 describe("extractAllMetricsFromJsAst", function () {
 
@@ -488,7 +489,7 @@ describe("extractAllMetricsFromJsAst", function () {
                                         }
                                     }
                                 },
-                                update: {_type: 'UpdateExpression'},
+                                update: {_type: 'UpdateExpression', metrics: {}, detail: {argument: {_type: 'Identifier'}}},
                                 body: {
                                     _type: 'BlockStatement',
                                     metrics: {executableStmtCount: 1},

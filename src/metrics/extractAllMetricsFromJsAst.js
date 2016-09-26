@@ -155,27 +155,6 @@ class Visitors {
     };
 
     //noinspection JSUnusedGlobalSymbols
-    static visitNewExpression() {
-        return {
-            _type: 'NewExpression',
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitObjectExpression() {
-        return {
-            _type: 'ObjectExpression',
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitArrayExpression() {
-        return {
-            _type: 'ArrayExpression',
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
     static visitLiteral() {
         return {
             _type: 'Literal'
@@ -186,41 +165,6 @@ class Visitors {
     static visitIdentifier() {
         return {
             _type: 'Identifier'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitForInStatement() {
-        return {
-            _type: 'ForInStatement'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitIfStatement() {
-        return {
-            _type: 'IfStatement'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitWhileStatement() {
-        return {
-            _type: 'WhileStatement'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitSwitchStatement() {
-        return {
-            _type: 'SwitchStatement'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitUnaryExpression() {
-        return {
-            _type: 'UnaryExpression'
         };
     }
 
@@ -238,34 +182,6 @@ class Visitors {
         };
     }
 
-    //noinspection JSUnusedGlobalSymbols
-    static visitUpdateExpression() {
-        return {
-            _type: 'UpdateExpression'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitThisExpression() {
-        return {
-            _type: 'ThisExpression'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitTryStatement() {
-        return {
-            _type: 'TryStatement'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitEmptyStatement() {
-        return {
-            _type: 'EmptyStatement'
-        };
-    }
-
 }
 
 Visitors.visitBlockStatement = Visitors.visitorWithoutMetrics;
@@ -278,3 +194,22 @@ Visitors.visitCallExpression = Visitors.visitorWithMetrics({callExpressionCount:
 Visitors.visitReturnStatement = Visitors.visitorWithMetrics({returnStmtCount: 1});
 Visitors.visitVariableDeclarator = Visitors.visitorWithMetrics({declarationStmtCount: 1});
 Visitors.visitExpressionStatement = Visitors.visitorWithMetrics({executableStmtCount: 1});
+
+// no specs for the ones below
+Visitors.visitIfStatement = Visitors.visitorWithMetrics({conditionalStmtCount: 1});
+Visitors.visitWhileStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1});
+Visitors.visitSwitchStatement = Visitors.visitorWithoutMetrics;
+Visitors.visitSwitchCase = Visitors.visitorWithMetrics({conditionalStmtCount: 1});
+Visitors.visitForInStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1});
+Visitors.visitUnaryExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitNewExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitObjectExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitArrayExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitProperty = Visitors.visitorWithoutMetrics;
+Visitors.visitBreakStatement = Visitors.visitorWithoutMetrics;
+Visitors.visitContinueStatement = Visitors.visitorWithoutMetrics;
+Visitors.visitEmptyStatement = Visitors.visitorWithoutMetrics;
+Visitors.visitUpdateExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitThisExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitTryStatement = Visitors.visitorWithoutMetrics;
+Visitors.visitCatchClause = Visitors.visitorWithoutMetrics;
