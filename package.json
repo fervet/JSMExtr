@@ -4,8 +4,9 @@
   "description": "JavaScript Source Code Extractor - Extracts JavaScript source code used in a web app",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node spec",
-    "start": "node src/index.js"
+    "testx": "./node_modules/.bin/jasmine-node spec",
+    "start": "node src/index.js",
+    "test": "./node_modules/.bin/mocha test/src --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
     "gumbo-parser": "^0.2.2"
   },
   "devDependencies": {
-    "jasmine-node": "^1.14.5"
+    "chai": "^3.5.0",
+    "jasmine-node": "^1.14.5",
+    "mocha": "^3.0.2"
   }
 }
