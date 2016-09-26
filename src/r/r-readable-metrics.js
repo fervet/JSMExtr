@@ -1,19 +1,6 @@
 // const functionMetrics = functionMetricsFromJsAST(jsASTs);
 
-function rReadableMetrics(functionsMetrics) {
-    let functionMetricsSummary = [];
-
-    functionsMetrics.forEach(fMetrics => {
-        if (fMetrics._type === 'FunctionDeclaration') {
-            functionMetricsSummary.push({
-                _type: fMetrics._type,
-                functionName: fMetrics.functionName,
-                fileLocation: fMetrics.fileLocation,
-                metrics: fMetrics.metrics
-            });
-        }
-    });
-
+function rReadableMetrics(functionMetricsOnly) {
     let toPrint = {
         functionName: [],
         fileLocation: [],
@@ -26,18 +13,24 @@ function rReadableMetrics(functionsMetrics) {
         callExpressionCount: []
     };
 
-    functionsMetrics.forEach(f => {
+    functionMetricsOnly.forEach(f => {
         if (f._type === 'FunctionDeclaration') {
             toPrint.functionName.push(f.functionName);
-            toPrint.fileLocation.push(f.fileLocation);
-            toPrint.declarationStmtCount.push(f.metrics.declarationStmtCount || 0);
-            toPrint.executableStmtCount.push(f.metrics.executableStmtCount || 0);
-            toPrint.conditionalStmtCount.push(f.metrics.conditionalStmtCount || 0);
-            toPrint.loopingStmtCount.push(f.metrics.loopingStmtCount || 0);
-            toPrint.returnStmtCount.push(f.metrics.returnStmtCount || 0);
-            toPrint.parametersCount.push(f.metrics.parametersCount || 0);
-            toPrint.callExpressionCount.push(f.metrics.callExpressionCount || 0);
+        } else {
+            let fName = f.loc.replace(/^[^?]+\?/,"");
+            if (f.functionName) {
+                fName = f.functionName;
+            }
+            toPrint.functionName.push(fName + ' (expr)');
         }
+        toPrint.fileLocation.push(f.loc);
+        toPrint.declarationStmtCount.push(f.metrics.declarationStmtCount || 0);
+        toPrint.executableStmtCount.push(f.metrics.executableStmtCount || 0);
+        toPrint.conditionalStmtCount.push(f.metrics.conditionalStmtCount || 0);
+        toPrint.loopingStmtCount.push(f.metrics.loopingStmtCount || 0);
+        toPrint.returnStmtCount.push(f.metrics.returnStmtCount || 0);
+        toPrint.parametersCount.push(f.metrics.parametersCount || 0);
+        toPrint.callExpressionCount.push(f.metrics.callExpressionCount || 0);
     });
 
     return `js <-
