@@ -145,11 +145,10 @@ class Visitors {
         const callExpressionMetrics = new Metrics({callExpressionCount: 1});
         return {
             _type: 'CallExpression',
-            // name: callExpressionNode.callee.name,
             metrics: callExpressionMetrics,
             detail: {
                 callee: Program.extractDetailsAndAddMetricsForSingle(callExpressionNode.callee, callExpressionMetrics),
-                arguments: Program.extractDetailsAndAddMetricsForOptional(callExpressionNode.arguments, callExpressionMetrics)
+                arguments: Program.extractDetailsAndAddMetrics(callExpressionNode.arguments, callExpressionMetrics)
             }
         };
     }
