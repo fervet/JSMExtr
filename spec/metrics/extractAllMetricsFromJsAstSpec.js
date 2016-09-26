@@ -51,7 +51,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?1:0-3:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?1:0-3:1'
         }
     );
 
@@ -80,7 +80,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?4:0-6:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?4:0-6:1'
         }
     );
 
@@ -110,7 +110,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?7:0-9:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?7:0-9:1'
         }
     );
 
@@ -146,7 +146,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?10:0-12:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?10:0-12:1'
         }
     );
 
@@ -169,7 +169,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?13:0-15:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?13:0-15:1'
         }
     );
 
@@ -198,7 +198,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?16:0-18:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?16:0-18:1'
         }
     );
 
@@ -230,7 +230,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?19:0-21:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?19:0-21:1'
         }
     );
 
@@ -300,7 +300,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?22:0-24:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?22:0-24:1'
         }
     );
 
@@ -346,7 +346,7 @@ describe("extractAllMetricsFromJsAst", function () {
                                                     }
                                                 }
                                             },
-                                            loc: '26:5-28:5'
+                                            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?26:5-28:5'
                                         }, arguments: [{_type: 'Literal'}]
                                     }
                                 }
@@ -355,7 +355,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?25:0-29:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?25:0-29:1'
         }
     );
 
@@ -372,7 +372,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     detail: {body: [{_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Literal'}}}]}
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?30:0-32:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?30:0-32:1'
         }
     );
 
@@ -395,7 +395,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?33:0-35:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?33:0-35:1'
         }
     );
 
@@ -445,7 +445,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?36:0-40:1'
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?36:0-40:1'
         }
     );
 

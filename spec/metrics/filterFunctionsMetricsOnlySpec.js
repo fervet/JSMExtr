@@ -7,7 +7,7 @@ const demoFileFullMetrics = extractAllMetricsFromJsAst(demoFileJsAST);
 
 describe("filterFunctionsMetrics", function () {
 
-    it(`"ast`, () => {
+    it(`ast`, () => {
         expect(demoFileFullMetrics).toEqual(
             [{
                 _type: 'VariableDeclaration',
@@ -54,7 +54,7 @@ describe("filterFunctionsMetrics", function () {
                                                                 }
                                                             }
                                                         },
-                                                        loc: '2:4-4:5'
+                                                        loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?2:4-4:5'
                                                     }, {
                                                         _type: 'ExpressionStatement',
                                                         metrics: {executableStmtCount: 1, declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
@@ -65,6 +65,7 @@ describe("filterFunctionsMetrics", function () {
                                                                 detail: {
                                                                     callee: {
                                                                         _type: 'FunctionExpression',
+                                                                        functionName: 'yyy',
                                                                         metrics: {parametersCount: 1, declarationStmtCount: 1},
                                                                         detail: {
                                                                             body: {
@@ -95,12 +96,12 @@ describe("filterFunctionsMetrics", function () {
                                                                                                 }
                                                                                             }
                                                                                         },
-                                                                                        loc: '6:8-8:9'
+                                                                                        loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?6:8-8:9'
                                                                                     }]
                                                                                 }
                                                                             }
                                                                         },
-                                                                        loc: '5:5-9:5'
+                                                                        loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?5:5-9:5'
                                                                     }, arguments: [{_type: 'Literal'}]
                                                                 }
                                                             }
@@ -109,46 +110,41 @@ describe("filterFunctionsMetrics", function () {
                                                 }
                                             }
                                         },
-                                        loc: '1:9-10:1'
+                                        loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?1:9-10:1'
                                     }, arguments: [{_type: 'Literal'}]
                                 }
                             }
                         }
                     }]
-                },
-                fileLocation: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js'
+                }
             }]
         );
     });
 
-    it(`"filtering`, () => {
+    it(`filtering`, () => {
         const functionMetricsOnly = filterFunctionMetricsOnly(demoFileFullMetrics);
 
         expect(functionMetricsOnly).toEqual(
-            [
-                {
-                    _type: 'FunctionExpression',
-                    metrics: {parametersCount: 2, declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1},
-                    loc: '1:9-10:1'
-                },
-                {
-                    _type: 'FunctionExpression',
-                    metrics: {parametersCount: 1, declarationStmtCount: 1},
-                    loc: '5:5-9:5'
-                },
-                {
-                    _type: 'FunctionDeclaration',
-                    functionName: 'bbb',
-                    metrics: {declarationStmtCount: 1},
-                    loc: '6:8-8:9'
-                },
-                {
-                    _type: 'FunctionDeclaration',
-                    functionName: 'aaa',
-                    metrics: {declarationStmtCount: 1},
-                    loc: '2:4-4:5'
-                }
-            ]
+            [{
+                _type: 'FunctionExpression',
+                metrics: {parametersCount: 2, declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1},
+                loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?1:9-10:1'
+            }, {
+                _type: 'FunctionExpression',
+                functionName: 'yyy',
+                metrics: {parametersCount: 1, declarationStmtCount: 1},
+                loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?5:5-9:5'
+            }, {
+                _type: 'FunctionDeclaration',
+                functionName: 'bbb',
+                metrics: {declarationStmtCount: 1},
+                loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?6:8-8:9'
+            }, {
+                _type: 'FunctionDeclaration',
+                functionName: 'aaa',
+                metrics: {declarationStmtCount: 1},
+                loc: 'spec/metrics/filterFunctionsMetricsOnlyDemo.js?2:4-4:5'
+            }]
         );
     });
 

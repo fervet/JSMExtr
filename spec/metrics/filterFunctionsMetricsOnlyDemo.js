@@ -1,8 +1,8 @@
-var q = (function (zzzz) {
+var q = (function (zzz) {
     function aaa() {
         var a1 = 1;
     }
-    (function (www) {
+    (function yyy(www) {
         function bbb() {
             var b1 = 2;
         }

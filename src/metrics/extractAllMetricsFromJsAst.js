@@ -24,16 +24,36 @@ function visitArrayOfPrograms(arrayOfAstProgramNodes) {
 function visitProgram(programNode) {
     let bodyNodes = programNode.body;
     const metrics = bodyNodes.map(bodyNode => Program.visit(bodyNode));
-    metrics.forEach(metric => {
-        if (metric.loc) {
-            metric.fileLocation = `${programNode.fileLocation}?${metric.loc}`;
-            metric.loc = undefined;
-        } else {
-            metric.fileLocation = programNode.fileLocation  ;
-        }
-    });
+    fixLoc(metrics, programNode.fileLocation);
     return metrics;
 }
+
+function fixLoc(metrics, fileLocation) {
+    let toFix = [];
+    toFix.push(...metrics);
+    while (toFix.length > 0) {
+        let thisMetric = toFix.pop();
+        if (thisMetric === undefined) {
+            continue;
+        }
+
+        if (thisMetric._type === 'FunctionDeclaration' || thisMetric._type === 'FunctionExpression') {
+            thisMetric.loc = `${fileLocation}?${thisMetric.loc}`;
+        }
+
+        if (thisMetric.detail) {
+            Object.keys(thisMetric.detail).forEach(key => {
+                let thisDetail = thisMetric.detail[key];
+                if (Array.isArray(thisDetail)) {
+                    toFix.push(...thisDetail);
+                } else {
+                    toFix.push(thisDetail);
+                }
+            });
+        }
+    }
+}
+
 
 class Program {
     static visit(astNode) {
