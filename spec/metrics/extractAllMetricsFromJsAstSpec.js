@@ -16,7 +16,8 @@ const functionMetrics = {
     f9_iife: allMetrics[8],
     f10_returnSimple: allMetrics[9],
     f11_returnCall: allMetrics[10],
-    f12_declarationAndSumExpressionStatement: allMetrics[11]
+    f12_declarationAndSumExpressionStatement: allMetrics[11],
+    f13_for: allMetrics[12]
 };
 
 function testMetrics(functionName, expected) {
@@ -446,6 +447,91 @@ describe("extractAllMetricsFromJsAst", function () {
                 }
             },
             loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?36:0-40:1'
+        }
+    );
+
+    testMetrics(
+        'f13_for',
+        {
+            _type: 'FunctionDeclaration',
+            functionName: 'f13_for',
+            metrics: {parametersCount: 1, declarationStmtCount: 2, executableStmtCount: 1},
+            detail: {
+                body: {
+                    _type: 'BlockStatement',
+                    metrics: {declarationStmtCount: 2, executableStmtCount: 1},
+                    detail: {
+                        body: [{
+                            _type: 'ForStatement',
+                            metrics: {declarationStmtCount: 2, executableStmtCount: 1},
+                            detail: {
+                                init: {
+                                    _type: 'VariableDeclaration',
+                                    metrics: {declarationStmtCount: 2},
+                                    detail: {
+                                        declarations: [{
+                                            _type: 'VariableDeclarator',
+                                            variableName: 'sum',
+                                            metrics: {declarationStmtCount: 1},
+                                            detail: {init: {_type: 'Literal'}}
+                                        }, {
+                                            _type: 'VariableDeclarator',
+                                            variableName: 'i',
+                                            metrics: {declarationStmtCount: 1},
+                                            detail: {init: {_type: 'Literal'}}
+                                        }]
+                                    }
+                                },
+                                test: {
+                                    _type: 'BinaryExpression',
+                                    metrics: {},
+                                    detail: {
+                                        left: {_type: 'Identifier'},
+                                        right: {
+                                            _type: 'MemberExpression',
+                                            metrics: {},
+                                            detail: {object: {_type: 'Identifier'}, property: {_type: 'Identifier'}}
+                                        }
+                                    }
+                                },
+                                update: {_type: 'UpdateExpression'},
+                                body: {
+                                    _type: 'BlockStatement',
+                                    metrics: {executableStmtCount: 1},
+                                    detail: {
+                                        body: [{
+                                            _type: 'ExpressionStatement',
+                                            metrics: {executableStmtCount: 1},
+                                            detail: {
+                                                expression: {
+                                                    _type: 'AssignmentExpression',
+                                                    metrics: {},
+                                                    detail: {
+                                                        left: {_type: 'Identifier'},
+                                                        right: {
+                                                            _type: 'BinaryExpression',
+                                                            metrics: {},
+                                                            detail: {
+                                                                left: {_type: 'Identifier'},
+                                                                right: {
+                                                                    _type: 'MemberExpression',
+                                                                    metrics: {},
+                                                                    detail: {object: {_type: 'Identifier'}, property: {_type: 'Identifier'}}
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }]
+                                    }
+                                }
+                            }
+                        }]
+                    }
+                }
+            },
+            loc: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?41:0-45:1'
         }
     );
 

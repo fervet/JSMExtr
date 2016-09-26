@@ -38,6 +38,11 @@ function f12_declarationAndSumExpressionStatement() {
     z = x + y();
     return z;
 }
+function f13_for(myArray) {
+    for (var sum = 0, i = 0; i < myArray.length; i++) {
+        sum = sum + myArray[i];
+    }
+}
 
 /*
 function all(first, second) {

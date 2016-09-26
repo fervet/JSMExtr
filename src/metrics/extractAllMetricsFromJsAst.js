@@ -223,21 +223,6 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitForStatement(forStatementNode) {
-        const forMetrics = new Metrics();
-        return {
-            _type: 'ForStatement',
-            metrics: forMetrics,
-            detail: {
-                init: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.init, forMetrics),
-                test: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.test, forMetrics),
-                update: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.update, forMetrics),
-                body: Program.extractDetailsAndAddMetricsGeneral(forStatementNode.body.body, forMetrics),
-            }
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
     static visitForInStatement() {
         return {
             _type: 'ForInStatement'
@@ -333,4 +318,5 @@ Visitors.visitAssignmentExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitBinaryExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitVariableDeclaration = Visitors.visitorWithoutMetrics;
 Visitors.visitMemberExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitForStatement = Visitors.visitorWithoutMetrics;
 
