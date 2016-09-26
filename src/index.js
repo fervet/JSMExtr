@@ -1,25 +1,22 @@
 const extractJavaScriptASTsFromHtmlFile = require("./parsing/extract-js-asts-from-html-file");
-const functionMetricsFromJsAST = require("./metrics/extract-function-metrics-from-js-ast");
+const extractJavaScriptASTsFromJsFile = require("./parsing/extract-js-ast-from-js-file");
+const functionMetricsFromJsAST = require("./metrics/extract-metrics-from-js-ast");
+const filterFunctionMetricsOnly = require("./metrics/filterFunctionMetricsOnly");
 const rReadableMetrics = require("./r/r-readable-metrics");
 
-const jsASTs = extractJavaScriptASTsFromHtmlFile('spec/demo/portal.html', 'utf8');
-// console.log(JSON.stringify(jsASTs));
-const functionMetrics = functionMetricsFromJsAST(jsASTs);
-// console.log(JSON.stringify(functionMetrics, null, 4));
-console.log("##########################################################");
-console.log("##########################################################");
-console.log("##########################################################");
 
-functionMetrics.forEach(metrics => {
-    delete metrics.detail;
-    if (metrics._type === 'FunctionDeclaration') {
-        metrics.functionName = `${metrics.fileLocation} ~ ${metrics.functionName}`;
-        delete metrics.fileLocation;
-    }
-});
+// const jsCodeFileWalker = require("../../src/dirwalking/jscodefilewalker");
 
-console.log(JSON.stringify(functionMetrics, null, 4));
+
+// const fileName = 'spec/demo/portal.html';
+const fileName = 'spec/demo/uolutils.js';
+// const jsASTs = extractJavaScriptASTsFromHtmlFile(fileName, 'utf8');
+const jsASTs = extractJavaScriptASTsFromJsFile(fileName, 'utf8');
+const allMetrics = functionMetricsFromJsAST(jsASTs);
+
+const fOnly = filterFunctionMetricsOnly(allMetrics);
+console.log(JSON.stringify(fOnly, null, 4));
 
 console.log("#####################################");
 console.log("#####################################");
-console.log(rReadableMetrics(functionMetrics));
+// console.log(rReadableMetrics(allMetrics));
