@@ -57,10 +57,11 @@ function fixLoc(metrics, fileLocation) {
 
 
 class Program {
+
     static visit(astNode) {
         const visitorFunction = Visitors['visit'+astNode.type];
         if (!visitorFunction) {
-            throw new Error("Couldn't find visitor for type: " + astNode.type);//+"\n\nNode: "+JSON.stringify(astNode, null, 4));
+            throw new Error("Couldn't find visitor for type: " + astNode.type);
         }
         return visitorFunction(astNode);
     }
@@ -79,23 +80,6 @@ class Program {
         return metricsForSingle[0];
     }
 
-    static extractDetailsAndAddMetricsForOptional(statements, metrics) {
-        if (!statements) {
-            return undefined;
-        }
-        if (!Array.isArray(statements)) {
-            throw new Error("Argument must be an array!");
-        }
-        return this.extractDetailsAndAddMetrics(statements, metrics);
-    }
-
-    static extractDetailsAndAddMetricsForOptionalSingle(stmt, metrics) {
-        if (!stmt) {
-            return undefined;
-        }
-        return this.extractDetailsAndAddMetricsForSingle(stmt, metrics);
-    }
-
     static extractDetailsAndAddMetricsGeneral(node, metrics) {
         if (node === null || node === undefined) {
             return undefined;
@@ -109,6 +93,7 @@ class Program {
         }
         return this.extractDetailsAndAddMetricsForSingle(node, metrics);
     }
+
 }
 
 function loc(locableNode) {
@@ -132,9 +117,17 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitExpressionStatement(expressionStatementNode) {
-        const expressionMetrics = new Metrics({executableStmtCount: 1});
-        return Visitors.visitGeneralNode(expressionStatementNode, expressionMetrics);
+    static visitFunctionExpression(functionExpressionNode) {
+        const functionExpressionMetrics = new Metrics({parametersCount: functionExpressionNode.params.length});
+        return {
+            _type: 'FunctionExpression',
+            functionName: (functionExpressionNode.id ? functionExpressionNode.id.name : undefined),
+            metrics: functionExpressionMetrics,
+            detail: {
+                body: Program.extractDetailsAndAddMetricsGeneral(functionExpressionNode.body, functionExpressionMetrics)
+            },
+            loc: loc(functionExpressionNode)
+        };
     }
 
     static visitGeneralNode(node, metrics) {
@@ -160,20 +153,6 @@ class Visitors {
             return Visitors.visitGeneralNode(node, new Metrics(metrics));
         };
     };
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitFunctionExpression(functionExpressionNode) {
-        const functionExpressionMetrics = new Metrics({parametersCount: functionExpressionNode.params.length});
-        return {
-            _type: 'FunctionExpression',
-            functionName: (functionExpressionNode.id ? functionExpressionNode.id.name : undefined),
-            metrics: functionExpressionMetrics,
-            detail: {
-                body: Program.extractDetailsAndAddMetricsGeneral(functionExpressionNode.body, functionExpressionMetrics)
-            },
-            loc: loc(functionExpressionNode)
-        };
-    }
 
     //noinspection JSUnusedGlobalSymbols
     static visitNewExpression() {
@@ -298,3 +277,4 @@ Visitors.visitForStatement = Visitors.visitorWithoutMetrics;
 Visitors.visitCallExpression = Visitors.visitorWithMetrics({callExpressionCount: 1});
 Visitors.visitReturnStatement = Visitors.visitorWithMetrics({returnStmtCount: 1});
 Visitors.visitVariableDeclarator = Visitors.visitorWithMetrics({declarationStmtCount: 1});
+Visitors.visitExpressionStatement = Visitors.visitorWithMetrics({executableStmtCount: 1});
