@@ -155,10 +155,11 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitCallExpression(callExpressionNode) {
-        const callExpressionMetrics = new Metrics({callExpressionCount: 1});
-        return Visitors.visitGeneralNode(callExpressionNode, callExpressionMetrics);
-    }
+    static visitorWithMetrics(metrics) {
+        return function (node) {
+            return Visitors.visitGeneralNode(node, new Metrics(metrics));
+        };
+    };
 
     //noinspection JSUnusedGlobalSymbols
     static visitFunctionExpression(functionExpressionNode) {
@@ -251,18 +252,6 @@ class Visitors {
     }
 
     //noinspection JSUnusedGlobalSymbols
-    static visitReturnStatement(returnStatementNode) {
-        const returnMetrics = new Metrics({returnStmtCount: 1});
-        return {
-            _type: 'ReturnStatement',
-            metrics: returnMetrics,
-            detail: {
-                argument: Program.extractDetailsAndAddMetricsGeneral(returnStatementNode.argument, returnMetrics),
-            }
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
     static visitUnaryExpression() {
         return {
             _type: 'UnaryExpression'
@@ -319,4 +308,5 @@ Visitors.visitBinaryExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitVariableDeclaration = Visitors.visitorWithoutMetrics;
 Visitors.visitMemberExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitForStatement = Visitors.visitorWithoutMetrics;
-
+Visitors.visitCallExpression = Visitors.visitorWithMetrics({callExpressionCount: 1});
+Visitors.visitReturnStatement = Visitors.visitorWithMetrics({returnStmtCount: 1});
