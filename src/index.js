@@ -1,6 +1,6 @@
 const extractJavaScriptASTsFromHtmlFile = require("./parsing/extract-js-asts-from-html-file");
 const extractJavaScriptASTsFromJsFile = require("./parsing/extract-js-ast-from-js-file");
-const functionMetricsFromJsAST = require("./metrics/extract-metrics-from-js-ast");
+const extractAllMetricsFromJsAst = require("./metrics/extractAllMetricsFromJsAst");
 const filterFunctionMetricsOnly = require("./metrics/filterFunctionMetricsOnly");
 const rReadableMetrics = require("./r/r-readable-metrics");
 
@@ -12,7 +12,7 @@ const rReadableMetrics = require("./r/r-readable-metrics");
 const fileName = 'spec/demo/uolutils.js';
 // const jsASTs = extractJavaScriptASTsFromHtmlFile(fileName, 'utf8');
 const jsASTs = extractJavaScriptASTsFromJsFile(fileName, 'utf8');
-const allMetrics = functionMetricsFromJsAST(jsASTs);
+const allMetrics = extractAllMetricsFromJsAst(jsASTs);
 
 const fOnly = filterFunctionMetricsOnly(allMetrics);
 console.log(JSON.stringify(fOnly, null, 4));

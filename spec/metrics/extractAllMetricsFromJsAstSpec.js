@@ -1,22 +1,22 @@
 const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
-const functionMetricsFromJsAST = require("../../src/metrics/extract-metrics-from-js-ast");
+const extractAllMetricsFromJsAst = require("../../src/metrics/extractAllMetricsFromJsAst");
 
-const completeFileJsAST = extractJavaScriptASTsFromJsFile('spec/metrics/complete.js', 'utf8');
-const completeMetrics = functionMetricsFromJsAST(completeFileJsAST);
+const demoFileJsAst = extractJavaScriptASTsFromJsFile('spec/metrics/extractAllMetricsFromJsAstDemo.js', 'utf8');
+const allMetrics = extractAllMetricsFromJsAst(demoFileJsAst);
 
 const functionMetrics = {
-    f1_singleEmptyDeclaration: completeMetrics[0],
-    f2_multipleEmptyDeclarations: completeMetrics[1],
-    f3_singleInitLiteralDeclaration: completeMetrics[2],
-    f4_singleInitCallDeclaration: completeMetrics[3],
-    f5_callNoArgs: completeMetrics[4],
-    f6_callLiteralArgs: completeMetrics[5],
-    f7_callCallArgs: completeMetrics[6],
-    f8_callCallCallCallArgs: completeMetrics[7],
-    f9_iife: completeMetrics[8],
-    f10_returnSimple: completeMetrics[9],
-    f11_returnCall: completeMetrics[10],
-    f12_declarationAndSumExpressionStatement: completeMetrics[11]
+    f1_singleEmptyDeclaration: allMetrics[0],
+    f2_multipleEmptyDeclarations: allMetrics[1],
+    f3_singleInitLiteralDeclaration: allMetrics[2],
+    f4_singleInitCallDeclaration: allMetrics[3],
+    f5_callNoArgs: allMetrics[4],
+    f6_callLiteralArgs: allMetrics[5],
+    f7_callCallArgs: allMetrics[6],
+    f8_callCallCallCallArgs: allMetrics[7],
+    f9_iife: allMetrics[8],
+    f10_returnSimple: allMetrics[9],
+    f11_returnCall: allMetrics[10],
+    f12_declarationAndSumExpressionStatement: allMetrics[11]
 };
 
 function testMetrics(functionName, expected) {
@@ -30,7 +30,7 @@ function testMetrics(functionName, expected) {
 function xtestMetrics() {
 }
 
-describe("COMPLETE JS", function () {
+describe("extractAllMetricsFromJsAst", function () {
 
     testMetrics(
         'f1_singleEmptyDeclaration',
@@ -51,7 +51,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?1:0-3:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?1:0-3:1'
         }
     );
 
@@ -80,7 +80,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?4:0-6:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?4:0-6:1'
         }
     );
 
@@ -110,7 +110,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?7:0-9:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?7:0-9:1'
         }
     );
 
@@ -146,7 +146,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?10:0-12:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?10:0-12:1'
         }
     );
 
@@ -169,7 +169,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?13:0-15:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?13:0-15:1'
         }
     );
 
@@ -198,7 +198,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?16:0-18:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?16:0-18:1'
         }
     );
 
@@ -230,7 +230,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?19:0-21:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?19:0-21:1'
         }
     );
 
@@ -300,7 +300,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?22:0-24:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?22:0-24:1'
         }
     );
 
@@ -354,7 +354,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?25:0-29:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?25:0-29:1'
         }
     );
 
@@ -371,7 +371,7 @@ describe("COMPLETE JS", function () {
                     detail: {body: [{_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Literal'}}}]}
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?30:0-32:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?30:0-32:1'
         }
     );
 
@@ -394,7 +394,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?33:0-35:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?33:0-35:1'
         }
     );
 
@@ -444,7 +444,7 @@ describe("COMPLETE JS", function () {
                     }
                 }
             },
-            fileLocation: 'spec/metrics/complete.js?36:0-40:1'
+            fileLocation: 'spec/metrics/extractAllMetricsFromJsAstDemo.js?36:0-40:1'
         }
     );
 

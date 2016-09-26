@@ -1,4 +1,4 @@
-const jsCodeFileWalker = require("../../src/dirwalking/jscodefilewalker");
+const jsCodeFileWalker = require("../../src/dirwalking/jsCodeFilesWalker");
 
 describe("file walker", function () {
 

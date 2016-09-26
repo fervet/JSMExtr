@@ -1,9 +1,9 @@
 const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
-const functionMetricsFromJsAST = require("../../src/metrics/extract-metrics-from-js-ast");
+const extractAllMetricsFromJsAst = require("../../src/metrics/extractAllMetricsFromJsAst");
 const filterFunctionMetricsOnly = require("../../src/metrics/filterFunctionMetricsOnly");
 
 const demoFileJsAST = extractJavaScriptASTsFromJsFile('spec/metrics/filterFunctionsMetricsOnlyDemo.js', 'utf8');
-const demoFileFullMetrics = functionMetricsFromJsAST(demoFileJsAST);
+const demoFileFullMetrics = extractAllMetricsFromJsAst(demoFileJsAST);
 
 describe("filterFunctionsMetrics", function () {
 
