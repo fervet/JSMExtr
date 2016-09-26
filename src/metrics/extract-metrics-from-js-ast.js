@@ -89,7 +89,9 @@ class Visitors {
             _type: 'FunctionDeclaration',
             functionName: functionDeclarationNode.id.name,
             metrics: functionDeclarationMetrics,
-            detail: Program.extractDetailsAndAddMetricsForSingle(functionDeclarationNode.body, functionDeclarationMetrics),
+            detail: {
+                body: Program.extractDetailsAndAddMetricsForSingle(functionDeclarationNode.body, functionDeclarationMetrics)
+            },
             loc: loc(functionDeclarationNode)
         };
     }
@@ -100,7 +102,9 @@ class Visitors {
         return {
             _type: 'BlockStatement',
             metrics: blockMetrics,
-            detail: Program.extractDetailsAndAddMetrics(blockStatementNode.body, blockMetrics)
+            detail: {
+                body: Program.extractDetailsAndAddMetrics(blockStatementNode.body, blockMetrics)
+            }
         };
     }
 
@@ -110,7 +114,9 @@ class Visitors {
         return {
             _type: 'ExpressionStatement',
             metrics: expressionMetrics,
-            detail: Program.extractDetailsAndAddMetricsForSingle(expressionStatementNode.expression, expressionMetrics)
+            detail: {
+                expression: Program.extractDetailsAndAddMetricsForSingle(expressionStatementNode.expression, expressionMetrics)
+            }
         };
     }
 
@@ -148,7 +154,9 @@ class Visitors {
             _type: 'FunctionExpression',
             functionName: (functionExpressionNode.id ? functionExpressionNode.id.name : undefined),
             metrics: functionExpressionMetrics,
-            detail: Program.extractDetailsAndAddMetricsForSingle(functionExpressionNode.body, functionExpressionMetrics),
+            detail: {
+                body: Program.extractDetailsAndAddMetricsForSingle(functionExpressionNode.body, functionExpressionMetrics)
+            }
         };
     }
 

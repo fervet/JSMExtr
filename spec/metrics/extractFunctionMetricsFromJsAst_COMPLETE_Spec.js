@@ -39,19 +39,17 @@ describe("COMPLETE JS", function () {
             functionName: 'f1_singleEmptyDeclaration',
             metrics: {declarationStmtCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {declarationStmtCount: 1},
-                detail: [{
-                    _type: 'VariableDeclaration',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {declarationStmtCount: 1},
                     detail: {
-                        declarations: [{
-                            _type: 'VariableDeclarator',
-                            variableName: 'x',
-                            metrics: {declarationStmtCount: 1}
+                        body: [{
+                            _type: 'VariableDeclaration',
+                            metrics: {declarationStmtCount: 1},
+                            detail: {declarations: [{_type: 'VariableDeclarator', variableName: 'x', metrics: {declarationStmtCount: 1}}]}
                         }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?1:0-3:1'
         }
@@ -64,23 +62,23 @@ describe("COMPLETE JS", function () {
             functionName: 'f2_multipleEmptyDeclarations',
             metrics: {declarationStmtCount: 2},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {declarationStmtCount: 2},
-                detail: [{
-                    _type: 'VariableDeclaration',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {declarationStmtCount: 2},
                     detail: {
-                        declarations: [{
-                            _type: 'VariableDeclarator',
-                            variableName: 'a',
-                            metrics: {declarationStmtCount: 1},
-                        }, {
-                            _type: 'VariableDeclarator',
-                            variableName: 'b',
-                            metrics: {declarationStmtCount: 1},
+                        body: [{
+                            _type: 'VariableDeclaration',
+                            metrics: {declarationStmtCount: 2},
+                            detail: {
+                                declarations: [{
+                                    _type: 'VariableDeclarator',
+                                    variableName: 'a',
+                                    metrics: {declarationStmtCount: 1}
+                                }, {_type: 'VariableDeclarator', variableName: 'b', metrics: {declarationStmtCount: 1}}]
+                            }
                         }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?4:0-6:1'
         }
@@ -93,20 +91,24 @@ describe("COMPLETE JS", function () {
             functionName: 'f3_singleInitLiteralDeclaration',
             metrics: {declarationStmtCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {declarationStmtCount: 1},
-                detail: [{
-                    _type: 'VariableDeclaration',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {declarationStmtCount: 1},
                     detail: {
-                        declarations: [{
-                            _type: 'VariableDeclarator',
-                            variableName: 'c',
+                        body: [{
+                            _type: 'VariableDeclaration',
                             metrics: {declarationStmtCount: 1},
-                            detail: {init: {_type: 'Literal'}}
+                            detail: {
+                                declarations: [{
+                                    _type: 'VariableDeclarator',
+                                    variableName: 'c',
+                                    metrics: {declarationStmtCount: 1},
+                                    detail: {init: {_type: 'Literal'}}
+                                }]
+                            }
                         }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?7:0-9:1'
         }
@@ -119,29 +121,34 @@ describe("COMPLETE JS", function () {
             functionName: 'f4_singleInitCallDeclaration',
             metrics: {declarationStmtCount: 1, callExpressionCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {declarationStmtCount: 1, callExpressionCount: 1},
-                detail: [{
-                    _type: 'VariableDeclaration',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {declarationStmtCount: 1, callExpressionCount: 1},
                     detail: {
-                        declarations: [{
-                            _type: 'VariableDeclarator',
-                            variableName: 'd',
+                        body: [{
+                            _type: 'VariableDeclaration',
                             metrics: {declarationStmtCount: 1, callExpressionCount: 1},
                             detail: {
-                                init: {
-                                    _type: 'CallExpression',
-                                    metrics: {callExpressionCount: 1},
-                                    detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
-                                }
+                                declarations: [{
+                                    _type: 'VariableDeclarator',
+                                    variableName: 'd',
+                                    metrics: {declarationStmtCount: 1, callExpressionCount: 1},
+                                    detail: {
+                                        init: {
+                                            _type: 'CallExpression',
+                                            metrics: {callExpressionCount: 1},
+                                            detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
+                                        }
+                                    }
+                                }]
                             }
                         }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?10:0-12:1'
-        });
+        }
+    );
 
     testMetrics(
         'f5_callNoArgs',
@@ -150,13 +157,17 @@ describe("COMPLETE JS", function () {
             functionName: 'f5_callNoArgs',
             metrics: {executableStmtCount: 1, callExpressionCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {executableStmtCount: 1, callExpressionCount: 1},
-                detail: [{
-                    _type: 'ExpressionStatement',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {executableStmtCount: 1, callExpressionCount: 1},
-                    detail: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
-                }]
+                    detail: {
+                        body: [{
+                            _type: 'ExpressionStatement',
+                            metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                            detail: {expression: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}}
+                        }]
+                    }
+                }
             },
             fileLocation: 'spec/metrics/complete.js?13:0-15:1'
         }
@@ -169,17 +180,23 @@ describe("COMPLETE JS", function () {
             functionName: 'f6_callLiteralArgs',
             metrics: {executableStmtCount: 1, callExpressionCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {executableStmtCount: 1, callExpressionCount: 1},
-                detail: [{
-                    _type: 'ExpressionStatement',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {executableStmtCount: 1, callExpressionCount: 1},
                     detail: {
-                        _type: 'CallExpression',
-                        metrics: {callExpressionCount: 1},
-                        detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
+                        body: [{
+                            _type: 'ExpressionStatement',
+                            metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                            detail: {
+                                expression: {
+                                    _type: 'CallExpression',
+                                    metrics: {callExpressionCount: 1},
+                                    detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
+                                }
+                            }
+                        }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?16:0-18:1'
         }
@@ -192,20 +209,26 @@ describe("COMPLETE JS", function () {
             functionName: 'f7_callCallArgs',
             metrics: {executableStmtCount: 1, callExpressionCount: 2},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {executableStmtCount: 1, callExpressionCount: 2},
-                detail: [{
-                    _type: 'ExpressionStatement',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {executableStmtCount: 1, callExpressionCount: 2},
                     detail: {
-                        _type: 'CallExpression',
-                        metrics: {callExpressionCount: 2},
-                        detail: {
-                            callee: {_type: 'Identifier'},
-                            arguments: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}]
-                        }
+                        body: [{
+                            _type: 'ExpressionStatement',
+                            metrics: {executableStmtCount: 1, callExpressionCount: 2},
+                            detail: {
+                                expression: {
+                                    _type: 'CallExpression',
+                                    metrics: {callExpressionCount: 2},
+                                    detail: {
+                                        callee: {_type: 'Identifier'},
+                                        arguments: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}]
+                                    }
+                                }
+                            }
+                        }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?19:0-21:1'
         }
@@ -218,54 +241,64 @@ describe("COMPLETE JS", function () {
             functionName: 'f8_callCallCallCallArgs',
             metrics: {executableStmtCount: 1, callExpressionCount: 7},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {executableStmtCount: 1, callExpressionCount: 7},
-                detail: [{
-                    _type: 'ExpressionStatement',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {executableStmtCount: 1, callExpressionCount: 7},
                     detail: {
-                        _type: 'CallExpression',
-                        metrics: {callExpressionCount: 7},
-                        detail: {
-                            callee: {
-                                _type: 'MemberExpression',
-                                metrics: {callExpressionCount: 2},
-                                detail: {
-                                    object: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}},
-                                    property: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
-                                }
-                            },
-                            arguments: [{
-                                _type: 'CallExpression',
-                                metrics: {callExpressionCount: 1},
-                                detail: {callee: {_type: 'Identifier'}}
-                            }, {
-                                _type: 'CallExpression',
-                                metrics: {callExpressionCount: 3},
-                                detail: {
-                                    callee: {_type: 'Identifier'},
-                                    arguments: [{_type: 'Literal'}, {
-                                        _type: 'CallExpression',
-                                        metrics: {callExpressionCount: 2},
-                                        detail: {
-                                            callee: {
-                                                _type: 'MemberExpression',
-                                                metrics: {callExpressionCount: 1},
-                                                detail: {
-                                                    object: {
-                                                        _type: 'CallExpression',
-                                                        metrics: {callExpressionCount: 1},
-                                                        detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
-                                                    }, property: {_type: 'Identifier'}
-                                                }
+                        body: [{
+                            _type: 'ExpressionStatement',
+                            metrics: {executableStmtCount: 1, callExpressionCount: 7},
+                            detail: {
+                                expression: {
+                                    _type: 'CallExpression',
+                                    metrics: {callExpressionCount: 7},
+                                    detail: {
+                                        callee: {
+                                            _type: 'MemberExpression',
+                                            metrics: {callExpressionCount: 2},
+                                            detail: {
+                                                object: {
+                                                    _type: 'CallExpression',
+                                                    metrics: {callExpressionCount: 1},
+                                                    detail: {callee: {_type: 'Identifier'}}
+                                                },
+                                                property: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
                                             }
-                                        }
-                                    }]
+                                        },
+                                        arguments: [{
+                                            _type: 'CallExpression',
+                                            metrics: {callExpressionCount: 1},
+                                            detail: {callee: {_type: 'Identifier'}}
+                                        }, {
+                                            _type: 'CallExpression',
+                                            metrics: {callExpressionCount: 3},
+                                            detail: {
+                                                callee: {_type: 'Identifier'},
+                                                arguments: [{_type: 'Literal'}, {
+                                                    _type: 'CallExpression',
+                                                    metrics: {callExpressionCount: 2},
+                                                    detail: {
+                                                        callee: {
+                                                            _type: 'MemberExpression',
+                                                            metrics: {callExpressionCount: 1},
+                                                            detail: {
+                                                                object: {
+                                                                    _type: 'CallExpression',
+                                                                    metrics: {callExpressionCount: 1},
+                                                                    detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
+                                                                }, property: {_type: 'Identifier'}
+                                                            }
+                                                        }
+                                                    }
+                                                }]
+                                            }
+                                        }]
+                                    }
                                 }
-                            }]
-                        }
+                            }
+                        }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?22:0-24:1'
         }
@@ -278,38 +311,48 @@ describe("COMPLETE JS", function () {
             functionName: 'f9_iife',
             metrics: {declarationStmtCount: 1, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {declarationStmtCount: 1, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
-                detail: [{
-                    _type: 'ExpressionStatement',
-                    metrics: {executableStmtCount: 1, declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                body: {
+                    _type: 'BlockStatement',
+                    metrics: {declarationStmtCount: 1, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
                     detail: {
-                        _type: 'CallExpression',
-                        metrics: {callExpressionCount: 1, declarationStmtCount: 1, parametersCount: 1},
-                        detail: {
-                            callee: {
-                                _type: 'FunctionExpression',
-                                metrics: {parametersCount: 1, declarationStmtCount: 1},
-                                detail: {
-                                    _type: 'BlockStatement',
-                                    metrics: {declarationStmtCount: 1},
-                                    detail: [{
-                                        _type: 'VariableDeclaration',
-                                        metrics: {declarationStmtCount: 1},
-                                        detail: {
-                                            declarations: [{
-                                                _type: 'VariableDeclarator',
-                                                variableName: 'i',
-                                                metrics: {declarationStmtCount: 1},
-                                                detail: {init: {_type: 'Literal'}}
-                                            }]
-                                        }
-                                    }]
+                        body: [{
+                            _type: 'ExpressionStatement',
+                            metrics: {executableStmtCount: 1, declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                            detail: {
+                                expression: {
+                                    _type: 'CallExpression',
+                                    metrics: {callExpressionCount: 1, declarationStmtCount: 1, parametersCount: 1},
+                                    detail: {
+                                        callee: {
+                                            _type: 'FunctionExpression',
+                                            metrics: {parametersCount: 1, declarationStmtCount: 1},
+                                            detail: {
+                                                body: {
+                                                    _type: 'BlockStatement',
+                                                    metrics: {declarationStmtCount: 1},
+                                                    detail: {
+                                                        body: [{
+                                                            _type: 'VariableDeclaration',
+                                                            metrics: {declarationStmtCount: 1},
+                                                            detail: {
+                                                                declarations: [{
+                                                                    _type: 'VariableDeclarator',
+                                                                    variableName: 'i',
+                                                                    metrics: {declarationStmtCount: 1},
+                                                                    detail: {init: {_type: 'Literal'}}
+                                                                }]
+                                                            }
+                                                        }]
+                                                    }
+                                                }
+                                            }
+                                        }, arguments: [{_type: 'Literal'}]
+                                    }
                                 }
-                            }, arguments: [{_type: 'Literal'}]
-                        }
+                            }
+                        }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?25:0-29:1'
         }
@@ -322,13 +365,11 @@ describe("COMPLETE JS", function () {
             functionName: 'f10_returnSimple',
             metrics: {returnStmtCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {returnStmtCount: 1},
-                detail: [{
-                    _type: 'ReturnStatement',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {returnStmtCount: 1},
-                    detail: {argument: {_type: 'Literal'}}
-                }]
+                    detail: {body: [{_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Literal'}}}]}
+                }
             },
             fileLocation: 'spec/metrics/complete.js?30:0-32:1'
         }
@@ -341,19 +382,17 @@ describe("COMPLETE JS", function () {
             functionName: 'f11_returnCall',
             metrics: {returnStmtCount: 1, callExpressionCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {returnStmtCount: 1, callExpressionCount: 1},
-                detail: [{
-                    _type: 'ReturnStatement',
+                body: {
+                    _type: 'BlockStatement',
                     metrics: {returnStmtCount: 1, callExpressionCount: 1},
                     detail: {
-                        argument: {
-                            _type: 'CallExpression',
-                            metrics: {callExpressionCount: 1},
-                            detail: {callee: {_type: 'Identifier'}}
-                        }
+                        body: [{
+                            _type: 'ReturnStatement',
+                            metrics: {returnStmtCount: 1, callExpressionCount: 1},
+                            detail: {argument: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}}
+                        }]
                     }
-                }]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?33:0-35:1'
         }
@@ -366,42 +405,44 @@ describe("COMPLETE JS", function () {
             functionName: 'f12_declarationAndSumExpressionStatement',
             metrics: {declarationStmtCount: 2, executableStmtCount: 1, returnStmtCount: 1, callExpressionCount: 1},
             detail: {
-                _type: 'BlockStatement',
-                metrics: {declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1, returnStmtCount: 1},
-                detail: [{
-                    _type: 'VariableDeclaration',
-                    metrics: {declarationStmtCount: 2},
+                body: {
+                    _type: 'BlockStatement',
+                    metrics: {declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1, returnStmtCount: 1},
                     detail: {
-                        declarations: [{
-                            _type: 'VariableDeclarator',
-                            variableName: 'x',
-                            metrics: {declarationStmtCount: 1},
-                            detail: {init: {_type: 'Literal'}}
-                        }, {_type: 'VariableDeclarator', variableName: 'z', metrics: {declarationStmtCount: 1}}]
-                    }
-                }, {
-                    _type: 'ExpressionStatement',
-                    metrics: {executableStmtCount: 1, callExpressionCount: 1},
-                    detail: {
-                        _type: 'AssignmentExpression',
-                        metrics: {callExpressionCount: 1},
-                        detail: {
-                            left: {_type: 'Identifier'},
-                            right: {
-                                _type: 'BinaryExpression',
-                                metrics: {callExpressionCount: 1},
-                                detail: {
-                                    left: {_type: 'Identifier'},
-                                    right: {
-                                        _type: 'CallExpression',
-                                        metrics: {callExpressionCount: 1},
-                                        detail: {callee: {_type: 'Identifier'}}
+                        body: [{
+                            _type: 'VariableDeclaration',
+                            metrics: {declarationStmtCount: 2},
+                            detail: {
+                                declarations: [{
+                                    _type: 'VariableDeclarator',
+                                    variableName: 'x',
+                                    metrics: {declarationStmtCount: 1},
+                                    detail: {init: {_type: 'Literal'}}
+                                }, {_type: 'VariableDeclarator', variableName: 'z', metrics: {declarationStmtCount: 1}}]
+                            }
+                        }, {
+                            _type: 'ExpressionStatement',
+                            metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                            detail: {
+                                expression: {
+                                    _type: 'AssignmentExpression',
+                                    metrics: {callExpressionCount: 1},
+                                    detail: {
+                                        left: {_type: 'Identifier'},
+                                        right: {
+                                            _type: 'BinaryExpression',
+                                            metrics: {callExpressionCount: 1},
+                                            detail: {
+                                                left: {_type: 'Identifier'},
+                                                right: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
+                        }, {_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Identifier'}}}]
                     }
-                }, {_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Identifier'}}}]
+                }
             },
             fileLocation: 'spec/metrics/complete.js?36:0-40:1'
         }
