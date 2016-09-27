@@ -3,7 +3,7 @@ const extractJavaScriptASTsFromHtmlFile = require("../../src/parsing/extract-js-
 describe("HTML", function () {
 
     it("extract AST from HTML file", function () {
-        const jsASTs = extractJavaScriptASTsFromHtmlFile('spec/demo/demo.html', 'utf8');
+        const jsASTs = extractJavaScriptASTsFromHtmlFile('test/demo/demo.html', 'utf8');
 
         const expectedDemoASTs = [
             {
@@ -41,7 +41,7 @@ describe("HTML", function () {
                 ],
                 sourceType: 'script',
                 loc: {start: {line: 1, column: 0}, end: {line: 1, column: 19}},
-                fileLocation : 'spec/demo/demo.html?5:1-5:28'
+                fileLocation : 'test/demo/demo.html?5:1-5:28'
             }, {
                 type: 'Program',
                 body: [
@@ -77,7 +77,7 @@ describe("HTML", function () {
                 ],
                 sourceType: 'script',
                 loc: {start: {line: 1, column: 0}, end: {line: 1, column: 19}},
-                fileLocation : 'spec/demo/demo.html?6:1-6:28'
+                fileLocation : 'test/demo/demo.html?6:1-6:28'
             }
         ];
         expect(jsASTs).toEqual(expectedDemoASTs);

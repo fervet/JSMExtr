@@ -3,7 +3,7 @@ const extractScriptTagsFromHtmlFile = require("../../../src/parsing/html/extract
 describe("HTML", function () {
 
     it("extract TAGs from HTML file", function () {
-        const htmlAST = extractScriptTagsFromHtmlFile('spec/demo/demo.html', 'utf8');
+        const htmlAST = extractScriptTagsFromHtmlFile('test/demo/demo.html', 'utf8');
 
         const expectedAST = [{
             "originalTag": "<script>",

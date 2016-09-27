@@ -3,7 +3,7 @@ const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-as
 describe("JS", function () {
 
     it("extract AST from JS file", function () {
-        const jsAST = extractJavaScriptASTsFromJsFile('spec/demo/demo.js', 'utf8');
+        const jsAST = extractJavaScriptASTsFromJsFile('test/demo/demo.js', 'utf8');
 
         const expectedDemoAST = {
             type: 'Program',
@@ -407,7 +407,7 @@ describe("JS", function () {
             ],
             sourceType: 'script',
             loc: {start: {line: 1, column: 0}, end: {line: 26, column: 1}},
-            fileLocation: 'spec/demo/demo.js'
+            fileLocation: 'test/demo/demo.js'
         };
         expect(jsAST).toEqual(expectedDemoAST);
         JSON.stringify(jsAST, null, 4); // to debug
