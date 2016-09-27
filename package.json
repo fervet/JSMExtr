@@ -26,5 +26,10 @@
     "chai": "^3.5.0",
     "jasmine-node": "^1.14.5",
     "mocha": "^3.0.2"
+  },
+  "engineStrict" : true,
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.10.0"
   }
 }
