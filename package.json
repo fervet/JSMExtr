@@ -6,7 +6,7 @@
   "scripts": {
     "testx": "./node_modules/.bin/jasmine-node spec",
     "start": "node src/index.js",
-    "test": "./node_modules/.bin/mocha test/**/*Spec.js --reporter spec"
+    "test": "./node_modules/.bin/mocha test/**/*Test.js --reporter spec"
   },
   "repository": {
     "type": "git",
