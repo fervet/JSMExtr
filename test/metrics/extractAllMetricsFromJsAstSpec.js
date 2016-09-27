@@ -1,3 +1,5 @@
+const expect = require("chai").expect;
+
 const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
 const extractAllMetricsFromJsAst = require("../../src/metrics/extractAllMetricsFromJsAst");
 
@@ -22,8 +24,8 @@ const functionMetrics = {
 
 function testMetrics(functionName, expected) {
     it(`all metrics from ${functionName}`, () => {
-        expect(expected.functionName).toEqual(functionName);
-        expect(functionMetrics[functionName]).toEqual(expected);
+        expect(expected.functionName).to.deep.equal(functionName);
+        expect(functionMetrics[functionName]).to.deep.equal(expected);
     });
 }
 

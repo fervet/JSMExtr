@@ -1,3 +1,5 @@
+const expect = require("chai").expect;
+
 const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
 const extractAllMetricsFromJsAst = require("../../src/metrics/extractAllMetricsFromJsAst");
 const filterFunctionMetricsOnly = require("../../src/metrics/filterFunctionMetricsOnly");
@@ -8,7 +10,7 @@ const demoFileFullMetrics = extractAllMetricsFromJsAst(demoFileJsAST);
 describe("filterFunctionsMetrics", function () {
 
     it(`ast`, () => {
-        expect(demoFileFullMetrics).toEqual(
+        expect(demoFileFullMetrics).to.deep.equal(
             [{
                 _type: 'VariableDeclaration',
                 metrics: {declarationStmtCount: 3, executableStmtCount: 1, parametersCount: 2, callExpressionCount: 2},
@@ -125,7 +127,7 @@ describe("filterFunctionsMetrics", function () {
     it(`filtering`, () => {
         const functionMetricsOnly = filterFunctionMetricsOnly(demoFileFullMetrics);
 
-        expect(functionMetricsOnly).toEqual(
+        expect(functionMetricsOnly).to.deep.equal(
             [{
                 _type: 'FunctionExpression',
                 metrics: {parametersCount: 2, declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1},

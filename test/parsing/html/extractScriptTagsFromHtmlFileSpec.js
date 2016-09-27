@@ -1,3 +1,5 @@
+const expect = require("chai").expect;
+
 const extractScriptTagsFromHtmlFile = require("../../../src/parsing/html/extract-script-tags-from-html-file");
 
 describe("HTML", function () {
@@ -38,7 +40,7 @@ describe("HTML", function () {
             "startPos": {"line": 6, "column": 1, "offset": 114},
             "endPos": {"line": 6, "column": 28, "offset": 141}
         }];
-        expect(JSON.stringify(htmlAST, null, 4)).toEqual(JSON.stringify(expectedAST, null, 4));
+        expect(JSON.stringify(htmlAST, null, 4)).to.deep.equal(JSON.stringify(expectedAST, null, 4));
     });
 
 });

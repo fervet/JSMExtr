@@ -1,6 +1,8 @@
+const expect = require("chai").expect;
+
 const extractJavaScriptASTsFromHtmlFile = require("../../src/parsing/extract-js-asts-from-html-file");
 
-describe("HTML", function () {
+describe("extract JS AST from HTML file", function () {
 
     it("extract AST from HTML file", function () {
         const jsASTs = extractJavaScriptASTsFromHtmlFile('test/demo/demo.html', 'utf8');
@@ -80,7 +82,7 @@ describe("HTML", function () {
                 fileLocation : 'test/demo/demo.html?6:1-6:28'
             }
         ];
-        expect(jsASTs).toEqual(expectedDemoASTs);
+        expect(jsASTs).to.deep.equal(expectedDemoASTs);
         JSON.stringify(jsASTs, null, 4); // to debug
     });
 

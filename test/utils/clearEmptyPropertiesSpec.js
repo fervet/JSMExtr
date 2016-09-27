@@ -1,17 +1,19 @@
+const expect = require("chai").expect;
+
 const clearEmptyProperties = require("../../src/utils/clearEmptyProperties");
 
 
 function assertClear(name, input, expected) {
     it(name, function () {
         let r = clearEmptyProperties(input);
-        expect(r).toEqual(expected);
+        expect(r).to.deep.equal(expected);
     });
 }
 
 //noinspection JSUnusedLocalSymbols
 function xassertClear() {}
 
-describe("clear", function () {
+describe("clearEmptyProperties", function () {
 
     assertClear(
         "simple",
