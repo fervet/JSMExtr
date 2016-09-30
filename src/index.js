@@ -8,9 +8,9 @@ const rReadableMetrics = require("./r/r-readable-metrics");
 // const jsCodeFileWalker = require("../../src/dirwalking/jscodefilewalker");
 
 
-// const fileName = 'spec/demo/portal.html';
+// const fileName = 'test/demo/portal.html';
 // const jsASTs = extractJavaScriptASTsFromHtmlFile(fileName, 'utf8');
-const fileName = 'spec/demo/uolutils.js';
+const fileName = 'test/demo/uolutils.js';
 const jsASTs = extractJavaScriptASTsFromJsFile(fileName, 'utf8');
 const allMetrics = extractAllMetricsFromJsAst(jsASTs);
 
