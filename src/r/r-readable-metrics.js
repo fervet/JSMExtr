@@ -25,13 +25,13 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
             toPrint.functionName.push(fName + ' (expr)');
         }
         toPrint.fileLocation.push(f.loc);
-        toPrint.declarationStmtCount.push(f.metrics.declarationStmtCount || 0);
-        toPrint.executableStmtCount.push(f.metrics.executableStmtCount || 0);
-        toPrint.conditionalStmtCount.push(f.metrics.conditionalStmtCount || 0);
-        toPrint.loopingStmtCount.push(f.metrics.loopingStmtCount || 0);
-        toPrint.returnStmtCount.push(f.metrics.returnStmtCount || 0);
-        toPrint.parametersCount.push(f.metrics.parametersCount || 0);
-        toPrint.callExpressionCount.push(f.metrics.callExpressionCount || 0);
+        toPrint.declarationStmtCount.push((f.metrics && f.metrics.declarationStmtCount) || 0);
+        toPrint.executableStmtCount.push((f.metrics && f.metrics.executableStmtCount) || 0);
+        toPrint.conditionalStmtCount.push((f.metrics && f.metrics.conditionalStmtCount) || 0);
+        toPrint.loopingStmtCount.push((f.metrics && f.metrics.loopingStmtCount) || 0);
+        toPrint.returnStmtCount.push((f.metrics && f.metrics.returnStmtCount) || 0);
+        toPrint.parametersCount.push((f.metrics && f.metrics.parametersCount) || 0);
+        toPrint.callExpressionCount.push((f.metrics && f.metrics.callExpressionCount) || 0);
     });
 
     let fileContent = `js <-
