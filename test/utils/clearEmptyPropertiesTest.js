@@ -63,4 +63,12 @@ describe("clearEmptyProperties", function () {
         {jr: 1, x: [{www: [{zzz: [1]}]}]}
     );
 
+    class Stuff {}
+
+    assertClear(
+        "class",
+        {z: 1, cls: new Stuff()},
+        {z: 1}
+    );
+
 });

@@ -1,7 +1,8 @@
 const isObject = require("./isObject");
 
+//noinspection JSUnusedLocalSymbols
 function toS(obj) {
-    return JSON.stringify(obj, (key, value) => {if (value === undefined) return 'undef'; else return value; })
+    return JSON.stringify(obj, (key, value) => {if (value === undefined) return 'undef'; else return value; },2)
 }
 
 function clearEmptyProperties(obj) {
@@ -59,7 +60,7 @@ function cleanArray(array) {
 function isEmptyValue(value) {
     return value === undefined ||
         value === null ||
-        (isObject(value) && Object.keys(value).length === 0 && value.constructor === Object) || // === {}
+        (isObject(value) && Object.keys(value).length === 0) || // === {}
         (Array.isArray(value) && value.length === 0); // === [];
 }
 
