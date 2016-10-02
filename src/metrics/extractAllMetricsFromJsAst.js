@@ -82,14 +82,14 @@ class Program {
 
     static extractDetailsAndAddMetricsGeneral(node, metrics) {
         if (node === null || node === undefined) {
-            return undefined;
+            return {};
         }
         if (Array.isArray(node)) {
             return this.extractDetailsAndAddMetrics(node, metrics);
         }
         if (!isObject(node)) {
             // a token like operator:"=" or name:"stuff"
-            return undefined;
+            return {};
         }
         return this.extractDetailsAndAddMetricsForSingle(node, metrics);
     }
@@ -155,20 +155,6 @@ class Visitors {
     };
 
     //noinspection JSUnusedGlobalSymbols
-    static visitLiteral() {
-        return {
-            _type: 'Literal'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitIdentifier() {
-        return {
-            _type: 'Identifier'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
     static visitConditionalExpression() {
         return {
             _type: 'ConditionalExpression'
@@ -213,3 +199,5 @@ Visitors.visitUpdateExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitThisExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitTryStatement = Visitors.visitorWithoutMetrics;
 Visitors.visitCatchClause = Visitors.visitorWithoutMetrics;
+Visitors.visitIdentifier = Visitors.visitorWithoutMetrics;
+Visitors.visitLiteral = Visitors.visitorWithoutMetrics;

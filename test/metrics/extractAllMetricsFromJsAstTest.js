@@ -481,17 +481,15 @@ describe("extractAllMetricsFromJsAst", function () {
                                 },
                                 test: {
                                     _type: 'BinaryExpression',
-                                    metrics: {},
                                     detail: {
                                         left: {_type: 'Identifier'},
                                         right: {
                                             _type: 'MemberExpression',
-                                            metrics: {},
                                             detail: {object: {_type: 'Identifier'}, property: {_type: 'Identifier'}}
                                         }
                                     }
                                 },
-                                update: {_type: 'UpdateExpression', metrics: {}, detail: {argument: {_type: 'Identifier'}}},
+                                update: {_type: 'UpdateExpression', detail: {argument: {_type: 'Identifier'}}},
                                 body: {
                                     _type: 'BlockStatement',
                                     metrics: {executableStmtCount: 1},
@@ -502,17 +500,14 @@ describe("extractAllMetricsFromJsAst", function () {
                                             detail: {
                                                 expression: {
                                                     _type: 'AssignmentExpression',
-                                                    metrics: {},
                                                     detail: {
                                                         left: {_type: 'Identifier'},
                                                         right: {
                                                             _type: 'BinaryExpression',
-                                                            metrics: {},
                                                             detail: {
                                                                 left: {_type: 'Identifier'},
                                                                 right: {
                                                                     _type: 'MemberExpression',
-                                                                    metrics: {},
                                                                     detail: {object: {_type: 'Identifier'}, property: {_type: 'Identifier'}}
                                                                 }
                                                             }
