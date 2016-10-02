@@ -19,7 +19,8 @@ const functionMetrics = {
     f10_returnSimple: allMetrics[9],
     f11_returnCall: allMetrics[10],
     f12_declarationAndSumExpressionStatement: allMetrics[11],
-    f13_for: allMetrics[12]
+    f13_for: allMetrics[12],
+    f14_regex: allMetrics[13]
 };
 
 function testMetrics(functionName, expected) {
@@ -524,6 +525,46 @@ describe("extractAllMetricsFromJsAst", function () {
                 }
             },
             loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?41:0-45:1'
+        }
+    );
+
+    testMetrics(
+        'f14_regex',
+        {
+            _type: "FunctionDeclaration",
+            functionName: "f14_regex",
+            detail: {
+                body: {
+                    _type: "BlockStatement",
+                    detail: {
+                        body: [
+                            {
+                                _type: "ExpressionStatement",
+                                detail: {
+                                    expression: {
+                                        _type: "CallExpression",
+                                        detail: {
+                                            arguments: [{_type: "Identifier"}],
+                                            callee: {
+                                                _type: "MemberExpression",
+                                                detail: {
+                                                    object: {_type: "Literal"},
+                                                    property: {_type: "Identifier"}
+                                                }
+                                            }
+                                        },
+                                        metrics: {callExpressionCount: 1}
+                                    }
+                                },
+                                metrics: {callExpressionCount: 1, executableStmtCount: 1}
+                            }
+                        ]
+                    },
+                    metrics: {callExpressionCount: 1, executableStmtCount: 1}
+                }
+            },
+            loc: "test/metrics/extractAllMetricsFromJsAstDemo.js?46:0-48:1",
+            metrics: {callExpressionCount: 1, executableStmtCount: 1, parametersCount: 1}
         }
     );
 

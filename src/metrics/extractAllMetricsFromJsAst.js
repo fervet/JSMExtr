@@ -1,4 +1,5 @@
 const isObject = require("../utils/isObject");
+const isEmptyObject = require("../utils/isEmptyObject");
 const clearEmptyProperties = require("../utils/clearEmptyProperties");
 const Metrics = require("./Metrics");
 
@@ -61,15 +62,19 @@ class Program {
     static visit(astNode) {
         const visitorFunction = Visitors['visit'+astNode.type];
         if (!visitorFunction) {
-            throw new Error("Couldn't find visitor for type: " + astNode.type);
+            throw new Error("Couldn't find visitor for type: " + astNode.type + "\n"+JSON.stringify(astNode,null,4));
         }
         return visitorFunction(astNode);
     }
 
     static extractDetailsAndAddMetrics(statements, metrics) {
-        const statementsDetails = statements.map(statement => Program.visit(statement));
-        statementsDetails.forEach(stmtDetail => metrics.addMetrics(stmtDetail.metrics));
-        return statementsDetails;
+        try {
+            const statementsDetails = statements.map(statement => Program.visit(statement));
+            statementsDetails.forEach(stmtDetail => metrics.addMetrics(stmtDetail.metrics));
+            return statementsDetails;
+        } catch (e) {
+            throw new Error(`Error for statements:\n${JSON.stringify(statements, null, 2)}.\n\nError was: `+e);
+        }
     }
 
     static extractDetailsAndAddMetricsForSingle(stmt, metrics) {
@@ -81,7 +86,7 @@ class Program {
     }
 
     static extractDetailsAndAddMetricsGeneral(node, metrics) {
-        if (node === null || node === undefined) {
+        if (node === null || node === undefined || isEmptyObject(node)) {
             return {};
         }
         if (Array.isArray(node)) {
@@ -91,13 +96,20 @@ class Program {
             // a token like operator:"=" or name:"stuff"
             return {};
         }
+        if (!node.type) {
+            let details = {};
+            Object.keys(node).forEach(key => {
+                details[key] = this.extractDetailsAndAddMetricsGeneral(node[key], metrics);
+            });
+            return details;
+        }
         return this.extractDetailsAndAddMetricsForSingle(node, metrics);
     }
 
 }
 
-function loc(locableNode) {
-    return `${locableNode.loc.start.line}:${locableNode.loc.start.column}-${locableNode.loc.end.line}:${locableNode.loc.end.column}`
+function loc(locable) {
+    return `${locable.loc.start.line}:${locable.loc.start.column}-${locable.loc.end.line}:${locable.loc.end.column}`
 }
 
 class Visitors {
@@ -154,20 +166,6 @@ class Visitors {
         };
     };
 
-    //noinspection JSUnusedGlobalSymbols
-    static visitConditionalExpression() {
-        return {
-            _type: 'ConditionalExpression'
-        };
-    }
-
-    //noinspection JSUnusedGlobalSymbols
-    static visitLogicalExpression() {
-        return {
-            _type: 'LogicalExpression'
-        };
-    }
-
 }
 
 Visitors.visitBlockStatement = Visitors.visitorWithoutMetrics;
@@ -201,3 +199,5 @@ Visitors.visitTryStatement = Visitors.visitorWithoutMetrics;
 Visitors.visitCatchClause = Visitors.visitorWithoutMetrics;
 Visitors.visitIdentifier = Visitors.visitorWithoutMetrics;
 Visitors.visitLiteral = Visitors.visitorWithoutMetrics;
+Visitors.visitConditionalExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitLogicalExpression = Visitors.visitorWithoutMetrics;

@@ -43,6 +43,9 @@ function f13_for(myArray) {
         sum = sum + myArray[i];
     }
 }
+function f14_regex(str) {
+    /URI malformed/.test(str);
+}
 
 /*
 function all(first, second) {
