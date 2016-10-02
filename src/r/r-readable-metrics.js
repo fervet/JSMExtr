@@ -1,6 +1,7 @@
 // const functionMetrics = functionMetricsFromJsAST(jsASTs);
+const fs = require('fs');
 
-function rReadableMetrics(functionMetricsOnly) {
+function rReadableMetrics(functionMetricsOnly, fileName) {
     let toPrint = {
         functionName: [],
         fileLocation: [],
@@ -33,7 +34,7 @@ function rReadableMetrics(functionMetricsOnly) {
         toPrint.callExpressionCount.push(f.metrics.callExpressionCount || 0);
     });
 
-    return `js <-
+    let fileContent = `js <-
 structure(
 	list(
 		functionName = c("${toPrint.functionName.join('", "')}"),
@@ -52,6 +53,10 @@ structure(
 	class = "data.frame",
 	row.names = c(NA, ${toPrint.functionName.length}L)
 )`;
+
+    fs.writeFileSync(fileName, fileContent);
+
+    return fileContent;
 }
 
 module.exports = rReadableMetrics;
