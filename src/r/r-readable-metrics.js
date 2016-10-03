@@ -9,7 +9,7 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
         fileLocation: []
     };
 
-    Metrics.trackedMetrics.forEach(trackedMetric => {
+    Metrics.forEachTrackedMetric(trackedMetric => {
         toPrint[trackedMetric] = [];
     });
 
@@ -17,7 +17,7 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
         toPrint.functionName.push(extractFunctionName(f, toPrint.functionName.length));
         toPrint.fileLocation.push(f.loc);
 
-        Metrics.trackedMetrics.forEach(trackedMetric => {
+        Metrics.forEachTrackedMetric(trackedMetric => {
             let thisMetricsValueForCurrentFunction = (f.metrics && f.metrics[trackedMetric]) || 0;
             toPrint[trackedMetric].push(thisMetricsValueForCurrentFunction);
         });
@@ -26,12 +26,12 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
     let listsContent = `
         functionName = c("${toPrint.functionName.join('", "')}"),
         fileLocation = c("${toPrint.fileLocation.join('", "')}"),`;
-    Metrics.trackedMetrics.forEach(trackedMetric => {
+    Metrics.forEachTrackedMetric(trackedMetric => {
         listsContent += `\n\t\t${trackedMetric} = c(${toPrint[trackedMetric].join(", ")}),`;
     });
     listsContent = listsContent.slice(0, -1); // remove last comma
 
-    let metricsColumnNames = '"' + Metrics.trackedMetrics.join('", "') + '"';
+    let metricsColumnNames = '"' + Metrics.trackedMetricsAsStringArray().join('", "') + '"';
 
     let fileContent = `
 js <- structure(

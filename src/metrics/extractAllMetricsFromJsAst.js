@@ -116,7 +116,7 @@ class Visitors {
 
     //noinspection JSUnusedGlobalSymbols
     static visitFunctionDeclaration(functionDeclarationNode) {
-        const functionDeclarationMetrics = new Metrics({parametersCount: functionDeclarationNode.params.length});
+        const functionDeclarationMetrics = new Metrics({m: Metrics.parametersCount, c: functionDeclarationNode.params.length});
         return {
             _type: 'FunctionDeclaration',
             functionName: functionDeclarationNode.id.name,
@@ -130,7 +130,7 @@ class Visitors {
 
     //noinspection JSUnusedGlobalSymbols
     static visitFunctionExpression(functionExpressionNode) {
-        const functionExpressionMetrics = new Metrics({parametersCount: functionExpressionNode.params.length});
+        const functionExpressionMetrics = new Metrics({m: Metrics.parametersCount, c: functionExpressionNode.params.length});
         return {
             _type: 'FunctionExpression',
             functionName: (functionExpressionNode.id ? functionExpressionNode.id.name : undefined),
@@ -173,27 +173,27 @@ Visitors.visitAssignmentExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitBinaryExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitVariableDeclaration = Visitors.visitorWithoutMetrics;
 Visitors.visitMemberExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitCallExpression = Visitors.visitorWithMetrics({callExpressionCount: 1});
-Visitors.visitReturnStatement = Visitors.visitorWithMetrics({returnStmtCount: 1});
-Visitors.visitVariableDeclarator = Visitors.visitorWithMetrics({declarationStmtCount: 1});
-Visitors.visitExpressionStatement = Visitors.visitorWithMetrics({executableStmtCount: 1});
+Visitors.visitCallExpression = Visitors.visitorWithMetrics({m: Metrics.callExpressionCount, c: 1});
+Visitors.visitReturnStatement = Visitors.visitorWithMetrics({m: Metrics.returnStmtCount, c: 1});
+Visitors.visitVariableDeclarator = Visitors.visitorWithMetrics({m: Metrics.declarationStmtCount, c: 1});
+Visitors.visitExpressionStatement = Visitors.visitorWithMetrics({m: Metrics.executableStmtCount, c: 1});
 
 // LOOPs
-Visitors.visitForStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1});
-Visitors.visitWhileStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1}); // no test
-Visitors.visitForInStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1}); // no test
+Visitors.visitForStatement = Visitors.visitorWithMetrics({m: Metrics.loopingStmtCount, c: 1});
+Visitors.visitWhileStatement = Visitors.visitorWithMetrics({m: Metrics.loopingStmtCount, c: 1}); // no test
+Visitors.visitForInStatement = Visitors.visitorWithMetrics({m: Metrics.loopingStmtCount, c: 1}); // no test
 Visitors.visitBreakStatement = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitContinueStatement = Visitors.visitorWithoutMetrics; // no test
 
 // CONDITIONALs
-Visitors.visitIfStatement = Visitors.visitorWithMetrics({conditionalStmtCount: 1}); // no test
+Visitors.visitIfStatement = Visitors.visitorWithMetrics({m: Metrics.conditionalStmtCount, c: 1}); // no test
 Visitors.visitSwitchStatement = Visitors.visitorWithoutMetrics; // no test
-Visitors.visitSwitchCase = Visitors.visitorWithMetrics({conditionalStmtCount: 1}); // no test
-Visitors.visitConditionalExpression = Visitors.visitorWithMetrics({conditionalStmtCount: 1}); // no test
+Visitors.visitSwitchCase = Visitors.visitorWithMetrics({m: Metrics.conditionalStmtCount, c: 1}); // no test
+Visitors.visitConditionalExpression = Visitors.visitorWithMetrics({m: Metrics.conditionalStmtCount, c: 1}); // no test
 
 Visitors.visitLogicalExpression = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitUnaryExpression = Visitors.visitorWithoutMetrics; // no test
-Visitors.visitNewExpression = Visitors.visitorWithMetrics({newExpressionCount: 1}); // no test
+Visitors.visitNewExpression = Visitors.visitorWithMetrics({m: Metrics.newExpressionCount, c: 1}); // no test
 Visitors.visitObjectExpression = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitArrayExpression = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitProperty = Visitors.visitorWithoutMetrics; // no test

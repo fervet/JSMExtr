@@ -9,23 +9,15 @@
  Maximum nesting level of control constructs (Nest) -------------- WONTFIX
  */
 
-const trackedMetrics = [
-    'declarationStmtCount',
-    'executableStmtCount',
-    'conditionalStmtCount',
-    'loopingStmtCount',
-    'returnStmtCount',
-    'parametersCount',
-    'callExpressionCount',
-    'newExpressionCount'
-];
-
 class Metrics {
-    constructor(options = {}) {
-        trackedMetrics.forEach(trackedMetric => {
-            if (options[trackedMetric]) {
-                this[trackedMetric] = options[trackedMetric];
-            }
+    constructor(...metrics) {
+        Metrics.forEachTrackedMetric(trackedMetric => {
+            metrics.forEach(({m: metricName, c: metricCount}) => {
+                if (metricName === trackedMetric && metricCount) {
+                    this[trackedMetric] = metricCount;
+                }
+            });
+
         });
     }
 
@@ -33,14 +25,31 @@ class Metrics {
         if (!otherMetrics) {
             return;
         }
-        trackedMetrics.forEach(trackedMetric => {
+        Metrics.forEachTrackedMetric(trackedMetric => {
             if (otherMetrics[trackedMetric]) {
                 let currentMetricValue = this[trackedMetric] || 0;
                 this[trackedMetric] = currentMetricValue + otherMetrics[trackedMetric];
             }
         });
     }
+
+    static trackedMetrics() {
+        return Object.keys(Metrics);
+    }
+    static forEachTrackedMetric(f) {
+        Metrics.trackedMetrics().forEach(f);
+    }
+    static trackedMetricsAsStringArray() {
+        return Metrics.trackedMetrics();
+    }
 }
-Metrics.trackedMetrics = trackedMetrics;
+Metrics.declarationStmtCount = 'declarationStmtCount';
+Metrics.executableStmtCount = 'executableStmtCount';
+Metrics.conditionalStmtCount = 'conditionalStmtCount';
+Metrics.loopingStmtCount = 'loopingStmtCount';
+Metrics.returnStmtCount = 'returnStmtCount';
+Metrics.parametersCount = 'parametersCount';
+Metrics.callExpressionCount = 'callExpressionCount';
+Metrics.newExpressionCount = 'newExpressionCount';
 
 module.exports = Metrics;
