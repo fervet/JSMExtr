@@ -29,7 +29,7 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
     Metrics.trackedMetrics.forEach(trackedMetric => {
         listsContent += `\n\t\t${trackedMetric} = c(${toPrint[trackedMetric].join(", ")}),`;
     });
-    listsContent = listsContent.substring(0, listsContent.length-1); // remove last comma
+    listsContent = listsContent.slice(0, -1); // remove last comma
 
     let metricsColumnNames = '"' + Metrics.trackedMetrics.join('", "') + '"';
 
