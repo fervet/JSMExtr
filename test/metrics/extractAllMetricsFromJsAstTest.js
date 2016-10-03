@@ -20,7 +20,8 @@ const functionMetrics = {
     f11_returnCall: allMetrics[10],
     f12_declarationAndSumExpressionStatement: allMetrics[11],
     f13_for: allMetrics[12],
-    f14_regex: allMetrics[13]
+    f14_regex: allMetrics[13],
+    f15_member_acess: allMetrics[14]
 };
 
 function testMetrics(functionName, expected) {
@@ -41,16 +42,16 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f1_singleEmptyDeclaration',
-            metrics: {declarationStmtCount: 1},
+            metrics: {declarationStmts: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 1},
+                    metrics: {declarationStmts: 1},
                     detail: {
                         body: [{
                             _type: 'VariableDeclaration',
-                            metrics: {declarationStmtCount: 1},
-                            detail: {declarations: [{_type: 'VariableDeclarator', metrics: {declarationStmtCount: 1}, detail: {id: {_type: 'Identifier'}}}]}
+                            metrics: {declarationStmts: 1},
+                            detail: {declarations: [{_type: 'VariableDeclarator', metrics: {declarationStmts: 1}, detail: {id: {_type: 'Identifier'}}}]}
                         }]
                     }
                 }
@@ -64,21 +65,21 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f2_multipleEmptyDeclarations',
-            metrics: {declarationStmtCount: 2},
+            metrics: {declarationStmts: 2},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 2},
+                    metrics: {declarationStmts: 2},
                     detail: {
                         body: [{
                             _type: 'VariableDeclaration',
-                            metrics: {declarationStmtCount: 2},
+                            metrics: {declarationStmts: 2},
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    metrics: {declarationStmtCount: 1},
+                                    metrics: {declarationStmts: 1},
                                     detail: {id: {_type: 'Identifier'}}
-                                }, {_type: 'VariableDeclarator', metrics: {declarationStmtCount: 1}, detail: {id: {_type: 'Identifier'}}}]
+                                }, {_type: 'VariableDeclarator', metrics: {declarationStmts: 1}, detail: {id: {_type: 'Identifier'}}}]
                             }
                         }]
                     }
@@ -93,19 +94,19 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f3_singleInitLiteralDeclaration',
-            metrics: {declarationStmtCount: 1},
+            metrics: {declarationStmts: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 1},
+                    metrics: {declarationStmts: 1},
                     detail: {
                         body: [{
                             _type: 'VariableDeclaration',
-                            metrics: {declarationStmtCount: 1},
+                            metrics: {declarationStmts: 1},
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    metrics: {declarationStmtCount: 1},
+                                    metrics: {declarationStmts: 1},
                                     detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                 }]
                             }
@@ -122,24 +123,24 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f4_singleInitCallDeclaration',
-            metrics: {declarationStmtCount: 1, callExpressionCount: 1},
+            metrics: {declarationStmts: 1, callExprs: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 1, callExpressionCount: 1},
+                    metrics: {declarationStmts: 1, callExprs: 1},
                     detail: {
                         body: [{
                             _type: 'VariableDeclaration',
-                            metrics: {declarationStmtCount: 1, callExpressionCount: 1},
+                            metrics: {declarationStmts: 1, callExprs: 1},
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    metrics: {declarationStmtCount: 1, callExpressionCount: 1},
+                                    metrics: {declarationStmts: 1, callExprs: 1},
                                     detail: {
                                         id: {_type: 'Identifier'},
                                         init: {
                                             _type: 'CallExpression',
-                                            metrics: {callExpressionCount: 1},
+                                            metrics: {callExprs: 1},
                                             detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
                                         }
                                     }
@@ -158,16 +159,16 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f5_callNoArgs',
-            metrics: {executableStmtCount: 1, callExpressionCount: 1},
+            metrics: {executableStmts: 1, callExprs: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                    metrics: {executableStmts: 1, callExprs: 1},
                     detail: {
                         body: [{
                             _type: 'ExpressionStatement',
-                            metrics: {executableStmtCount: 1, callExpressionCount: 1},
-                            detail: {expression: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}}
+                            metrics: {executableStmts: 1, callExprs: 1},
+                            detail: {expression: {_type: 'CallExpression', metrics: {callExprs: 1}, detail: {callee: {_type: 'Identifier'}}}}
                         }]
                     }
                 }
@@ -181,19 +182,19 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f6_callLiteralArgs',
-            metrics: {executableStmtCount: 1, callExpressionCount: 1},
+            metrics: {executableStmts: 1, callExprs: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                    metrics: {executableStmts: 1, callExprs: 1},
                     detail: {
                         body: [{
                             _type: 'ExpressionStatement',
-                            metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                            metrics: {executableStmts: 1, callExprs: 1},
                             detail: {
                                 expression: {
                                     _type: 'CallExpression',
-                                    metrics: {callExpressionCount: 1},
+                                    metrics: {callExprs: 1},
                                     detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
                                 }
                             }
@@ -210,22 +211,22 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f7_callCallArgs',
-            metrics: {executableStmtCount: 1, callExpressionCount: 2},
+            metrics: {executableStmts: 1, callExprs: 2},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {executableStmtCount: 1, callExpressionCount: 2},
+                    metrics: {executableStmts: 1, callExprs: 2},
                     detail: {
                         body: [{
                             _type: 'ExpressionStatement',
-                            metrics: {executableStmtCount: 1, callExpressionCount: 2},
+                            metrics: {executableStmts: 1, callExprs: 2},
                             detail: {
                                 expression: {
                                     _type: 'CallExpression',
-                                    metrics: {callExpressionCount: 2},
+                                    metrics: {callExprs: 2},
                                     detail: {
                                         callee: {_type: 'Identifier'},
-                                        arguments: [{_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}]
+                                        arguments: [{_type: 'CallExpression', metrics: {callExprs: 1}, detail: {callee: {_type: 'Identifier'}}}]
                                     }
                                 }
                             }
@@ -242,52 +243,52 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f8_callCallCallCallArgs',
-            metrics: {executableStmtCount: 1, callExpressionCount: 7},
+            metrics: {executableStmts: 1, callExprs: 7, memberExprs: 2},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {executableStmtCount: 1, callExpressionCount: 7},
+                    metrics: {executableStmts: 1, callExprs: 7, memberExprs: 2},
                     detail: {
                         body: [{
                             _type: 'ExpressionStatement',
-                            metrics: {executableStmtCount: 1, callExpressionCount: 7},
+                            metrics: {executableStmts: 1, callExprs: 7, memberExprs: 2},
                             detail: {
                                 expression: {
                                     _type: 'CallExpression',
-                                    metrics: {callExpressionCount: 7},
+                                    metrics: {callExprs: 7, memberExprs: 2},
                                     detail: {
                                         callee: {
                                             _type: 'MemberExpression',
-                                            metrics: {callExpressionCount: 2},
+                                            metrics: {callExprs: 2, memberExprs: 1},
                                             detail: {
                                                 object: {
                                                     _type: 'CallExpression',
-                                                    metrics: {callExpressionCount: 1},
+                                                    metrics: {callExprs: 1},
                                                     detail: {callee: {_type: 'Identifier'}}
                                                 },
-                                                property: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
+                                                property: {_type: 'CallExpression', metrics: {callExprs: 1}, detail: {callee: {_type: 'Identifier'}}}
                                             }
                                         },
                                         arguments: [{
                                             _type: 'CallExpression',
-                                            metrics: {callExpressionCount: 1},
+                                            metrics: {callExprs: 1},
                                             detail: {callee: {_type: 'Identifier'}}
                                         }, {
                                             _type: 'CallExpression',
-                                            metrics: {callExpressionCount: 3},
+                                            metrics: {callExprs: 3, memberExprs: 1},
                                             detail: {
                                                 callee: {_type: 'Identifier'},
                                                 arguments: [{_type: 'Literal'}, {
                                                     _type: 'CallExpression',
-                                                    metrics: {callExpressionCount: 2},
+                                                    metrics: {callExprs: 2, memberExprs: 1},
                                                     detail: {
                                                         callee: {
                                                             _type: 'MemberExpression',
-                                                            metrics: {callExpressionCount: 1},
+                                                            metrics: {callExprs: 1, memberExprs: 1},
                                                             detail: {
                                                                 object: {
                                                                     _type: 'CallExpression',
-                                                                    metrics: {callExpressionCount: 1},
+                                                                    metrics: {callExprs: 1},
                                                                     detail: {callee: {_type: 'Identifier'}, arguments: [{_type: 'Literal'}]}
                                                                 }, property: {_type: 'Identifier'}
                                                             }
@@ -312,35 +313,35 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f9_iife',
-            metrics: {declarationStmtCount: 1, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+            metrics: {declarationStmts: 1, executableStmts: 1, parametersCount: 1, callExprs: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 1, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                    metrics: {declarationStmts: 1, executableStmts: 1, parametersCount: 1, callExprs: 1},
                     detail: {
                         body: [{
                             _type: 'ExpressionStatement',
-                            metrics: {executableStmtCount: 1, declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                            metrics: {executableStmts: 1, declarationStmts: 1, parametersCount: 1, callExprs: 1},
                             detail: {
                                 expression: {
                                     _type: 'CallExpression',
-                                    metrics: {callExpressionCount: 1, declarationStmtCount: 1, parametersCount: 1},
+                                    metrics: {callExprs: 1, declarationStmts: 1, parametersCount: 1},
                                     detail: {
                                         callee: {
                                             _type: 'FunctionExpression',
-                                            metrics: {parametersCount: 1, declarationStmtCount: 1},
+                                            metrics: {parametersCount: 1, declarationStmts: 1},
                                             detail: {
                                                 body: {
                                                     _type: 'BlockStatement',
-                                                    metrics: {declarationStmtCount: 1},
+                                                    metrics: {declarationStmts: 1},
                                                     detail: {
                                                         body: [{
                                                             _type: 'VariableDeclaration',
-                                                            metrics: {declarationStmtCount: 1},
+                                                            metrics: {declarationStmts: 1},
                                                             detail: {
                                                                 declarations: [{
                                                                     _type: 'VariableDeclarator',
-                                                                    metrics: {declarationStmtCount: 1},
+                                                                    metrics: {declarationStmts: 1},
                                                                     detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                                                 }]
                                                             }
@@ -366,12 +367,12 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f10_returnSimple',
-            metrics: {returnStmtCount: 1},
+            metrics: {returnStmts: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {returnStmtCount: 1},
-                    detail: {body: [{_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Literal'}}}]}
+                    metrics: {returnStmts: 1},
+                    detail: {body: [{_type: 'ReturnStatement', metrics: {returnStmts: 1}, detail: {argument: {_type: 'Literal'}}}]}
                 }
             },
             loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?30:0-32:1'
@@ -383,16 +384,16 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f11_returnCall',
-            metrics: {returnStmtCount: 1, callExpressionCount: 1},
+            metrics: {returnStmts: 1, callExprs: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {returnStmtCount: 1, callExpressionCount: 1},
+                    metrics: {returnStmts: 1, callExprs: 1},
                     detail: {
                         body: [{
                             _type: 'ReturnStatement',
-                            metrics: {returnStmtCount: 1, callExpressionCount: 1},
-                            detail: {argument: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}}
+                            metrics: {returnStmts: 1, callExprs: 1},
+                            detail: {argument: {_type: 'CallExpression', metrics: {callExprs: 1}, detail: {callee: {_type: 'Identifier'}}}}
                         }]
                     }
                 }
@@ -406,43 +407,43 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f12_declarationAndSumExpressionStatement',
-            metrics: {declarationStmtCount: 2, executableStmtCount: 1, returnStmtCount: 1, callExpressionCount: 1},
+            metrics: {declarationStmts: 2, executableStmts: 1, returnStmts: 1, callExprs: 1, assignmentExprs: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1, returnStmtCount: 1},
+                    metrics: {declarationStmts: 2, executableStmts: 1, callExprs: 1, returnStmts: 1, assignmentExprs: 1},
                     detail: {
                         body: [{
                             _type: 'VariableDeclaration',
-                            metrics: {declarationStmtCount: 2},
+                            metrics: {declarationStmts: 2},
                             detail: {
                                 declarations: [{
                                     _type: 'VariableDeclarator',
-                                    metrics: {declarationStmtCount: 1},
+                                    metrics: {declarationStmts: 1},
                                     detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
-                                }, {_type: 'VariableDeclarator', metrics: {declarationStmtCount: 1}, detail: {id: {_type: 'Identifier'}}}]
+                                }, {_type: 'VariableDeclarator', metrics: {declarationStmts: 1}, detail: {id: {_type: 'Identifier'}}}]
                             }
                         }, {
                             _type: 'ExpressionStatement',
-                            metrics: {executableStmtCount: 1, callExpressionCount: 1},
+                            metrics: {executableStmts: 1, callExprs: 1, assignmentExprs: 1},
                             detail: {
                                 expression: {
                                     _type: 'AssignmentExpression',
-                                    metrics: {callExpressionCount: 1},
+                                    metrics: {callExprs: 1, assignmentExprs: 1},
                                     detail: {
                                         left: {_type: 'Identifier'},
                                         right: {
                                             _type: 'BinaryExpression',
-                                            metrics: {callExpressionCount: 1},
+                                            metrics: {callExprs: 1},
                                             detail: {
                                                 left: {_type: 'Identifier'},
-                                                right: {_type: 'CallExpression', metrics: {callExpressionCount: 1}, detail: {callee: {_type: 'Identifier'}}}
+                                                right: {_type: 'CallExpression', metrics: {callExprs: 1}, detail: {callee: {_type: 'Identifier'}}}
                                             }
                                         }
                                     }
                                 }
                             }
-                        }, {_type: 'ReturnStatement', metrics: {returnStmtCount: 1}, detail: {argument: {_type: 'Identifier'}}}]
+                        }, {_type: 'ReturnStatement', metrics: {returnStmts: 1}, detail: {argument: {_type: 'Identifier'}}}]
                     }
                 }
             },
@@ -455,37 +456,39 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f13_for',
-            metrics: {parametersCount: 1, declarationStmtCount: 2, executableStmtCount: 1, loopingStmtCount: 1},
+            metrics: {parametersCount: 1, declarationStmts: 2, executableStmts: 1, loopStmts: 1, assignmentExprs: 1, memberExprs: 2},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 2, executableStmtCount: 1, loopingStmtCount: 1},
+                    metrics: {declarationStmts: 2, executableStmts: 1, loopStmts: 1, assignmentExprs: 1, memberExprs: 2},
                     detail: {
                         body: [{
                             _type: 'ForStatement',
-                            metrics: {declarationStmtCount: 2, executableStmtCount: 1, loopingStmtCount: 1},
+                            metrics: {declarationStmts: 2, executableStmts: 1, loopStmts: 1, assignmentExprs: 1, memberExprs: 2},
                             detail: {
                                 init: {
                                     _type: 'VariableDeclaration',
-                                    metrics: {declarationStmtCount: 2},
+                                    metrics: {declarationStmts: 2},
                                     detail: {
                                         declarations: [{
                                             _type: 'VariableDeclarator',
-                                            metrics: {declarationStmtCount: 1},
+                                            metrics: {declarationStmts: 1},
                                             detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                         }, {
                                             _type: 'VariableDeclarator',
-                                            metrics: {declarationStmtCount: 1},
+                                            metrics: {declarationStmts: 1},
                                             detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                         }]
                                     }
                                 },
                                 test: {
                                     _type: 'BinaryExpression',
+                                    metrics: {memberExprs: 1},
                                     detail: {
                                         left: {_type: 'Identifier'},
                                         right: {
                                             _type: 'MemberExpression',
+                                            metrics: {memberExprs: 1},
                                             detail: {object: {_type: 'Identifier'}, property: {_type: 'Identifier'}}
                                         }
                                     }
@@ -493,22 +496,25 @@ describe("extractAllMetricsFromJsAst", function () {
                                 update: {_type: 'UpdateExpression', detail: {argument: {_type: 'Identifier'}}},
                                 body: {
                                     _type: 'BlockStatement',
-                                    metrics: {executableStmtCount: 1},
+                                    metrics: {executableStmts: 1, assignmentExprs: 1, memberExprs: 1},
                                     detail: {
                                         body: [{
                                             _type: 'ExpressionStatement',
-                                            metrics: {executableStmtCount: 1},
+                                            metrics: {executableStmts: 1, assignmentExprs: 1, memberExprs: 1},
                                             detail: {
                                                 expression: {
                                                     _type: 'AssignmentExpression',
+                                                    metrics: {assignmentExprs: 1, memberExprs: 1},
                                                     detail: {
                                                         left: {_type: 'Identifier'},
                                                         right: {
                                                             _type: 'BinaryExpression',
+                                                            metrics: {memberExprs: 1},
                                                             detail: {
                                                                 left: {_type: 'Identifier'},
                                                                 right: {
                                                                     _type: 'MemberExpression',
+                                                                    metrics: {memberExprs: 1},
                                                                     detail: {object: {_type: 'Identifier'}, property: {_type: 'Identifier'}}
                                                                 }
                                                             }
@@ -547,24 +553,74 @@ describe("extractAllMetricsFromJsAst", function () {
                                             arguments: [{_type: "Identifier"}],
                                             callee: {
                                                 _type: "MemberExpression",
+                                                metrics: {memberExprs: 1},
                                                 detail: {
                                                     object: {_type: "Literal"},
                                                     property: {_type: "Identifier"}
                                                 }
                                             }
                                         },
-                                        metrics: {callExpressionCount: 1}
+                                        metrics: {callExprs: 1, memberExprs: 1}
                                     }
                                 },
-                                metrics: {callExpressionCount: 1, executableStmtCount: 1}
+                                metrics: {callExprs: 1, executableStmts: 1, memberExprs: 1}
                             }
                         ]
                     },
-                    metrics: {callExpressionCount: 1, executableStmtCount: 1}
+                    metrics: {callExprs: 1, executableStmts: 1, memberExprs: 1}
                 }
             },
             loc: "test/metrics/extractAllMetricsFromJsAstDemo.js?46:0-48:1",
-            metrics: {callExpressionCount: 1, executableStmtCount: 1, parametersCount: 1}
+            metrics: {callExprs: 1, executableStmts: 1, parametersCount: 1, memberExprs: 1}
+        }
+    );
+
+    testMetrics(
+        'f15_member_acess',
+        {
+            _type: "FunctionDeclaration",
+            detail: {
+                body: {
+                    _type: "BlockStatement",
+                    detail: {
+                        body: [
+                            {
+                                _type: "ReturnStatement",
+                                detail: {
+                                    argument: {
+                                        _type: "MemberExpression",
+                                        detail: {
+                                            object: {
+                                                _type: "Identifier"
+                                            },
+                                            property: {
+                                                _type: "Identifier"
+                                            }
+                                        },
+                                        metrics: {
+                                            memberExprs: 1
+                                        }
+                                    }
+                                },
+                                metrics: {
+                                    memberExprs: 1,
+                                    returnStmts: 1
+                                }
+                            }
+                        ]
+                    },
+                    metrics: {
+                        memberExprs: 1,
+                        returnStmts: 1
+                    }
+                }
+            },
+            functionName: "f15_member_acess",
+            loc: "test/metrics/extractAllMetricsFromJsAstDemo.js?49:0-51:1",
+            metrics: {
+                memberExprs: 1,
+                returnStmts: 1
+            }
         }
     );
 

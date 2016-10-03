@@ -13,41 +13,41 @@ describe("filterFunctionsMetrics", function () {
         expect(demoFileFullMetrics).to.deep.equal(
             [{
                 _type: 'VariableDeclaration',
-                metrics: {declarationStmtCount: 3, executableStmtCount: 1, parametersCount: 2, callExpressionCount: 2},
+                metrics: {declarationStmts: 3, executableStmts: 1, parametersCount: 2, callExprs: 2},
                 detail: {
                     declarations: [{
                         _type: 'VariableDeclarator',
-                        metrics: {declarationStmtCount: 3, executableStmtCount: 1, parametersCount: 2, callExpressionCount: 2},
+                        metrics: {declarationStmts: 3, executableStmts: 1, parametersCount: 2, callExprs: 2},
                         detail: {
                             id: {_type: 'Identifier'},
                             init: {
                                 _type: 'CallExpression',
-                                metrics: {callExpressionCount: 2, declarationStmtCount: 2, executableStmtCount: 1, parametersCount: 2},
+                                metrics: {callExprs: 2, declarationStmts: 2, executableStmts: 1, parametersCount: 2},
                                 detail: {
                                     callee: {
                                         _type: 'FunctionExpression',
-                                        metrics: {parametersCount: 2, declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1},
+                                        metrics: {parametersCount: 2, declarationStmts: 2, executableStmts: 1, callExprs: 1},
                                         detail: {
                                             body: {
                                                 _type: 'BlockStatement',
-                                                metrics: {declarationStmtCount: 2, executableStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                                                metrics: {declarationStmts: 2, executableStmts: 1, parametersCount: 1, callExprs: 1},
                                                 detail: {
                                                     body: [{
                                                         _type: 'FunctionDeclaration',
                                                         functionName: 'aaa',
-                                                        metrics: {declarationStmtCount: 1},
+                                                        metrics: {declarationStmts: 1},
                                                         detail: {
                                                             body: {
                                                                 _type: 'BlockStatement',
-                                                                metrics: {declarationStmtCount: 1},
+                                                                metrics: {declarationStmts: 1},
                                                                 detail: {
                                                                     body: [{
                                                                         _type: 'VariableDeclaration',
-                                                                        metrics: {declarationStmtCount: 1},
+                                                                        metrics: {declarationStmts: 1},
                                                                         detail: {
                                                                             declarations: [{
                                                                                 _type: 'VariableDeclarator',
-                                                                                metrics: {declarationStmtCount: 1},
+                                                                                metrics: {declarationStmts: 1},
                                                                                 detail: {id: {_type: 'Identifier'}, init: {_type: 'Literal'}}
                                                                             }]
                                                                         }
@@ -58,37 +58,37 @@ describe("filterFunctionsMetrics", function () {
                                                         loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?2:4-4:5'
                                                     }, {
                                                         _type: 'ExpressionStatement',
-                                                        metrics: {executableStmtCount: 1, declarationStmtCount: 1, parametersCount: 1, callExpressionCount: 1},
+                                                        metrics: {executableStmts: 1, declarationStmts: 1, parametersCount: 1, callExprs: 1},
                                                         detail: {
                                                             expression: {
                                                                 _type: 'CallExpression',
-                                                                metrics: {callExpressionCount: 1, declarationStmtCount: 1, parametersCount: 1},
+                                                                metrics: {callExprs: 1, declarationStmts: 1, parametersCount: 1},
                                                                 detail: {
                                                                     callee: {
                                                                         _type: 'FunctionExpression',
                                                                         functionName: 'yyy',
-                                                                        metrics: {parametersCount: 1, declarationStmtCount: 1},
+                                                                        metrics: {parametersCount: 1, declarationStmts: 1},
                                                                         detail: {
                                                                             body: {
                                                                                 _type: 'BlockStatement',
-                                                                                metrics: {declarationStmtCount: 1},
+                                                                                metrics: {declarationStmts: 1},
                                                                                 detail: {
                                                                                     body: [{
                                                                                         _type: 'FunctionDeclaration',
                                                                                         functionName: 'bbb',
-                                                                                        metrics: {declarationStmtCount: 1},
+                                                                                        metrics: {declarationStmts: 1},
                                                                                         detail: {
                                                                                             body: {
                                                                                                 _type: 'BlockStatement',
-                                                                                                metrics: {declarationStmtCount: 1},
+                                                                                                metrics: {declarationStmts: 1},
                                                                                                 detail: {
                                                                                                     body: [{
                                                                                                         _type: 'VariableDeclaration',
-                                                                                                        metrics: {declarationStmtCount: 1},
+                                                                                                        metrics: {declarationStmts: 1},
                                                                                                         detail: {
                                                                                                             declarations: [{
                                                                                                                 _type: 'VariableDeclarator',
-                                                                                                                metrics: {declarationStmtCount: 1},
+                                                                                                                metrics: {declarationStmts: 1},
                                                                                                                 detail: {
                                                                                                                     id: {_type: 'Identifier'},
                                                                                                                     init: {_type: 'Literal'}
@@ -130,22 +130,22 @@ describe("filterFunctionsMetrics", function () {
         expect(functionMetricsOnly).to.deep.equal(
             [{
                 _type: 'FunctionExpression',
-                metrics: {parametersCount: 2, declarationStmtCount: 2, executableStmtCount: 1, callExpressionCount: 1},
+                metrics: {parametersCount: 2, declarationStmts: 2, executableStmts: 1, callExprs: 1},
                 loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?1:9-10:1'
             }, {
                 _type: 'FunctionExpression',
                 functionName: 'yyy',
-                metrics: {parametersCount: 1, declarationStmtCount: 1},
+                metrics: {parametersCount: 1, declarationStmts: 1},
                 loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?5:5-9:5'
             }, {
                 _type: 'FunctionDeclaration',
                 functionName: 'bbb',
-                metrics: {declarationStmtCount: 1},
+                metrics: {declarationStmts: 1},
                 loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?6:8-8:9'
             }, {
                 _type: 'FunctionDeclaration',
                 functionName: 'aaa',
-                metrics: {declarationStmtCount: 1},
+                metrics: {declarationStmts: 1},
                 loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?2:4-4:5'
             }]
         );

@@ -52,5 +52,6 @@ Metrics.parametersCount = 'parametersCount';
 Metrics.callExprs = 'callExprs';
 Metrics.newExprs = 'newExprs';
 Metrics.assignmentExprs = 'assignmentExprs';
+Metrics.memberExprs = 'memberExprs';
 
 module.exports = Metrics;

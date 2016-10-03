@@ -46,6 +46,9 @@ function f13_for(myArray) {
 function f14_regex(str) {
     /URI malformed/.test(str);
 }
+function f15_member_acess() {
+    return stuff.member;
+}
 
 /*
 function all(first, second) {
