@@ -51,5 +51,6 @@ Metrics.returnStmtCount = 'returnStmtCount';
 Metrics.parametersCount = 'parametersCount';
 Metrics.callExpressionCount = 'callExpressionCount';
 Metrics.newExpressionCount = 'newExpressionCount';
+Metrics.assignmentExpressions = 'assignmentExpressions';
 
 module.exports = Metrics;

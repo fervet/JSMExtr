@@ -169,7 +169,7 @@ class Visitors {
 }
 
 Visitors.visitBlockStatement = Visitors.visitorWithoutMetrics;
-Visitors.visitAssignmentExpression = Visitors.visitorWithoutMetrics;
+Visitors.visitAssignmentExpression = Visitors.visitorWithMetrics({m: Metrics.assignmentExpressions, c: 1});
 Visitors.visitBinaryExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitVariableDeclaration = Visitors.visitorWithoutMetrics;
 Visitors.visitMemberExpression = Visitors.visitorWithoutMetrics;
