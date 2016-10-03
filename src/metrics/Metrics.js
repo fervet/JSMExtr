@@ -43,14 +43,14 @@ class Metrics {
         return Metrics.trackedMetrics();
     }
 }
-Metrics.declarationStmtCount = 'declarationStmtCount';
-Metrics.executableStmtCount = 'executableStmtCount';
-Metrics.conditionalStmtCount = 'conditionalStmtCount';
-Metrics.loopingStmtCount = 'loopingStmtCount';
-Metrics.returnStmtCount = 'returnStmtCount';
+Metrics.declarationStmts = 'declarationStmts';
+Metrics.executableStmts = 'executableStmts';
+Metrics.conditionalStmts = 'conditionalStmts';
+Metrics.loopStmts = 'loopStmts';
+Metrics.returnStmts = 'returnStmts';
 Metrics.parametersCount = 'parametersCount';
-Metrics.callExpressionCount = 'callExpressionCount';
-Metrics.newExpressionCount = 'newExpressionCount';
-Metrics.assignmentExpressions = 'assignmentExpressions';
+Metrics.callExprs = 'callExprs';
+Metrics.newExprs = 'newExprs';
+Metrics.assignmentExprs = 'assignmentExprs';
 
 module.exports = Metrics;
