@@ -8,43 +8,39 @@
  Number of called functions (Call) ------------------------------- DONE
  Maximum nesting level of control constructs (Nest) -------------- WONTFIX
  */
+
+const trackedMetrics = [
+    'declarationStmtCount',
+    'executableStmtCount',
+    'conditionalStmtCount',
+    'loopingStmtCount',
+    'returnStmtCount',
+    'parametersCount',
+    'callExpressionCount',
+    'newExpressionCount'
+];
+
 class Metrics {
-    constructor({
-        declarationStmtCount = 0,
-        executableStmtCount = 0,
-        conditionalStmtCount = 0,
-        loopingStmtCount = 0,
-        returnStmtCount = 0,
-        parametersCount = 0,
-        callExpressionCount = 0,
-        newExpressionCount = 0,
-    } = {}) {
-        if (declarationStmtCount) this.declarationStmtCount = declarationStmtCount;
-        if (executableStmtCount) this.executableStmtCount = executableStmtCount;
-        if (conditionalStmtCount) this.conditionalStmtCount = conditionalStmtCount;
-        if (loopingStmtCount) this.loopingStmtCount = loopingStmtCount;
-        if (returnStmtCount) this.returnStmtCount = returnStmtCount;
-        if (parametersCount) this.parametersCount = parametersCount;
-        if (callExpressionCount) this.callExpressionCount = callExpressionCount;
-        if (newExpressionCount) this.newExpressionCount = newExpressionCount;
+    constructor(options = {}) {
+        trackedMetrics.forEach(trackedMetric => {
+            if (options[trackedMetric]) {
+                this[trackedMetric] = options[trackedMetric];
+            }
+        });
     }
 
     addMetrics(otherMetrics) {
-        this.add('declarationStmtCount', otherMetrics);
-        this.add('executableStmtCount', otherMetrics);
-        this.add('conditionalStmtCount', otherMetrics);
-        this.add('loopingStmtCount', otherMetrics);
-        this.add('returnStmtCount', otherMetrics);
-        this.add('parametersCount', otherMetrics);
-        this.add('callExpressionCount', otherMetrics);
-        this.add('newExpressionCount', otherMetrics);
-    }
-
-    add(propName, otherMetrics) {
-        if (otherMetrics && otherMetrics[propName]) {
-            this[propName] = (this[propName] || 0) + otherMetrics[propName];
+        if (!otherMetrics) {
+            return;
         }
+        trackedMetrics.forEach(trackedMetric => {
+            if (otherMetrics[trackedMetric]) {
+                let currentMetricValue = this[trackedMetric] || 0;
+                this[trackedMetric] = currentMetricValue + otherMetrics[trackedMetric];
+            }
+        });
     }
 }
+Metrics.trackedMetrics = trackedMetrics;
 
 module.exports = Metrics;
