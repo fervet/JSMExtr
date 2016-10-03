@@ -11,7 +11,8 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
         loopingStmtCount: [],
         returnStmtCount: [],
         parametersCount: [],
-        callExpressionCount: []
+        callExpressionCount: [],
+        newExpressionCount: [],
     };
 
     functionMetricsOnly.forEach(f => {
@@ -32,6 +33,7 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
         toPrint.returnStmtCount.push((f.metrics && f.metrics.returnStmtCount) || 0);
         toPrint.parametersCount.push((f.metrics && f.metrics.parametersCount) || 0);
         toPrint.callExpressionCount.push((f.metrics && f.metrics.callExpressionCount) || 0);
+        toPrint.newExpressionCount.push((f.metrics && f.metrics.newExpressionCount) || 0);
     });
 
     let fileContent = `js <-
@@ -45,7 +47,8 @@ structure(
 		loopingStmtCount = c(${toPrint.loopingStmtCount.join(", ")}),
 		returnStmtCount = c(${toPrint.returnStmtCount.join(", ")}),
 		parametersCount = c(${toPrint.parametersCount.join(", ")}),
-		callExpressionCount = c(${toPrint.callExpressionCount.join(", ")})
+		callExpressionCount = c(${toPrint.callExpressionCount.join(", ")}),
+		newExpressionCount = c(${toPrint.newExpressionCount.join(", ")})
 	),
 	.Names = c("functionName", "fileLocation",
 	           "declarationStmtCount", "executableStmtCount", "conditionalStmtCount", "loopingStmtCount",

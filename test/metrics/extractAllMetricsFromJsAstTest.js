@@ -455,15 +455,15 @@ describe("extractAllMetricsFromJsAst", function () {
         {
             _type: 'FunctionDeclaration',
             functionName: 'f13_for',
-            metrics: {parametersCount: 1, declarationStmtCount: 2, executableStmtCount: 1},
+            metrics: {parametersCount: 1, declarationStmtCount: 2, executableStmtCount: 1, loopingStmtCount: 1},
             detail: {
                 body: {
                     _type: 'BlockStatement',
-                    metrics: {declarationStmtCount: 2, executableStmtCount: 1},
+                    metrics: {declarationStmtCount: 2, executableStmtCount: 1, loopingStmtCount: 1},
                     detail: {
                         body: [{
                             _type: 'ForStatement',
-                            metrics: {declarationStmtCount: 2, executableStmtCount: 1},
+                            metrics: {declarationStmtCount: 2, executableStmtCount: 1, loopingStmtCount: 1},
                             detail: {
                                 init: {
                                     _type: 'VariableDeclaration',

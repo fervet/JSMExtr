@@ -173,31 +173,34 @@ Visitors.visitAssignmentExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitBinaryExpression = Visitors.visitorWithoutMetrics;
 Visitors.visitVariableDeclaration = Visitors.visitorWithoutMetrics;
 Visitors.visitMemberExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitForStatement = Visitors.visitorWithoutMetrics;
 Visitors.visitCallExpression = Visitors.visitorWithMetrics({callExpressionCount: 1});
 Visitors.visitReturnStatement = Visitors.visitorWithMetrics({returnStmtCount: 1});
 Visitors.visitVariableDeclarator = Visitors.visitorWithMetrics({declarationStmtCount: 1});
 Visitors.visitExpressionStatement = Visitors.visitorWithMetrics({executableStmtCount: 1});
 
-// no specs for the ones below
-Visitors.visitIfStatement = Visitors.visitorWithMetrics({conditionalStmtCount: 1});
-Visitors.visitWhileStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1});
-Visitors.visitSwitchStatement = Visitors.visitorWithoutMetrics;
-Visitors.visitSwitchCase = Visitors.visitorWithMetrics({conditionalStmtCount: 1});
-Visitors.visitForInStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1});
-Visitors.visitUnaryExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitNewExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitObjectExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitArrayExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitProperty = Visitors.visitorWithoutMetrics;
-Visitors.visitBreakStatement = Visitors.visitorWithoutMetrics;
-Visitors.visitContinueStatement = Visitors.visitorWithoutMetrics;
-Visitors.visitEmptyStatement = Visitors.visitorWithoutMetrics;
-Visitors.visitUpdateExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitThisExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitTryStatement = Visitors.visitorWithoutMetrics;
-Visitors.visitCatchClause = Visitors.visitorWithoutMetrics;
-Visitors.visitIdentifier = Visitors.visitorWithoutMetrics;
-Visitors.visitLiteral = Visitors.visitorWithoutMetrics;
-Visitors.visitConditionalExpression = Visitors.visitorWithoutMetrics;
-Visitors.visitLogicalExpression = Visitors.visitorWithoutMetrics;
+// LOOPs
+Visitors.visitForStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1});
+Visitors.visitWhileStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1}); // no test
+Visitors.visitForInStatement = Visitors.visitorWithMetrics({loopingStmtCount: 1}); // no test
+Visitors.visitBreakStatement = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitContinueStatement = Visitors.visitorWithoutMetrics; // no test
+
+// CONDITIONALs
+Visitors.visitIfStatement = Visitors.visitorWithMetrics({conditionalStmtCount: 1}); // no test
+Visitors.visitSwitchStatement = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitSwitchCase = Visitors.visitorWithMetrics({conditionalStmtCount: 1}); // no test
+Visitors.visitConditionalExpression = Visitors.visitorWithMetrics({conditionalStmtCount: 1}); // no test
+
+Visitors.visitLogicalExpression = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitUnaryExpression = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitNewExpression = Visitors.visitorWithMetrics({newExpressionCount: 1}); // no test
+Visitors.visitObjectExpression = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitArrayExpression = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitProperty = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitEmptyStatement = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitUpdateExpression = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitThisExpression = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitTryStatement = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitCatchClause = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitIdentifier = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitLiteral = Visitors.visitorWithoutMetrics; // no test

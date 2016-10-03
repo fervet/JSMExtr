@@ -1,12 +1,12 @@
 /*
  Number of declaration statements (Decl.) ------------------------ DONE
  Number of executable statements (Stmt.) ------------------------- DONE
- Number of conditional statements (Cond.) ------------------------ TODO
- Number of looping statements (Loop) ----------------------------- TODO
- Maximum nesting level of control constructs (Nest) -------------- TODO
+ Number of conditional statements (Cond.) ------------------------ DONE
+ Number of looping statements (Loop) ----------------------------- DONE
  Number of return statements (Ret.) ------------------------------ DONE
  Number of parameters (Param.) ----------------------------------- DONE
  Number of called functions (Call) ------------------------------- DONE
+ Maximum nesting level of control constructs (Nest) -------------- WONTFIX
  */
 class Metrics {
     constructor({
@@ -16,7 +16,8 @@ class Metrics {
         loopingStmtCount = 0,
         returnStmtCount = 0,
         parametersCount = 0,
-        callExpressionCount = 0
+        callExpressionCount = 0,
+        newExpressionCount = 0,
     } = {}) {
         if (declarationStmtCount) this.declarationStmtCount = declarationStmtCount;
         if (executableStmtCount) this.executableStmtCount = executableStmtCount;
@@ -25,6 +26,7 @@ class Metrics {
         if (returnStmtCount) this.returnStmtCount = returnStmtCount;
         if (parametersCount) this.parametersCount = parametersCount;
         if (callExpressionCount) this.callExpressionCount = callExpressionCount;
+        if (newExpressionCount) this.newExpressionCount = newExpressionCount;
     }
 
     addMetrics(otherMetrics) {
@@ -32,10 +34,10 @@ class Metrics {
         this.add('executableStmtCount', otherMetrics);
         this.add('conditionalStmtCount', otherMetrics);
         this.add('loopingStmtCount', otherMetrics);
-        this.add('maxNestingLevelOfControlConstructs', otherMetrics);
         this.add('returnStmtCount', otherMetrics);
         this.add('parametersCount', otherMetrics);
         this.add('callExpressionCount', otherMetrics);
+        this.add('newExpressionCount', otherMetrics);
     }
 
     add(propName, otherMetrics) {
