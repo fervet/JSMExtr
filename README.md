@@ -1,7 +1,7 @@
 # JavaScript source code Metrics Extractor
 
-A tool that parses HTML or JavaScript files and analyses all JavaScript
-code found and calculates several code metrics for them.
+A tool capable of parsing HTML or JavaScript files and inspecting all JavaScript
+code found. Outputs several code metrics for the analysed source.
 
 ### How to run
 
