@@ -19,4 +19,4 @@ console.log(JSON.stringify(fOnly, null, 4));
 
 console.log("#####################################");
 console.log("#####################################");
-console.log(rReadableMetrics(fOnly, "stuff.R"));
+console.log(rReadableMetrics(fOnly, "functionMetrics.R"));
