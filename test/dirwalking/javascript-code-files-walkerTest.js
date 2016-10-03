@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 
-const jsCodeFileWalker = require("../../src/dirwalking/jsCodeFilesWalker");
+const jsCodeFileWalker = require("../../src/dirwalking/javascript-code-files-walker");
 
 describe("file walker", function () {
 

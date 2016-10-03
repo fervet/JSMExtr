@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const isEmptyObject = require("../../src/utils/isEmptyObject");
+const isEmptyObject = require("../../src/utils/is-empty-object");
 
 describe("isEmptyObject", function () {
 

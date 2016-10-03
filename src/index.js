@@ -1,7 +1,7 @@
 const extractJavaScriptASTsFromHtmlFile = require("./parsing/extract-js-asts-from-html-file");
 const extractJavaScriptASTsFromJsFile = require("./parsing/extract-js-ast-from-js-file");
-const extractAllMetricsFromJsAst = require("./metrics/extractAllMetricsFromJsAst");
-const filterFunctionMetricsOnly = require("./metrics/filterFunctionMetricsOnly");
+const extractAllMetricsFromJsAst = require("./metrics/extract-all-metrics-from-js-ast");
+const filterFunctionMetricsOnly = require("./metrics/filter-function-metrics-only");
 const rReadableMetrics = require("./r/r-readable-metrics");
 
 

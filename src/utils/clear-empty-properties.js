@@ -1,4 +1,4 @@
-const isObject = require("./isObject");
+const isObject = require("./is-object");
 
 //noinspection JSUnusedLocalSymbols
 function toS(obj) {

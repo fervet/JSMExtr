@@ -1,9 +1,9 @@
 const expect = require("chai").expect;
 
 const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
-const extractAllMetricsFromJsAst = require("../../src/metrics/extractAllMetricsFromJsAst");
+const extractAllMetricsFromJsAst = require("../../src/metrics/extract-all-metrics-from-js-ast");
 
-const demoFileJsAst = extractJavaScriptASTsFromJsFile('test/metrics/extractAllMetricsFromJsAstDemo.js', 'utf8');
+const demoFileJsAst = extractJavaScriptASTsFromJsFile('test/metrics/extract-all-metrics-from-js-astDemo.js', 'utf8');
 const allMetrics = extractAllMetricsFromJsAst(demoFileJsAst);
 
 const functionMetrics = {
@@ -56,7 +56,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?1:0-3:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?1:0-3:1'
         }
     );
 
@@ -85,7 +85,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?4:0-6:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?4:0-6:1'
         }
     );
 
@@ -114,7 +114,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?7:0-9:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?7:0-9:1'
         }
     );
 
@@ -150,7 +150,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?10:0-12:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?10:0-12:1'
         }
     );
 
@@ -173,7 +173,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?13:0-15:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?13:0-15:1'
         }
     );
 
@@ -202,7 +202,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?16:0-18:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?16:0-18:1'
         }
     );
 
@@ -234,7 +234,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?19:0-21:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?19:0-21:1'
         }
     );
 
@@ -304,7 +304,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?22:0-24:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?22:0-24:1'
         }
     );
 
@@ -349,7 +349,7 @@ describe("extractAllMetricsFromJsAst", function () {
                                                     }
                                                 }
                                             },
-                                            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?26:5-28:5'
+                                            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?26:5-28:5'
                                         }, arguments: [{_type: 'Literal'}]
                                     }
                                 }
@@ -358,7 +358,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?25:0-29:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?25:0-29:1'
         }
     );
 
@@ -375,7 +375,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     detail: {body: [{_type: 'ReturnStatement', metrics: {returnStmts: 1}, detail: {argument: {_type: 'Literal'}}}]}
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?30:0-32:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?30:0-32:1'
         }
     );
 
@@ -398,7 +398,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?33:0-35:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?33:0-35:1'
         }
     );
 
@@ -447,7 +447,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?36:0-40:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?36:0-40:1'
         }
     );
 
@@ -530,7 +530,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     }
                 }
             },
-            loc: 'test/metrics/extractAllMetricsFromJsAstDemo.js?41:0-45:1'
+            loc: 'test/metrics/extract-all-metrics-from-js-astDemo.js?41:0-45:1'
         }
     );
 
@@ -570,7 +570,7 @@ describe("extractAllMetricsFromJsAst", function () {
                     metrics: {callExprs: 1, executableStmts: 1, memberExprs: 1}
                 }
             },
-            loc: "test/metrics/extractAllMetricsFromJsAstDemo.js?46:0-48:1",
+            loc: "test/metrics/extract-all-metrics-from-js-astDemo.js?46:0-48:1",
             metrics: {callExprs: 1, executableStmts: 1, parametersCount: 1, memberExprs: 1}
         }
     );
@@ -616,7 +616,7 @@ describe("extractAllMetricsFromJsAst", function () {
                 }
             },
             functionName: "f15_member_acess",
-            loc: "test/metrics/extractAllMetricsFromJsAstDemo.js?49:0-51:1",
+            loc: "test/metrics/extract-all-metrics-from-js-astDemo.js?49:0-51:1",
             metrics: {
                 memberExprs: 1,
                 returnStmts: 1

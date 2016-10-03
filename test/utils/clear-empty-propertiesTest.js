@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 
-const clearEmptyProperties = require("../../src/utils/clearEmptyProperties");
+const clearEmptyProperties = require("../../src/utils/clear-empty-properties");
 
 
 function assertClear(name, input, expected) {

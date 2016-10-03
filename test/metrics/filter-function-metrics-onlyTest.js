@@ -1,10 +1,10 @@
 const expect = require("chai").expect;
 
 const extractJavaScriptASTsFromJsFile = require("../../src/parsing/extract-js-ast-from-js-file");
-const extractAllMetricsFromJsAst = require("../../src/metrics/extractAllMetricsFromJsAst");
-const filterFunctionMetricsOnly = require("../../src/metrics/filterFunctionMetricsOnly");
+const extractAllMetricsFromJsAst = require("../../src/metrics/extract-all-metrics-from-js-ast");
+const filterFunctionMetricsOnly = require("../../src/metrics/filter-function-metrics-only");
 
-const demoFileJsAST = extractJavaScriptASTsFromJsFile('test/metrics/filterFunctionsMetricsOnlyDemo.js', 'utf8');
+const demoFileJsAST = extractJavaScriptASTsFromJsFile('test/metrics/filter-function-metrics-onlyDemo.js', 'utf8');
 const demoFileFullMetrics = extractAllMetricsFromJsAst(demoFileJsAST);
 
 describe("filterFunctionsMetrics", function () {
@@ -55,7 +55,7 @@ describe("filterFunctionsMetrics", function () {
                                                                 }
                                                             }
                                                         },
-                                                        loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?2:4-4:5'
+                                                        loc: 'test/metrics/filter-function-metrics-onlyDemo.js?2:4-4:5'
                                                     }, {
                                                         _type: 'ExpressionStatement',
                                                         metrics: {executableStmts: 1, declarationStmts: 1, parametersCount: 1, callExprs: 1},
@@ -99,12 +99,12 @@ describe("filterFunctionsMetrics", function () {
                                                                                                 }
                                                                                             }
                                                                                         },
-                                                                                        loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?6:8-8:9'
+                                                                                        loc: 'test/metrics/filter-function-metrics-onlyDemo.js?6:8-8:9'
                                                                                     }]
                                                                                 }
                                                                             }
                                                                         },
-                                                                        loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?5:5-9:5'
+                                                                        loc: 'test/metrics/filter-function-metrics-onlyDemo.js?5:5-9:5'
                                                                     }, arguments: [{_type: 'Literal'}]
                                                                 }
                                                             }
@@ -113,7 +113,7 @@ describe("filterFunctionsMetrics", function () {
                                                 }
                                             }
                                         },
-                                        loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?1:9-10:1'
+                                        loc: 'test/metrics/filter-function-metrics-onlyDemo.js?1:9-10:1'
                                     }, arguments: [{_type: 'Literal'}]
                                 }
                             }
@@ -131,22 +131,22 @@ describe("filterFunctionsMetrics", function () {
             [{
                 _type: 'FunctionExpression',
                 metrics: {parametersCount: 2, declarationStmts: 2, executableStmts: 1, callExprs: 1},
-                loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?1:9-10:1'
+                loc: 'test/metrics/filter-function-metrics-onlyDemo.js?1:9-10:1'
             }, {
                 _type: 'FunctionExpression',
                 functionName: 'yyy',
                 metrics: {parametersCount: 1, declarationStmts: 1},
-                loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?5:5-9:5'
+                loc: 'test/metrics/filter-function-metrics-onlyDemo.js?5:5-9:5'
             }, {
                 _type: 'FunctionDeclaration',
                 functionName: 'bbb',
                 metrics: {declarationStmts: 1},
-                loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?6:8-8:9'
+                loc: 'test/metrics/filter-function-metrics-onlyDemo.js?6:8-8:9'
             }, {
                 _type: 'FunctionDeclaration',
                 functionName: 'aaa',
                 metrics: {declarationStmts: 1},
-                loc: 'test/metrics/filterFunctionsMetricsOnlyDemo.js?2:4-4:5'
+                loc: 'test/metrics/filter-function-metrics-onlyDemo.js?2:4-4:5'
             }]
         );
     });

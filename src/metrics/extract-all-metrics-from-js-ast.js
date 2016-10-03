@@ -1,6 +1,6 @@
-const isObject = require("../utils/isObject");
-const isEmptyObject = require("../utils/isEmptyObject");
-const clearEmptyProperties = require("../utils/clearEmptyProperties");
+const isObject = require("../utils/is-object");
+const isEmptyObject = require("../utils/is-empty-object");
+const clearEmptyProperties = require("../utils/clear-empty-properties");
 const Metrics = require("./Metrics");
 
 /**
