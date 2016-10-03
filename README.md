@@ -9,7 +9,7 @@ code found and calculates several code metrics for them.
 
 All code is written in JavaScript and runs on the NodeJS platform.
 
-- Install []Node > 6](https://nodejs.org/en/download/)
+- Install [Node > 6](https://nodejs.org/en/download/)
 - Upgrade NPM to latest: `npm install -g npm@next`
 - Install [Python 2.7.x](https://www.python.org/download/releases/2.7/)
 - Install Gcc and G++ (or [MS VC++ Build tools, if windows](acdcjunior.github.io/node-gyp-windows.html))
