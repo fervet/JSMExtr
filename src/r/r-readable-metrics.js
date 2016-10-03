@@ -16,15 +16,7 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
     };
 
     functionMetricsOnly.forEach(f => {
-        if (f._type === 'FunctionDeclaration') {
-            toPrint.functionName.push(f.functionName);
-        } else {
-            let fName = f.loc.replace(/^[^?]+\?/,"");
-            if (f.functionName) {
-                fName = f.functionName;
-            }
-            toPrint.functionName.push(fName + ' (expr)');
-        }
+        toPrint.functionName.push(extractFunctionName(f, toPrint.functionName.length));
         toPrint.fileLocation.push(f.loc);
         toPrint.declarationStmtCount.push((f.metrics && f.metrics.declarationStmtCount) || 0);
         toPrint.executableStmtCount.push((f.metrics && f.metrics.executableStmtCount) || 0);
@@ -60,6 +52,15 @@ structure(
     fs.writeFileSync(fileName, fileContent);
 
     return fileContent;
+}
+
+function extractFunctionName(f, order) {
+    let functionName = f.functionName;
+    if (f._type === 'FunctionExpression') {
+        // if there's no functionName, return the text with everything before the first '?' removed
+        functionName = (f.functionName || f.loc.replace(/^[^?]+\?/, "")) + ' (expr)';
+    }
+    return `[${order}] ${functionName}`;
 }
 
 module.exports = rReadableMetrics;
