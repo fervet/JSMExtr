@@ -24,27 +24,23 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
     });
 
     let listsContent = `
-		functionName = c("${toPrint.functionName.join('", "')}"),
-		fileLocation = c("${toPrint.fileLocation.join('", "')}"),
-		declarationStmtCount = c(${toPrint.declarationStmtCount.join(", ")}),
-		executableStmtCount = c(${toPrint.executableStmtCount.join(", ")}),
-		conditionalStmtCount = c(${toPrint.conditionalStmtCount.join(", ")}),
-		loopingStmtCount = c(${toPrint.loopingStmtCount.join(", ")}),
-		returnStmtCount = c(${toPrint.returnStmtCount.join(", ")}),
-		parametersCount = c(${toPrint.parametersCount.join(", ")}),
-		callExpressionCount = c(${toPrint.callExpressionCount.join(", ")}),
-		newExpressionCount = c(${toPrint.newExpressionCount.join(", ")})
-	`;
+        functionName = c("${toPrint.functionName.join('", "')}"),
+        fileLocation = c("${toPrint.fileLocation.join('", "')}"),`;
+    Metrics.trackedMetrics.forEach(trackedMetric => {
+        listsContent += `\n\t\t${trackedMetric} = c(${toPrint[trackedMetric].join(", ")}),`;
+    });
+    listsContent = listsContent.substring(0, listsContent.length-1); // remove last comma
+
     let metricsColumnNames = '"' + Metrics.trackedMetrics.join('", "') + '"';
 
     let fileContent = `
-        js <- structure(
-            list(${listsContent}),
-            .Names = c("functionName", "fileLocation", ${metricsColumnNames}),
-            class = "data.frame",
-            row.names = c(NA, ${toPrint.functionName.length}L)
-        )
-    `;
+js <- structure(
+    list(${listsContent}
+    ),
+    .Names = c("functionName", "fileLocation", ${metricsColumnNames}),
+    class = "data.frame",
+    row.names = c(NA, ${toPrint.functionName.length}L)
+)`;
 
     fs.writeFileSync(fileName, fileContent);
 
