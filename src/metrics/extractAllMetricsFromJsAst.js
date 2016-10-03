@@ -154,12 +154,10 @@ class Visitors {
         return result;
     }
 
-    //noinspection JSUnusedGlobalSymbols
     static visitorWithoutMetrics(node) {
         return Visitors.visitGeneralNode(node, new Metrics());
     }
 
-    //noinspection JSUnusedGlobalSymbols
     static visitorWithMetrics(metrics) {
         return function (node) {
             return Visitors.visitGeneralNode(node, new Metrics(metrics));
