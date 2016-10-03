@@ -3,7 +3,22 @@
 A tool capable of parsing HTML or JavaScript files and inspecting all JavaScript
 code found. Outputs several code metrics for the analysed source.
 
-### How to run
+## Scripts
+
+- [r-readable-metrics](src/r/r-readable-metrics.js)
+
+- [extract-all-metrics-from-js-ast](src/metrics/extract-all-metrics-from-js-ast.js)
+- [filter-function-metrics-only](src/metrics/filter-function-metrics-only.js)
+
+- [parse-js-string-to-ast](src/parsing/js/parse-js-string-to-ast.js)
+- [extract-js-ast-from-js-file](src/parsing/js/extract-js-ast-from-js-file.js)
+- [extract-js-asts-from-html-file](src/parsing/js/extract-js-asts-from-html-file.js)
+
+- [extract-script-tags-from-html-file](src/parsing/html/extract-script-tags-from-html-file.js)
+
+- [javascript-code-files-walker](src/dirwalking/javascript-code-files-walker.js)
+
+## Running it on your own
 
 #### Requirements
 
