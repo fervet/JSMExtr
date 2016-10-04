@@ -10,7 +10,21 @@ function cloneAllPropertiesButDetail(objMetric) {
     return clone;
 }
 
-function filterFunctionMetricsOnly(allMetrics) {
+function shouldKeepMetric(thisMetric, minimumLoc) {
+    if (thisMetric._type !== 'FunctionDeclaration' && thisMetric._type !== 'FunctionExpression') {
+        return false;
+    }
+    if (minimumLoc > 0) {
+        console.log("LOC: "+thisMetric.loc);
+        const locs = thisMetric.loc.match(/\?(\d+):\d+-(\d+):\d+$/);
+        let startingLine = +locs[1];
+        let endingLine = +locs[2];
+        return (endingLine - startingLine) > minimumLoc;
+    }
+    return true;
+}
+
+function filterFunctionMetricsOnly(allMetrics, minimumLoc = 0) {
     let metricsToFilter = [];
     metricsToFilter.push(...allMetrics);
 
@@ -19,7 +33,7 @@ function filterFunctionMetricsOnly(allMetrics) {
     while (metricsToFilter.length > 0) {
         let thisMetric = metricsToFilter.pop();
 
-        if (thisMetric._type === 'FunctionDeclaration' || thisMetric._type === 'FunctionExpression') {
+        if (shouldKeepMetric(thisMetric, minimumLoc)) {
             functionMetricsOnly.push(cloneAllPropertiesButDetail(thisMetric));
         }
 

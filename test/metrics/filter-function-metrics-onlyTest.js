@@ -151,4 +151,21 @@ describe("filterFunctionsMetrics", function () {
         );
     });
 
+    it(`filtering with LOC restriction`, () => {
+        const functionMetricsOnly = filterFunctionMetricsOnly(demoFileFullMetrics, 3);
+
+        expect(functionMetricsOnly).to.deep.equal(
+            [{
+                _type: 'FunctionExpression',
+                metrics: {parametersCount: 2, declarationStmts: 2, executableStmts: 1, callExprs: 1},
+                loc: 'test/metrics/filter-function-metrics-onlyDemo.js?1:9-10:1'
+            }, {
+                _type: 'FunctionExpression',
+                functionName: 'yyy',
+                metrics: {parametersCount: 1, declarationStmts: 1},
+                loc: 'test/metrics/filter-function-metrics-onlyDemo.js?5:5-9:5'
+            }]
+        );
+    });
+
 });
