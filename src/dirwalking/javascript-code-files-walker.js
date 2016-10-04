@@ -26,9 +26,13 @@ function fileExtension(filePath) {
         // file has no extension
         return undefined;
     }
-    return pathParts[pathParts.length - 1];
+    return pathParts[pathParts.length - 1].toLowerCase();
 }
 
+/**
+ * @param baseDir Path of dir to begin search.
+ * @return {Array} Array of {fullPath, extension}.
+ */
 function jsCodeFilesWalker(baseDir) {
     const filesToProcess = [];
 

@@ -5,6 +5,8 @@ const Metrics = require("./Metrics");
 
 /**
  * Given a JavaScript AST, returns its metrics.
+ *
+ * @return {Array}
  */
 module.exports = function (jsAST) {
     const metrics = extractMetrics(jsAST);
