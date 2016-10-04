@@ -75,7 +75,7 @@ class Program {
             statementsDetails.forEach(stmtDetail => metrics.addMetrics(stmtDetail.metrics));
             return statementsDetails;
         } catch (e) {
-            throw new Error(`Error for statements:\n${JSON.stringify(statements, null, 2)}.\n\nError was: `+e);
+            throw new Error(`Error for statements:\n${statements}.\n\nError was: `+e);
         }
     }
 
@@ -182,6 +182,7 @@ Visitors.visitExpressionStatement = Visitors.visitorWithMetrics({m: Metrics.exec
 Visitors.visitForStatement = Visitors.visitorWithMetrics({m: Metrics.loopStmts, c: 1});
 Visitors.visitWhileStatement = Visitors.visitorWithMetrics({m: Metrics.loopStmts, c: 1}); // no test
 Visitors.visitForInStatement = Visitors.visitorWithMetrics({m: Metrics.loopStmts, c: 1}); // no test
+Visitors.visitDoWhileStatement = Visitors.visitorWithMetrics({m: Metrics.loopStmts, c: 1}); // no test
 Visitors.visitBreakStatement = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitContinueStatement = Visitors.visitorWithoutMetrics; // no test
 
@@ -204,3 +205,7 @@ Visitors.visitTryStatement = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitCatchClause = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitIdentifier = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitLiteral = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitThrowStatement = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitSequenceExpression = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitWithStatement = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitLabeledStatement = Visitors.visitorWithoutMetrics; // no test
