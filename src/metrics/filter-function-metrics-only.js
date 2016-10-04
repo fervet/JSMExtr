@@ -19,7 +19,7 @@ function shouldKeepMetric(thisMetric, minimumLoc) {
         const locs = thisMetric.loc.match(/\?(\d+):\d+-(\d+):\d+$/);
         let startingLine = +locs[1];
         let endingLine = +locs[2];
-        return (endingLine - startingLine) > minimumLoc;
+        return (endingLine - startingLine) >= minimumLoc;
     }
     return true;
 }

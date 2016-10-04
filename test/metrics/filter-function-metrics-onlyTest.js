@@ -152,7 +152,7 @@ describe("filterFunctionsMetrics", function () {
     });
 
     it(`filtering with LOC restriction`, () => {
-        const functionMetricsOnly = filterFunctionMetricsOnly(demoFileFullMetrics, 3);
+        const functionMetricsOnly = filterFunctionMetricsOnly(demoFileFullMetrics, 4);
 
         expect(functionMetricsOnly).to.deep.equal(
             [{
