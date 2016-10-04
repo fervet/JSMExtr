@@ -20,14 +20,15 @@
   "homepage": "https://github.com/acdcjunior/js-source-code-extractor#readme",
   "dependencies": {
     "esprima": "^3.0.0",
-    "gumbo-parser": "^0.2.2"
+    "gumbo-parser": "^0.2.2",
+    "iconv-lite": "^0.4.13"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "jasmine-node": "^1.14.5",
     "mocha": "^3.0.2"
   },
-  "engineStrict" : true,
+  "engineStrict": true,
   "engines": {
     "node": ">=6.0.0",
     "npm": ">=3.10.0"
