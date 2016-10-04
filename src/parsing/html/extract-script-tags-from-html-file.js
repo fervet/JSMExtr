@@ -1,6 +1,9 @@
 const readFile = require("../../utils/read-file");
 const gumbo = require("gumbo-parser");
 
+//noinspection JSUnusedLocalSymbols
+const toS = require('../../utils/to-s');
+
 /**
  * Given an HTML file, returns its list of script tags (in HTML-AST format).
  *
@@ -9,8 +12,15 @@ const gumbo = require("gumbo-parser");
 module.exports = function (fileName, fileEncoding) {
     let htmlFileContents = readFile(fileName, fileEncoding);
     let ast = gumbo(htmlFileContents);
-    return extractScriptTags(ast.root);
+    return extractScriptTags(nodeToBeEvaluated(ast));
 };
+
+function nodeToBeEvaluated(ast) {
+    if (ast.document && ast.document.childNodes) {
+        return ast.document;
+    }
+    return ast.root;
+}
 
 function extractScriptTags(ast) {
     let elementsToBeChecked = [];
