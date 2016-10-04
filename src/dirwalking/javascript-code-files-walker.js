@@ -15,7 +15,7 @@ function fileWalker(currentDirPath, callback) {
 }
 
 function fileHasExtensionThatMayContainJavaScriptCode(filePath) {
-    return fileHasExtension(filePath, ["js", "html", "htm", "xhtml", "xhtm", "vm", "jsp"])
+    return fileHasExtension(filePath, ["js", "html", "htm", "xhtml", "xhtm", "vm", "jsp", "xml"])
 }
 function fileHasExtension(filePath, fileExtensions) {
     return fileExtensions.indexOf(fileExtension(filePath)) !== -1;
