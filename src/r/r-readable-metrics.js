@@ -25,7 +25,7 @@ function rReadableMetrics(functionMetricsOnly, fileName) {
 
     let listsContent = `
         functionName = c("${toPrint.functionName.join('", "')}"),
-        fileLocation = c("${toPrint.fileLocation.join('", "')}"),`;
+        fileLocation = c("${toPrint.fileLocation.join('", "').replace(/\\/g, "\\\\")}"),`;
     Metrics.forEachTrackedMetric(trackedMetric => {
         listsContent += `\n\t\t${trackedMetric} = c(${toPrint[trackedMetric].join(", ")}),`;
     });
