@@ -49,4 +49,9 @@ The test scripts is a very good source on the specific behavior of each function
 
     npm test
     
-The test framework used is [Mocha](http://mochajs.org).
+The test framework used is [Mocha](http://mochajs.org), mainly due to its capacity to test server-side code seamlessly.
+
+
+# Other
+
+This repo follows the [angular commit message](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) style.
