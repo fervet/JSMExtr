@@ -3,15 +3,12 @@ const extractJavaScriptASTsFromJsFile = require("./parsing/extract-js-ast-from-j
 const extractAllMetricsFromJsAst = require("./metrics/extract-all-metrics-from-js-ast");
 const filterFunctionMetricsOnly = require("./metrics/filter-function-metrics-only");
 const rReadableMetrics = require("./r/r-readable-metrics");
+const jsCodeFilesWalker = require("../src/dirwalking/javascript-code-files-walker");
 
-((shouldRun) => {
-    if (!shouldRun) return;
-
-    // const fileName = 'test/demo/portal.html';
-    // const jsASTs = extractJavaScriptASTsFromHtmlFile(fileName, 'utf8');
-    // const fileName = 'test/demo/uolutils.js';
-    // const jsASTs = extractJavaScriptASTsFromJsFile(fileName, 'utf8');
-    const jsASTs = extractJavaScriptASTsFromJsFile('D:\\github\\fontes\\egestao\\src\\main\\webapp\\Web\\EGestao\\econtrole.js', 'ISO-8859-1');
+//noinspection JSUnusedLocalSymbols
+function extractSingleFile(fileName, fileEncoding) {
+    // const jsASTs = extractJavaScriptASTsFromJsFile(fileName, fileEncoding);
+    const jsASTs = extractJavaScriptASTsFromHtmlFile(fileName, fileEncoding);
 
     console.log(JSON.stringify(jsASTs, null, 4));
 
@@ -19,31 +16,44 @@ const rReadableMetrics = require("./r/r-readable-metrics");
 
     const fOnly = filterFunctionMetricsOnly(allMetrics);
     // console.log(JSON.stringify(fOnly, null, 4));
-
     console.log(rReadableMetrics(fOnly, "functionMetrics.R"));
-})(false);
+}
 
-((shouldRun) => {
-    if (!shouldRun) return;
+//noinspection JSUnusedLocalSymbols
+let fileEncoding;
+//noinspection JSUnusedAssignment
+fileEncoding = 'utf8';
+fileEncoding = 'ISO-8859-1';
 
-    const jsCodeFilesWalker = require("../src/dirwalking/javascript-code-files-walker");
-    let allFiles = jsCodeFilesWalker("D:/github/fontes");
-    // console.log(JSON.stringify(allFiles, null, 4));
+let fileName;
+//noinspection JSUnusedAssignment
+fileName = 'test/demo/portal.html';
+//noinspection JSUnusedAssignment
+fileName = 'test/demo/uolutils.js';
+// extractSingleFile(fileName, fileEncoding);
 
+
+function extractMultipleFiles(baseDir, fileEncoding, rFileName) {
     let allFilesJsASTs = [];
-    allFiles.forEach(({fullPath, extension}) => {
-        console.log("PROCESSING FILE: "+fullPath);
+    jsCodeFilesWalker(baseDir).forEach(({fullPath, extension}) => {
+        console.log("PROCESSING FILE: " + fullPath);
         if (extension === "js") {
-            const thisFileJsASTs = extractJavaScriptASTsFromJsFile(fullPath, 'ISO-8859-1');
+            const thisFileJsASTs = extractJavaScriptASTsFromJsFile(fullPath, fileEncoding);
             allFilesJsASTs.push(thisFileJsASTs);
         } else if (extension === "html" || extension === "xhtml") {
-            const thisFileJsASTs = extractJavaScriptASTsFromHtmlFile(fullPath, 'ISO-8859-1');
+            const thisFileJsASTs = extractJavaScriptASTsFromHtmlFile(fullPath, fileEncoding);
             allFilesJsASTs.push(...thisFileJsASTs);
         }
     });
 
     const allFilesMetrics = extractAllMetricsFromJsAst(allFilesJsASTs);
+    const allFilesFunctionsMetrics = filterFunctionMetricsOnly(allFilesMetrics, 5);
+    console.log(rReadableMetrics(allFilesFunctionsMetrics, rFileName));
+}
 
-    const allFilesFunctionsMetrics = filterFunctionMetricsOnly(allFilesMetrics, 4);
-    console.log(rReadableMetrics(allFilesFunctionsMetrics, "allFilesFunctionMetrics.R"));
-})(true);
+let baseDir;
+baseDir = "../fontes2/takeOut";
+
+fileEncoding = 'ISO-8859-1';
+const rFileName = "allFilesFunctionMetrics.R";
+extractMultipleFiles(baseDir, fileEncoding, rFileName);

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/acdcjunior/js-source-code-extractor#readme",
   "dependencies": {
+    "csvtojson": "^1.0.3",
     "esprima": "^3.0.0",
     "gumbo-parser": "^0.2.2",
     "iconv-lite": "^0.4.13"

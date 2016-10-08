@@ -209,3 +209,4 @@ Visitors.visitThrowStatement = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitSequenceExpression = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitWithStatement = Visitors.visitorWithoutMetrics; // no test
 Visitors.visitLabeledStatement = Visitors.visitorWithoutMetrics; // no test
+Visitors.visitDebuggerStatement = Visitors.visitorWithoutMetrics; // no test
