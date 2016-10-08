@@ -1,0 +1,75 @@
+---
+title: "Detecting JavaScript Code Clones Through Data Mining"
+date: "SET-2016"
+output:
+pdf_document: default
+html_document:
+  highlight: pygments
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tclust)
+```
+  
+
+```{r, echo=FALSE}
+source("allFilesFunctionMetrics.R")
+# TCLUST threshold arguments
+functionMetricsK <- 70;
+functionMetricsAlpha <- 0.9;
+```
+
+```{r, echo=FALSE}
+# Inform chosen arguments
+cat("TCLUST arguments: k=", functionMetricsK, ", alpha=", functionMetricsAlpha)
+```
+
+```{r}
+# Cluster only the metric columns
+jsMetricsColumnsOnly = js[,c(3,4,5,6,7,8,9,10,11,12)]
+```
+
+```{r}
+# Execute cluster procedure
+set.seed(999) # fix initial seed to make runs repeatable
+functionClusters <- tclust (jsMetricsColumnsOnly, k = functionMetricsK, alpha = functionMetricsAlpha)
+```
+
+```{r, echo=FALSE}
+# Inform number of clusters found
+cat("Total number of clusters found:", functionClusters$k)
+
+# Plot (a bit useless though)
+plot (functionClusters)
+#plot (functionClusters, labels = "observation")
+#plot (functionClusters, labels = "cluster")
+
+cat("Initiating CSV export...")
+```
+
+```{r}
+createCsvDataFrameForClusterNumber <- function(clusterNumber) {
+  cat("Exporting cluster ", clusterNumber, "...\n")
+  inCluster = which(functionClusters$cluster == clusterNumber)
+  thisClusterCsv <- js[inCluster,c(1,2,3,4,5,6,7,8,9,10,11,12)]
+  thisClusterCsv <- mutate(thisClusterCsv, cluster = clusterNumber)
+  return (thisClusterCsv)
+}
+
+allClustersCsv <- createCsvDataFrameForClusterNumber(1)
+for(i in 2:functionClusters$k) allClustersCsv <- rbind(allClustersCsv, createCsvDataFrameForClusterNumber(i))
+```
+
+```{r, echo=FALSE}
+cat("Saving CSV file...")
+```
+
+```{r}
+write.table(allClustersCsv, file = "allClusters.csv", sep = ",", col.names = NA, qmethod = "double")
+```
+
+```{r, echo=FALSE}
+cat("CSV export complete.")
+```
