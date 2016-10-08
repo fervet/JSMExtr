@@ -1,7 +1,7 @@
 # JavaScript source code Metrics Extractor
 
-A tool capable of parsing HTML or JavaScript files and inspecting all JavaScript
-code found. Outputs several code metrics for the analysed source.
+A tool that parses HTML or JavaScript files and inspects all JavaScript
+code found. Outputs several metrics for the analyzed source.
 
 ## Scripts
 
@@ -42,3 +42,11 @@ Try the [sample script](src/index.js):
 The sample script takes metrics from some files located at the `test/demo` folder.
 You can (and should) change that to any path containing HTML and/or JS files.
 Take a look at the script to learn how to do that. It should be straightforward.
+
+#### Tests
+
+The test scripts is a very good source on the specific behavior of each function. To run it, use:
+
+    npm test
+    
+The test framework used is [Mocha](http://mochajs.org).
