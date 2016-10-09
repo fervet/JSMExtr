@@ -1,0 +1,141 @@
+"","functionName","fileLocation","declarationStmts","executableStmts","conditionalStmts","loopStmts","returnStmts","parametersCount","callExprs","newExprs","assignmentExprs","memberExprs","cluster"
+"1","[5] abrirAba","D:\apps\wproc\src\main\webapp\Web\wproc\TabelasBasicasAdm\TabelasBasicasAdm.xhtml?38:8-82:5?4:1-9:2",1,1,1,0,0,1,2,0,0,2,1
+"2","[33] exibeModal","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\PopupEditarRepresentacaoLegal.xhtml?20:9-64:9?38:16-43:17",1,1,1,0,0,0,1,0,0,0,1
+"3","[41] abrePopupEditar","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\EditarRepresentacoesLegais.xhtml?12:5-30:5?12:12-17:10",1,1,1,0,0,0,1,0,0,2,1
+"4","[46] atualizaSelectAllDocs","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\CadastrarRepresentacaoLegal.xhtml?30:9-171:9?74:16-79:17",1,1,1,0,0,0,1,0,1,3,1
+"5","[47] seExibeModalCpfJaCadastrado","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\CadastrarRepresentacaoLegal.xhtml?30:9-171:9?67:16-72:17",1,1,1,0,0,0,1,0,0,1,1
+"6","[48] seExibeModalIncluirPessoaOutros","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\CadastrarRepresentacaoLegal.xhtml?30:9-171:9?59:16-64:17",1,1,1,0,0,0,1,0,0,1,1
+"7","[49] seExibeModalIncluirPessoa","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\CadastrarRepresentacaoLegal.xhtml?30:9-171:9?51:16-56:17",1,1,1,0,0,0,1,0,0,1,1
+"8","[50] seExibeModalConfirmacao","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\CadastrarRepresentacaoLegal.xhtml?30:9-171:9?43:16-48:17",1,1,1,0,0,0,1,0,0,1,1
+"9","[51] seExibeModalConsultarPessoa","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\CadastrarRepresentacaoLegal.xhtml?30:9-171:9?35:16-40:17",1,1,1,0,0,0,1,0,0,1,1
+"10","[140] abreJanelaAssinaturaDocumento","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\EmitirAdmissibilidadePelaUnidade.xhtml?34:1-97:1?42:0-47:1",0,2,1,0,0,0,1,0,1,2,1
+"11","[192] abreJanelaAssinaturaDocumento","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\AssociarExameDeAdmissibilidade.xhtml?41:1-329:1?57:4-67:5",0,2,1,0,0,0,1,0,1,2,1
+"12","[209] 27:1-127:17?4:28-13:6 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\JuntarDocumento.xhtml?27:1-127:17?4:28-13:6",1,2,1,0,0,0,2,0,0,2,1
+"13","[294] 30:1-48:3?2:29-7:5 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\IncluiAcompanhamento.xhtml?30:1-48:3?2:29-7:5",1,1,1,0,0,0,3,0,0,2,1
+"14","[376] retornaInicioPagina","D:\apps\wproc\src\main\webapp\Web\wproc\EditaRecurso\DadosDoRecurso.xhtml?14:5-47:5?27:8-33:9",2,1,1,0,0,0,3,0,0,3,1
+"15","[417] trataAparecimentoMensagemErroDuplicada","D:\apps\wproc\src\main\webapp\Web\wproc\CriarDocumento\JanelaModalInserirMinutaDocumento.xhtml?46:8-159:5?20:1-25:2",1,1,1,0,0,0,3,0,0,2,1
+"16","[432] 15:5-34:5?4:43-13:21 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\CopiarPecasEntreProcessos\SelecionaConfidencialidadeTipo.xhtml?15:5-34:5?4:43-13:21",1,2,1,0,0,0,2,0,0,3,1
+"17","[433] 15:8-34:5?4:43-13:21 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\CopiarPecasDeOriginadorParaCbex\SelecionaConfidencialidadeTipo.xhtml?15:8-34:5?4:43-13:21",1,2,1,0,0,0,2,0,0,3,1
+"18","[437] abreJanelaAssinaturaDocumento","D:\apps\wproc\src\main\webapp\Web\wproc\ConversaoProcessoFisico\ConverterProcessoParaEletronico.xhtml?21:5-115:6?5:23-16:21",1,1,1,0,0,0,1,0,0,2,1
+"19","[453] trataAlteracaoUnidade","D:\apps\wproc\src\main\webapp\Web\wproc\ConfiguraDestinacaoProcessoDocumento\index.xhtml?32:1-63:16?9:5-16:9",1,2,1,0,0,0,2,0,1,4,1
+"20","[529] trataAlteracaoUnidade","D:\apps\wproc\src\main\webapp\Web\wproc\AtualizaResponsabilidadeSubunidadeInicialGestao.xhtml?24:1-44:16?8:5-16:9",1,2,1,0,0,0,2,0,1,4,1
+"21","[532] habilitaAssinatura","D:\apps\wproc\src\main\webapp\Web\wproc\AtualizarDemonstrativoDebito\AtualizarDemonstrativoDebito.xhtml?26:1-96:8?36:0-42:1",1,1,1,0,0,0,1,0,1,2,1
+"22","[555] habilitaOab","D:\apps\wproc\src\main\webapp\Web\wproc\AtualizaProcesso\AtualizaProcesso.xhtml?32:13-132:13?3:16-8:17",1,1,1,0,0,0,1,0,1,2,1
+"23","[561] assinar","D:\apps\wproc\src\main\webapp\Web\wproc\AssinarComoCoparticipante.xhtml?21:8-81:17?4:19-10:20",1,1,1,0,0,0,1,0,0,2,1
+"24","[568] setarAcaoDefaultViaJavascript","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\PainelEnviarParaAcao.xhtml?21:5-40:5?7:4-13:5",1,1,1,0,0,0,2,0,0,1,1
+"25","[578] abrirAba","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\GerenciarAcao.xhtml?32:13-62:13?6:16-11:17",1,1,1,0,0,1,2,0,0,2,1
+"26","[586] gravaPecaQueUsuarioEscondeuComentarios","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\VisualizaProcesso\VisualizaProcesso.html?289:32-479:32?108:5-115:6",1,1,1,0,0,0,0,0,1,2,1
+"27","[587] atualizarFramePDF","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\VisualizaProcesso\VisualizaProcesso.html?289:32-479:32?97:5-104:6",1,1,1,0,0,0,1,0,1,2,1
+"28","[707] atualizaSelectAllDocs","D:\apps\wdoc\src\main\webapp\Web\wdoc\RepresentacaoLegal\CadastrarRepresentacaoLegal\CadastrarRepresentacaoLegal.xhtml?27:9-208:9?76:16-81:17",1,1,1,0,0,0,1,0,1,3,1
+"29","[708] seExibeModalCpfJaCadastrado","D:\apps\wdoc\src\main\webapp\Web\wdoc\RepresentacaoLegal\CadastrarRepresentacaoLegal\CadastrarRepresentacaoLegal.xhtml?27:9-208:9?69:16-74:17",1,1,1,0,0,0,1,0,0,1,1
+"30","[709] seExibeModalIncluirPessoaOutros","D:\apps\wdoc\src\main\webapp\Web\wdoc\RepresentacaoLegal\CadastrarRepresentacaoLegal\CadastrarRepresentacaoLegal.xhtml?27:9-208:9?61:16-66:17",1,1,1,0,0,0,1,0,0,1,1
+"31","[710] seExibeModalIncluirPessoa","D:\apps\wdoc\src\main\webapp\Web\wdoc\RepresentacaoLegal\CadastrarRepresentacaoLegal\CadastrarRepresentacaoLegal.xhtml?27:9-208:9?53:16-58:17",1,1,1,0,0,0,1,0,0,1,1
+"32","[711] seExibeModalConfirmacao","D:\apps\wdoc\src\main\webapp\Web\wdoc\RepresentacaoLegal\CadastrarRepresentacaoLegal\CadastrarRepresentacaoLegal.xhtml?27:9-208:9?42:16-50:17",1,2,1,0,0,0,2,0,0,2,1
+"33","[712] seExibeModalConsultarPessoa","D:\apps\wdoc\src\main\webapp\Web\wdoc\RepresentacaoLegal\CadastrarRepresentacaoLegal\CadastrarRepresentacaoLegal.xhtml?27:9-208:9?34:16-39:17",1,1,1,0,0,0,1,0,0,1,1
+"34","[749] seExibeModalPesquisarServidor","D:\apps\wdoc\src\main\webapp\Web\wdoc\IndicarParaAssinatura\IndicarParaAssinatura.xhtml?51:1-97:1?12:4-17:5",1,1,1,0,0,0,1,0,0,1,1
+"35","[814] limpaSubunidadeJaoForamRespAgir","D:\apps\wdoc\src\main\webapp\Web\wdoc\ConsultaDocumento\ConsultaDocumento.xhtml?46:1-389:1?335:1-342:2",1,1,1,0,0,0,1,0,1,2,1
+"36","[815] desabilita_modal","D:\apps\wdoc\src\main\webapp\Web\wdoc\ConsultaDocumento\ConsultaDocumento.xhtml?46:1-389:1?326:1-333:2",1,2,1,0,0,0,2,0,1,3,1
+"37","[834] seExibeModalPesquisarServidor","D:\apps\wdoc\src\main\webapp\Web\wdoc\AnexarDocumentos\ListaDocumentosAnexados.xhtml?20:5-32:5?6:4-11:5",1,1,1,0,0,0,1,0,0,1,1
+"38","[845] 26:1-126:1?5:3-14:4 (expr)","D:\apps\wdoc\src\main\webapp\Web\wdoc\AnexarDespacho\AnexarDespacho.xhtml?26:1-126:1?5:3-14:4",1,1,1,0,0,0,1,0,0,2,1
+"39","[858] callbackJanelaAssinatura","D:\apps\wcont\wcontWeb\src\main\webapp\web\autuar\autuarProcessoContas.xhtml?22:13-75:13?16:16-21:17",0,2,1,0,0,0,3,0,0,2,1
+"40","[883] doClick","D:\apps\table-jsf12\src\main\webapp\Web\MesaTrabalho\MesaGenerica.html?19:1-418:1?390:0-395:1",1,1,1,0,0,1,2,0,0,1,1
+"41","[924] keyDown","D:\apps\shared\src\main\webapp\Web\Shared\scripts\rotinascontroles.js?325:0-333:1",1,1,1,0,0,1,1,0,0,2,1
+"42","[968] init","D:\apps\shared\src\main\webapp\Web\Shared\scripts\menuportal\modelo_portal.js?457:0-464:1",1,2,1,0,0,0,2,0,1,3,1
+"43","[978] mudapagina","D:\apps\shared\src\main\webapp\Web\Shared\scripts\menuportal\modelo_portal.js?196:0-202:1",1,1,1,0,0,1,1,0,1,2,1
+"44","[1124] setUnset","D:\apps\shared\src\main\webapp\Web\Shared\scripts\corporativo_dese.js?3323:0-3330:1",0,2,1,0,0,1,2,0,0,1,1
+"45","[1221] processaoAlteracaoComboSessoesCandidatas","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Sessao\CancelarSessao.xhtml?13:8-67:8?38:2-45:3",1,2,1,0,0,0,3,0,0,2,1
+"46","[1232] exibirModalPautaReabertaDou","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\PublicarPauta.xhtml?38:16-78:1?12:1-18:2",0,2,1,0,0,1,2,0,0,2,1
+"47","[1233] exibirModalPautaReaberta","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\PublicarPauta.xhtml?38:16-78:1?4:1-10:2",0,2,1,0,0,1,2,0,0,2,1
+"48","[1245] focaBotaoFechar","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\EditarDadosProcessoNaPauta.xhtml?21:16-99:16?54:2-59:3",0,2,1,0,0,0,2,0,1,2,1
+"49","[1254] verificarSeRedimensionarTela","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\ModeloDocumento\CopiarVariosModelos.xhtml?42:5-201:9?151:8-157:10",1,1,1,0,0,0,3,0,0,3,1
+"50","[1340] verificarSeRedimensionarTela","D:\apps\fulgas\fulgasWeb\src\main\resources\META-INF\resources\js\modelo_documento_pesquisar.js?98:0-103:2",1,1,1,0,0,1,3,0,0,3,1
+"51","[34] fechaPopup","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\PopupEditarRepresentacaoLegal.xhtml?20:9-64:9?29:16-35:17",1,2,1,0,0,0,3,0,0,4,2
+"52","[115] recarregarTextoLivre","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\EmitirMeritoPelaUnidadeDeAcordo.xhtml?25:9-202:9?167:20-175:21",1,3,1,0,0,0,4,0,1,4,2
+"53","[203] fecharModalInclusaoAlteracao","D:\apps\wproc\src\main\webapp\Web\wproc\MantemCarimbo\MantemCarimbo.xhtml?25:8-57:8?18:2-26:3",1,2,2,0,0,1,4,0,0,5,2
+"54","[329] 34:12-63:12?21:60-27:8 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\EnvioEmLoteProcessosEncerrados\EnvioEmLote.xhtml?34:12-63:12?21:60-27:8",1,2,2,0,0,1,3,0,0,5,2
+"55","[341] 36:1-184:13?135:39-146:17 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Encerrar.xhtml?36:1-184:13?135:39-146:17",1,2,1,0,0,0,5,0,0,4,2
+"56","[349] recarregarTextoLivre","D:\apps\wproc\src\main\webapp\Web\wproc\EmitirPronunciamentoUnidadeDeAcordo.xhtml?32:1-454:1?394:1-406:2",1,3,1,0,0,0,4,0,1,4,2
+"57","[471] exibeBotaoDebito","D:\apps\wproc\src\main\webapp\Web\wproc\ConcluirPronunciamentoSupervisor.xhtml?29:9-193:9?112:12-122:13",2,2,1,0,0,0,5,0,0,3,2
+"58","[488] exibeBotaoDebito","D:\apps\wproc\src\main\webapp\Web\wproc\ConcluirInstrucaoEmLote.xhtml?24:13-201:13?127:0-137:1",2,2,1,0,0,0,5,0,0,3,2
+"59","[496] exibeBotaoDebito","D:\apps\wproc\src\main\webapp\Web\wproc\ConcluirInstrucao.xhtml?26:13-218:13?145:16-155:17",2,2,1,0,0,0,5,0,0,3,2
+"60","[524] cancelarAutuacao","D:\apps\wproc\src\main\webapp\Web\wproc\AutuaProcesso\AutuaProcessoAdministrativo.xhtml?24:13-85:5?48:16-59:17",2,2,2,0,0,0,4,0,0,6,2
+"61","[571] verificaVisibilidadeModalDocumentoaAgAnalise","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\PainelConcluirAcao.xhtml?22:5-140:5?88:4-96:5",1,2,1,0,0,0,3,0,0,4,2
+"62","[575] 22:5-140:5?22:58-29:9 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\PainelConcluirAcao.xhtml?22:5-140:5?22:58-29:9",1,2,1,0,0,0,4,0,0,3,2
+"63","[577] 22:5-140:5?11:44-18:9 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\PainelConcluirAcao.xhtml?22:5-140:5?11:44-18:9",1,2,1,0,0,0,4,0,0,3,2
+"64","[808] fechaTela","D:\apps\wdoc\src\main\webapp\Web\wdoc\ConsultaDocumento\PesquisaUsuario.xhtml?22:17-82:17?12:24-21:25",2,2,1,0,0,0,5,0,0,6,2
+"65","[812] fechaTela","D:\apps\wdoc\src\main\webapp\Web\wdoc\ConsultaDocumento\PesquisaUnidade.xhtml?22:17-74:17?12:24-20:25",2,2,1,0,0,0,5,0,0,6,2
+"66","[885] timeoutClickOn","D:\apps\table-jsf12\src\main\webapp\Web\MesaTrabalho\MesaGenerica.html?19:1-418:1?365:0-372:1",1,2,1,0,0,1,5,0,0,5,2
+"67","[1194] fecharJanelaModalGenerica","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\VisualizarVersoesAnteriores\VisualizarVersoesAnteriores.xhtml?16:8-33:8?4:2-15:3",1,2,2,0,0,0,3,0,0,5,2
+"68","[1207] trataFocoInicial","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Sessao\EditarSessao.xhtml?18:16-148:16?4:3-12:4",1,2,1,0,0,0,4,0,0,5,2
+"69","[1208] fecharDiv","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Sessao\defineQuorumSessao.xhtml?15:4-29:4?3:1-13:2",1,2,2,0,0,0,3,0,0,5,2
+"70","[1212] focusHoraLimiteDisponibilizacaoSeDataCompleta","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Sessao\CriarSessao.xhtml?16:8-181:8?73:4-78:2",0,2,1,0,0,1,3,0,0,6,2
+"71","[1213] focusHoraFechamentoPautaSeDataCompleta","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Sessao\CriarSessao.xhtml?16:8-181:8?66:4-71:2",0,2,1,0,0,1,3,0,0,6,2
+"72","[1218] defineFocusInicial","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Sessao\CriarSessao.xhtml?16:8-181:8?18:4-24:5",0,2,1,0,0,1,4,0,0,4,2
+"73","[1240] defineFocusInicial","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\IncluirEmPautaFiltro.xhtml?37:16-118:1?22:8-28:9",0,2,1,0,0,1,4,0,0,4,2
+"74","[1256] alteraFocoAposSelecionarTipo","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\ModeloDocumento\CopiarVariosModelos.xhtml?42:5-201:9?88:8-98:9",1,2,1,0,0,0,5,0,0,6,2
+"75","[1257] alteraFocoAposSelecionarAreaFinalidade","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\ModeloDocumento\CopiarVariosModelos.xhtml?42:5-201:9?75:8-85:9",1,2,1,0,0,0,5,0,0,6,2
+"76","[1264] 15:5-44:5?12:15-18:9 (expr)","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\IniciarInstrucao\IniciarInstrucaoGenerico.xhtml?15:5-44:5?12:15-18:9",1,2,1,0,0,0,4,0,0,3,2
+"77","[1296] focusBotaoPesquisarDocumento","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Extrato\ExtratoNoGabinete.xhtml?16:8-49:8?22:2-27:6",0,2,1,0,0,1,3,0,0,4,2
+"78","[1297] focusBotaoPesquisarProcesso","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Extrato\ExtratoNoGabinete.xhtml?16:8-49:8?15:2-20:6",0,2,1,0,0,1,3,0,0,4,2
+"79","[1341] alterarFocoAposSelecionarAutor","D:\apps\fulgas\fulgasWeb\src\main\resources\META-INF\resources\js\modelo_documento_pesquisar.js?82:0-95:1",1,2,1,0,0,0,5,0,0,6,2
+"80","[160] 25:9-117:9?3:43-20:21 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\ConcluirMeritoPelaUnidade.xhtml?25:9-117:9?3:43-20:21",2,3,2,0,0,0,3,0,0,5,3
+"81","[165] 24:1-97:9?3:43-20:21 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\ConcluirMeritoPelaSubunidade.xhtml?24:1-97:9?3:43-20:21",2,3,2,0,0,0,3,0,0,5,3
+"82","[167] 25:9-62:9?3:43-20:21 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\ConcluirExameDeMerito.xhtml?25:9-62:9?3:43-20:21",2,3,2,0,0,0,3,0,0,5,3
+"83","[175] 25:9-144:9?3:43-20:21 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\ConcluirAdmissibilidadePelaUnidade.xhtml?25:9-144:9?3:43-20:21",2,3,2,0,0,0,3,0,0,5,3
+"84","[289] atualizaAnoExercicioContas","D:\apps\wproc\src\main\webapp\Web\wproc\IncluirEditarMonitoramento.xhtml?25:1-94:17?41:20-52:21",2,2,1,0,0,0,2,0,2,5,3
+"85","[362] 26:17-94:17?4:41-26:21 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\EmitirPronunciamentoUnidadeAvulso.xhtml?26:17-94:17?4:41-26:21",2,3,2,0,0,0,3,0,0,6,3
+"86","[396] janelaModalConsulta","D:\apps\wproc\src\main\webapp\Web\wproc\DetalhaProcessoTvp.xhtml?24:13-76:13?3:16-9:17",1,2,1,0,0,0,2,0,1,6,3
+"87","[400] janelaModalConsulta","D:\apps\wproc\src\main\webapp\Web\wproc\DetalhaProcesso.xhtml?24:13-81:13?3:16-9:17",1,2,1,0,0,0,2,0,1,6,3
+"88","[422] abreJanelaAssinaturaDocumento","D:\apps\wproc\src\main\webapp\Web\wproc\CriarDocumento\CriarDocumentoAvulso.xhtml?26:5-244:5?174:4-189:5",2,3,2,0,0,0,3,0,1,5,3
+"89","[506] exibeDivConfirmaAutuacaoRecorrenteOutroRecurso","D:\apps\wproc\src\main\webapp\Web\wproc\AutuaRecurso\AutuaRecursoPeca.xhtml?19:8-133:8?71:4-81:5",1,2,2,0,0,0,3,0,1,5,3
+"90","[511] exibeDivConfirmaAutuacaoRecorrenteOutroRecurso","D:\apps\wproc\src\main\webapp\Web\wproc\AutuaRecurso\AutuaRecurso.xhtml?19:8-122:8?70:4-80:5",1,2,2,0,0,0,3,0,1,5,3
+"91","[572] abreJanelaAssinaturaDocumento","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\PainelConcluirAcao.xhtml?22:5-140:5?66:4-81:5",2,3,2,0,0,0,3,0,0,5,3
+"92","[583] esconderPainelComentario","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\VisualizaProcesso\VisualizaProcesso.html?289:32-479:32?145:5-155:6",1,3,1,0,0,0,3,0,1,5,3
+"93","[613] setEventListener","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\scripts\egestao.js?284:0-293:1",0,3,2,0,0,1,2,0,1,5,3
+"94","[614] desabilitarF5","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\scripts\egestao.js?274:0-282:1",0,3,2,0,0,1,2,0,1,5,3
+"95","[729] setaImagemObservacao","D:\apps\wdoc\src\main\webapp\Web\wdoc\MantemRegistroEntrada\scripts\CadastraRegistroEntrada.js?193:4-207:5",2,2,2,0,0,0,2,0,2,6,3
+"96","[774] disparaOperacaoDadosGerais","D:\apps\wdoc\src\main\webapp\Web\wdoc\GereDadosGeraisDocumento\scripts\GereDadosGeraisDocumento.js?2:0-13:1",1,2,2,0,0,0,2,0,1,6,3
+"97","[777] verificaSeHabilitaBotaoConfirmarCopiaPeca","D:\apps\wdoc\src\main\webapp\Web\wdoc\GereDadosGeraisDocumento\CopiaPecaProcesso.xhtml?22:5-39:5?3:4-14:5",2,2,1,0,0,0,2,0,2,5,3
+"98","[836] abreJanelaAssinaturaDocumento","D:\apps\wdoc\src\main\webapp\Web\wdoc\AnexarDocumentos\AnexarDocumentos.xhtml?17:6-145:1?103:8-118:9",2,3,2,0,0,0,3,0,1,5,3
+"99","[1235] atualizarItens","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\IncluirEmPautaMenu.xhtml?26:1-63:1?7:2-20:3",1,2,2,0,1,0,3,0,0,6,3
+"100","[1239] atualizarItens","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\IncluirEmPautaFiltro.xhtml?37:16-118:1?30:8-43:6",1,2,2,0,1,0,3,0,0,6,3
+"101","[1283] atualizarItens","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\DistribuirMenuAtividade.xhtml?16:8-157:8?8:2-23:3",1,2,2,0,1,0,3,0,0,6,3
+"102","[1292] atualizarItens","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\DistribuirMenu.xhtml?16:8-189:8?8:2-23:3",1,2,2,0,1,0,3,0,0,6,3
+"103","[1293] atualizarItens","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\Distribuir.xhtml?122:8-149:8?13:2-27:3",1,2,2,0,1,0,3,0,0,6,3
+"104","[0] limpar","D:\apps\wproc\src\main\webapp\Web\wproc\UltimasOperacoes.xhtml?20:17-29:17?3:20-8:21",0,3,0,0,0,0,6,0,0,3,4
+"105","[21] habilitaDesabilitaModelo","D:\apps\wproc\src\main\webapp\Web\wproc\SubstituirArquivo.xhtml?25:9-100:17?43:20-48:21",0,4,0,0,0,1,8,0,0,4,4
+"106","[23] limpar","D:\apps\wproc\src\main\webapp\Web\wproc\SorteioRecursos.xhtml?20:17-29:17?3:20-8:21",0,3,0,0,0,0,6,0,0,3,4
+"107","[36] resetDadosRegistroNovo","D:\apps\wproc\src\main\webapp\Web\wproc\RepresentanteLegal\PopupEditarRepresentacaoLegal.xhtml?20:9-64:9?10:16-15:17",0,4,0,0,0,0,8,0,0,4,4
+"108","[67] habilitaDesabilitaModelo","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\IniciarExameUnidade.xhtml?25:9-260:9?92:20-97:21",0,4,0,0,0,1,8,0,0,4,4
+"109","[84] habilitaDesabilitaModelo","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\IniciarExameSubunidade.xhtml?25:9-298:9?73:20-78:21",0,4,0,0,0,1,8,0,0,4,4
+"110","[99] habilitaDesabilitaModelo","D:\apps\wproc\src\main\webapp\Web\wproc\Recurso\IniciarExameDeMerito.xhtml?25:9-228:9?71:20-76:21",0,4,0,0,0,1,8,0,0,4,4
+"111","[200] 25:8-79:8?45:27-53:3 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\MantemModeloDocumento\IncluiModelo.xhtml?25:8-79:8?45:27-53:3",0,4,0,0,0,0,7,0,0,3,4
+"112","[205] 25:8-49:8?15:27-23:3 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\MantemCarimbo\IncluiCarimbo.xhtml?25:8-49:8?15:27-23:3",0,4,0,0,0,0,7,0,0,3,4
+"113","[232] habilitaDesabilitaModelo","D:\apps\wproc\src\main\webapp\Web\wproc\IniciarPronunciamentoSupervisor.xhtml?25:9-139:17?71:20-76:21",0,4,0,0,0,1,8,0,0,4,4
+"114","[247] habilitaDesabilitaModelo","D:\apps\wproc\src\main\webapp\Web\wproc\IniciarPronunciamentoSubunidade.xhtml?25:9-296:17?137:20-142:21",0,4,0,0,0,1,8,0,0,4,4
+"115","[296] 12:8-51:8?5:6-18:7 (expr)","D:\apps\wproc\src\main\webapp\Web\wproc\Identificacao.xhtml?12:8-51:8?5:6-18:7",0,4,0,0,0,0,8,0,0,4,4
+"116","[373] callback","D:\apps\wproc\src\main\webapp\Web\wproc\EmitirPronunciamentoSubunidadeDeAcordo.xhtml?30:1-198:1?52:1-57:2",0,3,0,0,0,0,6,0,0,3,4
+"117","[566] limparCamposPesquisa","D:\apps\wproc\src\main\webapp\Web\wproc\AcessoVista\ConsultarAcessoVistaEletronica.xhtml?29:9-43:9?7:16-12:17",0,4,0,0,0,0,8,0,0,4,4
+"118","[574] preencherTodosJuntar","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\PainelConcluirAcao.xhtml?22:5-140:5?21:4-34:5",1,4,1,0,0,1,7,0,0,4,4
+"119","[576] preencherTodosAssinar","D:\apps\wproc\src\main\webapp\Web\wproc\Acao\PainelConcluirAcao.xhtml?22:5-140:5?10:4-19:5",1,3,1,0,0,1,6,0,0,4,4
+"120","[592] exibirResultadoConsulta","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\VisualizaProcesso\VisualizaProcesso.html?289:32-479:32?37:5-42:6",0,4,0,0,0,0,8,0,0,4,4
+"121","[593] exibirParametrosConsulta","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\VisualizaProcesso\VisualizaProcesso.html?289:32-479:32?28:5-35:6",0,4,0,0,0,0,8,0,0,4,4
+"122","[839] atualizarListaArquivosASeremAnexados","D:\apps\wdoc\src\main\webapp\Web\wdoc\AnexarDocumentos\AnexarDocumentos.xhtml?17:6-145:1?64:8-71:9",0,3,1,0,0,1,6,0,0,4,4
+"123","[1263] 21:8-32:8?2:9-11:3 (expr)","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\Redistribuir.xhtml?21:8-32:8?2:9-11:3",0,3,0,0,0,1,6,0,0,3,4
+"124","[1294] 122:8-149:8?2:9-11:3 (expr)","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\Distribuir.xhtml?122:8-149:8?2:9-11:3",0,3,0,0,0,1,6,0,0,3,4
+"125","[397] callbackComentario","D:\apps\wproc\src\main\webapp\Web\wproc\DetalhaProcesso.xhtml?24:13-81:13?47:16-55:17",1,2,2,0,0,0,2,0,1,9,5
+"126","[737] mostraDivItemNaoDigitalizavel","D:\apps\wdoc\src\main\webapp\Web\wdoc\MantemRegistroEntrada\scripts\CadastraRegistroEntrada.js?2:1-15:5",2,2,2,0,0,0,4,0,2,10,5
+"127","[766] mostraDivExisteProcesso","D:\apps\wdoc\src\main\webapp\Web\wdoc\GereSituacaoRegistroEntrada\scripts\MantemDocumento.js?20:0-35:1",2,2,3,0,0,0,4,0,2,10,5
+"128","[776] callbackComentario","D:\apps\wdoc\src\main\webapp\Web\wdoc\GereDadosGeraisDocumento\GereDadosGeraisDocumento.xhtml?44:1-56:1?3:4-11:5",1,2,2,0,0,0,2,0,1,9,5
+"129","[787] mostraDivItemNaoDigitalizavel","D:\apps\wdoc\src\main\webapp\Web\wdoc\EditarDadosGeraisDocumento\scripts\abaItensNaoDigitalizaveis.js?9:0-19:1",2,2,2,0,0,0,4,0,2,10,5
+"130","[798] mostraDivExisteProcesso","D:\apps\wdoc\src\main\webapp\Web\wdoc\EditarDadosGeraisDocumento\scripts\abaDadosGerais.js?132:0-142:1",2,2,2,0,0,0,4,0,2,10,5
+"131","[903] abreJanela","D:\apps\table-jsf12\src\main\webapp\Web\MesaTrabalho\MesaGenerica.html?19:1-418:1?51:0-60:1",2,2,1,0,0,0,3,1,1,9,5
+"132","[1199] verificaPossuiItensMinimos","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Sessao\ReabrirSessao.xhtml?81:21-104:32?12:12-23:16",2,2,1,0,0,0,3,0,2,11,5
+"133","[1250] botaoSair","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\ModeloDocumento\PesquisarVariosModelos.xhtml?33:5-125:9?45:8-57:9",1,2,2,0,0,0,3,0,0,8,5
+"134","[1259] botaoSair","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\ModeloDocumento\CopiarVariosModelos.xhtml?42:5-201:9?45:8-57:9",1,2,2,0,0,0,3,0,0,8,5
+"135","[1349] verificarSeRedimensionarTela","D:\apps\fulgas\fulgasWeb\src\main\resources\META-INF\resources\js\modelo_documento_criar.js?65:0-73:1",2,2,1,0,0,1,3,0,0,9,5
+"136","[581] mostrarPainelComentario","D:\apps\wmgmt\src\main\webapp\Web\wmgmt\VisualizaProcesso\VisualizaProcesso.html?289:32-479:32?176:5-189:6",1,4,2,0,0,0,5,0,1,5,6
+"137","[1234] carregarEventListeners","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\IncluirEmPautaMenu.xhtml?26:1-63:1?22:2-36:3",1,4,2,0,0,0,5,0,0,5,6
+"138","[1236] carregarEventListeners","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\Pauta\IncluirEmPautaFiltro.xhtml?37:16-118:1?60:8-74:9",1,4,2,0,0,0,5,0,0,5,6
+"139","[1280] carregarEventListeners","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\DistribuirMenuAtividade.xhtml?16:8-157:8?90:2-105:3",1,4,2,0,0,0,5,0,0,5,6
+"140","[1289] carregarEventListeners","D:\apps\fulgas\fulgasWeb\src\main\webapp\web\InstrucaoGabinete\DistribuirMenu.xhtml?16:8-189:8?100:2-115:3",1,4,2,0,0,0,5,0,0,5,6

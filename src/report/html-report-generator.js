@@ -99,7 +99,7 @@ function generateHtmlReportFromCsv(csvFile, reportHtmlFile) {
     }
 }
 
-const csvFile = "../../r/allClusters.csv";
+const csvFile = "../../r/clonesClustering_generatedClusters.csv";
 const reportHtmlFile = "../../r/JSMExtr-FunctionClonesReport.html";
 
 generateHtmlReportFromCsv(csvFile, reportHtmlFile);
