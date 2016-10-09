@@ -45,7 +45,7 @@ function writeClustersToHtmlFile(clusterTOC, tables) {
     <html>
     <head>
         <title>Function Clones Report</title>
-        <style>table, tr, td, th { border: 1px solid black; border-collapse: collapse;</style>
+        <style>table, tr, td, th { border: 1px solid black; border-collapse: collapse; }</style>
     </head>
     <body>
     <h1>Function Clones Report</h1>
