@@ -125,7 +125,7 @@ $(document).ready(function () {
 jsMetricsColumnsOnly = js[,c(3,4,5,6,7,8,9,10,11,12)]</code></pre>
 <pre class="r"><code># Execute cluster procedure
 set.seed(999) # fix initial seed to make runs repeatable
-functionClusters &lt;- tclust (jsMetricsColumnsOnly, k = functionMetricsK, alpha = functionMetricsAlpha)</code></pre>
+functionClusters &lt;- tclust (jsMetricsColumnsOnly, k = clonesK, alpha = clonesAlpha)</code></pre>
 <pre><code>## Warning in .tkmeans.warn(O, ret): 64 empty clusters have been detected -
 ## try reducing k.</code></pre>
 <pre><code>## Total number of clusters found: 6</code></pre>
@@ -148,7 +148,7 @@ allClustersCsv &lt;- createCsvDataFrameForClusterNumber(1)</code></pre>
 ## Exporting cluster  5 ...
 ## Exporting cluster  6 ...</code></pre>
 <pre><code>## Saving CSV file...</code></pre>
-<pre class="r"><code>write.table(allClustersCsv, file = &quot;allClusters.csv&quot;, sep = &quot;,&quot;, col.names = NA, qmethod = &quot;double&quot;)</code></pre>
+<pre class="r"><code>write.table(allClustersCsv, file = &quot;clonesClustering_generatedClusters.csv&quot;, sep = &quot;,&quot;, col.names = NA, qmethod = &quot;double&quot;)</code></pre>
 <pre><code>## CSV export complete.</code></pre>
 
 

@@ -17,13 +17,13 @@ library(tclust)
 ```{r, echo=FALSE}
 source("allFilesFunctionMetrics.R")
 # TCLUST threshold arguments
-functionMetricsK <- 70;
-functionMetricsAlpha <- 0.9;
+clonesK <- 70;
+clonesAlpha <- 0.90;
 ```
 
 ```{r, echo=FALSE}
 # Inform chosen arguments
-cat("TCLUST arguments: k=", functionMetricsK, ", alpha=", functionMetricsAlpha)
+cat("TCLUST arguments: k=", clonesK, ", alpha=", clonesAlpha)
 ```
 
 ```{r}
@@ -34,7 +34,7 @@ jsMetricsColumnsOnly = js[,c(3,4,5,6,7,8,9,10,11,12)]
 ```{r}
 # Execute cluster procedure
 set.seed(999) # fix initial seed to make runs repeatable
-functionClusters <- tclust (jsMetricsColumnsOnly, k = functionMetricsK, alpha = functionMetricsAlpha)
+functionClusters <- tclust (jsMetricsColumnsOnly, k = clonesK, alpha = clonesAlpha)
 ```
 
 ```{r, echo=FALSE}
@@ -67,7 +67,7 @@ cat("Saving CSV file...")
 ```
 
 ```{r}
-write.table(allClustersCsv, file = "allClusters.csv", sep = ",", col.names = NA, qmethod = "double")
+write.table(allClustersCsv, file = "clonesClustering_generatedClusters.csv", sep = ",", col.names = NA, qmethod = "double")
 ```
 
 ```{r, echo=FALSE}
