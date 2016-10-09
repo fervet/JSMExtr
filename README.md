@@ -1,4 +1,4 @@
-# JSMEx - JavaScript source code Metrics Extractor
+# JSMExtr - JavaScript source code Metrics Extractor
 
 A tool that parses HTML or JavaScript files and inspects all JavaScript
 code found. Outputs several metrics for the analyzed source.
