@@ -55,5 +55,5 @@ let baseDir;
 baseDir = "D:/apps/";
 
 fileEncoding = 'ISO-8859-1';
-const rFileName = "allFilesFunctionMetrics.R";
+const rFileName = "r/allFilesFunctionMetrics.R";
 extractMultipleFiles(baseDir, fileEncoding, rFileName);
