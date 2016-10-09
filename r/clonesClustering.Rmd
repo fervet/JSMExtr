@@ -15,7 +15,7 @@ library(tclust)
   
 
 ```{r, echo=FALSE}
-source("allFilesFunctionMetrics.R")
+source("JSMExtr-allFilesFunctionMetrics.R")
 # TCLUST threshold arguments
 clonesK <- 70;
 clonesAlpha <- 0.90;

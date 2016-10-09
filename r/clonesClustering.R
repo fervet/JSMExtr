@@ -39,4 +39,4 @@ clonesClustering <- function(inputFile, outputFile, clonesK, clonesAlpha) {
 
 clonesK <- 70;
 clonesAlpha <- 0.90;
-clonesClustering("allFilesFunctionMetrics.R", "clonesClustering_generatedClusters.csv", clonesK, clonesAlpha)
+clonesClustering("JSMExtr-allFilesFunctionMetrics.R", "clonesClustering_generatedClusters.csv", clonesK, clonesAlpha)
