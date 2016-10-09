@@ -52,7 +52,7 @@ function extractMultipleFiles(baseDir, fileEncoding, rFileName) {
 }
 
 let baseDir;
-baseDir = "../fontes2/takeOut";
+baseDir = "D:/apps/";
 
 fileEncoding = 'ISO-8859-1';
 const rFileName = "allFilesFunctionMetrics.R";
