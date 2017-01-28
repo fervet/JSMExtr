@@ -63,6 +63,13 @@ function generateHtmlReportFromCsv(csvFile, reportHtmlFile) {
         fs.writeFileSync(reportHtmlFile, htmlReport);
     }
 
+    function calculateFunctionLocs(functionFileLocation) {
+        const locs = functionFileLocation.match(/\?(\d+):\d+-(\d+):\d+$/);
+        let startingLine = +locs[1];
+        let endingLine = +locs[2];
+        return endingLine - startingLine;
+    }
+
     function createTableForFunctions(functionMetricsArray) {
         let allRows = [];
         const MAX_FILE_NAME = 60;
@@ -76,6 +83,7 @@ function generateHtmlReportFromCsv(csvFile, reportHtmlFile) {
                 }${thisFunctionMetrics["fileLocation"].slice(-MAX_FILE_NAME)}
                 </a>
             </td>
+            <td>${calculateFunctionLocs(thisFunctionMetrics["fileLocation"])}</td>
         `;
             Metrics.forEachTrackedMetric(trackedMetric => {
                 thisRow += `<td>${thisFunctionMetrics[trackedMetric]}</td>`;
@@ -84,7 +92,7 @@ function generateHtmlReportFromCsv(csvFile, reportHtmlFile) {
             allRows.push(thisRow);
         });
 
-        let headers = `<tr><th>#</th><th>Function Name</th><th>File Location</th>`;
+        let headers = `<tr><th>#</th><th>Function Name</th><th>File Location</th><th>LOCs</th>`;
         Metrics.forEachTrackedMetric(trackedMetric => {
             headers += `<th>${trackedMetric}</th>`;
         });
